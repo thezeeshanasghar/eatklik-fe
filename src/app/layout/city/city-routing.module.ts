@@ -6,8 +6,9 @@ const routes: Routes = [
     {
         path: '',
         component: CityComponent
-    }
-];
+    },
+    { path: 'add', loadChildren: 'src/app/layout/city/add/add.module#AddModule' }
+  ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

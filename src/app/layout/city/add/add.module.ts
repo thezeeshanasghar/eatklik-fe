@@ -6,7 +6,7 @@ import { AddComponent } from './add.component';
 import { PageHeaderModule } from 'src/app/shared';
 
 @NgModule({
-  imports: [CommonModule, PageHeaderModule],
+  imports: [CommonModule, PageHeaderModule, AddRoutingModule],
   declarations: [AddComponent]
 })
 export class CityModule {}
