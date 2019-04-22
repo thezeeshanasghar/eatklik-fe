@@ -1,23 +1,6 @@
 <div [@routerTransition]>
 
- 
-  <div class="row" style="margin-bottom:15px;">
-    <div class="col-md-3">
-      <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-      <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
-    </div>
-    <div class="col-md-4">
-      <span class="upload" *ngIf="progress > 0">
-        {{progress}}%
-      </span>
-      <span class="upload" *ngIf="message">
-        {{message}}
-      </span>
-    </div>
-  </div>
- 
-
-   <app-page-header [heading]="'cities'" [icon]="'fa-table'"></app-page-header>
+  <app-page-header [icon]="'fa-table'"></app-page-header>
   <div class="row">
     <div class="col col-xl-6 col-lg-12">
 
@@ -25,14 +8,14 @@
 
       <div class="card mb-3">
         <div class="card-header">Cities
-          <i class="fa fa-fw fa-desktop" (click)="addcity()" ></i>&nbsp;
+          <i class="fa fa-fw fa-desktop" (click)="addcity()"></i>&nbsp;
         </div>
 
         <div class="card-body table-responsive">
           <table class="table table-hover table-striped">
             <thead>
               <tr>
-                <th>City Name</th>
+                <th>Name</th>
                 <th>Image</th>
                 <th>status</th>
               </tr>
@@ -49,6 +32,6 @@
       </div>
 
 
-    </div> 
+    </div>
   </div>
 </div>
