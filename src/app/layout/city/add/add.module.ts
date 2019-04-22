@@ -9,4 +9,4 @@ import { PageHeaderModule } from 'src/app/shared';
   imports: [CommonModule, PageHeaderModule, AddRoutingModule],
   declarations: [AddComponent]
 })
-export class CityModule {}
+export class AddModule {}

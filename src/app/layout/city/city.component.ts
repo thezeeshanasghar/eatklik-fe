@@ -50,16 +50,16 @@ export class CityComponent implements OnInit {
     if (files.length === 0) {
       return;
     }
- 
-    let fileToUpload = <File>files[0];
+
+    const fileToUpload = <File>files[0];
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
- 
+
     this.http.post('https://localhost:5001/api/city', formData, {reportProgress: true, observe: 'events'})
       .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress)
+        if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
-        else if (event.type === HttpEventType.Response) {
+        } else if (event.type === HttpEventType.Response) {
           this.message = 'Upload success.';
           this.onUploadFinished.emit(event.body);
         }
@@ -68,7 +68,7 @@ export class CityComponent implements OnInit {
 
 
   addcity() {
-    this.router.navigate(['/members/vaccine']);
+    this.router.navigate(['/city/add']);
     console.log('add city');
   }
 }
