@@ -33,5 +33,5 @@ export class AddComponent implements OnInit {
         this.onUploadFinished.emit(event.body);
       }
     });
-  };
+  }
 }

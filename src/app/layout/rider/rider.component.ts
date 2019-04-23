@@ -14,7 +14,6 @@ export class RiderComponent implements OnInit {
 
   ngOnInit() {
     this.getRiders();
-    this.getPromotion();
   }
 
   getRiders() {

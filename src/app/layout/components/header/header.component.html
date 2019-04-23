@@ -1,21 +1,21 @@
 <nav class="navbar navbar-expand-lg fixed-top">
-    <a class="navbar-brand" href="#">SB Admin Angular7 BS4 </a>
+    <a class="navbar-brand" href="#">Eat Klik - Admin Dashboard </a>
     <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
         <!-- <span class="navbar-toggler-icon"></span> -->
         <i class="fa fa-bars text-muted" aria-hidden="true"></i>
     </button>
     <div class="collapse navbar-collapse">
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="{{ 'Search' | translate }}" >
+            <input disabled="disabled" class="form-control mr-sm-2" type="text" placeholder="{{ 'Search' | translate }}" >
         </form>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item d-none d-xl-block">
                 <a
-                    href="https://github.com/start-angular/SB-Admin-BS4-Angular-7/archive/master.zip"
+                    href="http://eatklik.net" target="_blank"
                     class="nav-link btn mt-1" role="button"
                     style="padding: .375rem 1rem !important;border-color: #999;"
                 >
-                    {{ 'Download Now' | translate }}
+                    {{ 'Go to Website' | translate }}
                 </a>
             </li> &nbsp;
             <li class="nav-item">
@@ -118,7 +118,7 @@
             </li>
             <li class="nav-item dropdown" ngbDropdown>
                 <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                    <i class="fa fa-user"></i> John Smith <b class="caret"></b>
+                    <i class="fa fa-user"></i> &lt;Username&gt; <b class="caret"></b>
                 </a>
                 <div class="dropdown-menu-right" ngbDropdownMenu>
                     <a class="dropdown-item" href="javascript:void(0)">
