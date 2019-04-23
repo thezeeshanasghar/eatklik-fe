@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { City } from 'src/app/_model/city';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,10 @@ export class CityService extends BaseService {
     super(http);
   }
 
-  getAllCity(): Observable<any> {
+  getAllCity(): Observable<City[]> {
     const url = `${this.API_City}`;
-    return this.http.get(url, this.httpOptions).pipe(
-      map(this.extractData),
+    return this.http.get<City[]>(url, this.httpOptions).pipe(
+      // map(this.extractData),
       catchError(this.handleError)
     );
   }

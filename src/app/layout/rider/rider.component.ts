@@ -28,17 +28,4 @@ export class RiderComponent implements OnInit {
       }
     );
   }
-
-  getPromotion() {
-    this.promotionService.getAllPromotions().subscribe(
-      res => {
-        this.riders = res;
-        console.log('promotion');
-        console.log(this.riders);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
 }
