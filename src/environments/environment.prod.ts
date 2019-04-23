@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+
+  BASE_URL: 'https://localhost:5001/api/'
 };

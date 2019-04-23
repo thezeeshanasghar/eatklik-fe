@@ -8,15 +8,15 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class CityService extends BaseService {
-  private readonly API_City = `${environment.BASE_URL}city`;
+export class RiderService extends BaseService {
+  private readonly API_Rider = `${environment.BASE_URL}rider`;
 
   constructor(protected http: HttpClient) {
     super(http);
   }
 
-  getAllCity(): Observable<any> {
-    const url = `${this.API_City}`;
+  getAllRiders(): Observable<any> {
+    const url = `${this.API_Rider}`;
     return this.http.get(url, this.httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError)
