@@ -1,12 +1,12 @@
 <div class="form-group">
   <label for="name">Name</label>
-  <input type="text" class="form-control" #name="ngModel" [(ngModel)]="model.Name" required>
-  {{model.Name}}
+  <input type="text" class=" inputField" #name="ngModel" [(ngModel)]="model.Name" required>
 
   <div class="row" style="margin-bottom:15px;">
     <div class="col-md-3">
       <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-      <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+      <button type="button" class="btn btn-success uploadButton" (click)="file.click()">Upload File</button>
+      <img *ngIf="uploadimg == true" id="Img" [src]="imgpath" alt="abb">
     </div>
     <div class="col-md-4">
       <span class="upload" *ngIf="progress > 0">
@@ -21,7 +21,7 @@
 
 
   <div class="row" style="margin-bottom:15px;">
-    <button type="button" class="btn btn-dark" (click)="addNewCity()">Submit</button>
+    <button type="button" class="btn btn-dark Button" (click)="addNewCity()">Submit</button>
   </div>
 
 </div>
