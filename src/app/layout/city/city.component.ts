@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CityService } from './../../shared/services/city.service';
 import { routerTransition } from 'src/app/router.animations';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpEventType, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { City } from 'src/app/_model/city';
@@ -14,14 +13,10 @@ import { City } from 'src/app/_model/city';
 })
 export class CityComponent implements OnInit {
   cities: City[];
-  fg: FormGroup;
 
-  constructor(private cityService: CityService, private formBuilder: FormBuilder, public router: Router, private http: HttpClient) {}
+  constructor(private cityService: CityService, public router: Router, private http: HttpClient) {}
 
   ngOnInit() {
-    this.fg = this.formBuilder.group({
-      name: [null]
-    });
     this.getCity();
   }
 

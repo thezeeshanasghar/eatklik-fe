@@ -23,4 +23,9 @@ export class CityService extends BaseService {
       catchError(this.handleError)
     );
   }
+
+  addCity(data): Observable<any> {
+    const url = `${this.API_City}`;
+    return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
+  }
 }
