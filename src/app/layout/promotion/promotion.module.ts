@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { PromotionRoutingModule } from './promotion-routing.module';
 import { PromotionComponent } from './promotion.component';
 import { PageHeaderModule } from 'src/app/shared';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { AddpromotionComponent } from './addpromotion/addpromotion.component';
 
 @NgModule({
-  imports: [CommonModule, PromotionRoutingModule, PageHeaderModule, ReactiveFormsModule],
-  declarations: [PromotionComponent]
+  imports: [CommonModule, PromotionRoutingModule, PageHeaderModule, FormsModule],
+  declarations: [PromotionComponent, AddpromotionComponent]
 })
 export class PromotionModule {}

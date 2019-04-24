@@ -11,12 +11,15 @@ export class Promotion {
     Content: string;
     PromoType: PromoType;
     CityId: number;
-    City: City;
+    city: City;
 
     constructor() {
         this.Id = 0;
         this.Name = '';
+        this.Content = '';
+        this.PromoType = 0;
         this.CityId = 0;
+        this.city = new City();
     }
 
 }

@@ -25,4 +25,6 @@ export class PromotionService extends BaseService {
     return this.http.get<Promotion[]>(url, this.httpOptions).pipe(catchError(this.httpErrorMsgsService.handleError)
     );
   }
+
+
 }

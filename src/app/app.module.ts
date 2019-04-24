@@ -14,7 +14,7 @@ import {HttpErrorMsgsService} from './shared/services/http-error-msgs.service';
 @NgModule({
   imports: [CommonModule, BrowserModule, BrowserAnimationsModule, HttpClientModule, LanguageTranslationModule, AppRoutingModule],
   declarations: [AppComponent],
-  providers: [AuthGuard],
+  providers: [AuthGuard, HttpErrorMsgsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
