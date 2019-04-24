@@ -3,6 +3,8 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { EventEmitter } from 'events';
 import { City } from 'src/app/_model/city';
 import { CityService } from 'src/app/shared/services/city.service';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add',
@@ -16,8 +18,10 @@ export class AddComponent implements OnInit {
   @Output() public onUploadFinished = new EventEmitter();
 
   model = new City();
-
-  constructor(private http: HttpClient, private cityservice: CityService) {}
+  uploadimg: boolean = false;
+  imgpath: string;
+  // = "assets/images/slider1.jpg"
+  constructor(private http: HttpClient, private cityservice: CityService, public router: Router) {}
 
   ngOnInit() {}
 
@@ -25,7 +29,7 @@ export class AddComponent implements OnInit {
     if (files.length === 0) {
       return;
     }
-
+    this.uploadimg = true;
     const fileToUpload = <File>files[0];
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
@@ -39,16 +43,18 @@ export class AddComponent implements OnInit {
         //let json = JSON.parse(event.body);
         let dbPath: any = event.body;
         this.onUploadFinished.emit(dbPath);
-        console.log(dbPath.dbPath);
         this.model.ImagePath = dbPath.dbPath;
+        this.imgpath = environment.RESOURCES_URL + this.model.ImagePath;
+        this.model.ImagePath = this.imgpath;
       }
     });
   };
 
   async addNewCity() {
-    console.log(this.model);
     await this.cityservice.addCity(this.model).subscribe(
-      res => {},
+      res => {
+        this.router.navigate(['/city']);
+      },
       err => {
         console.log(err);
       }

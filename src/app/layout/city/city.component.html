@@ -6,10 +6,10 @@
     <div class="col col-xl-6 col-lg-12">
       <div class="card mb-3">
         <div class="card-header">Cities
-          <i class="fa fa-fw fa-desktop" (click)="addcity()"></i>&nbsp;
+          <i class="fa fa-plus d-flex justify-content-end" (click)="addcity()"></i>
         </div>
 
-        <div class="card-body table-responsive">
+        <div class="card-body table">
           <table class="table table-hover table-striped">
             <thead>
               <tr>
@@ -21,8 +21,7 @@
             <tbody *ngFor="let city of cities">
               <tr>
                 <td>{{city.Name}}</td>
-                <td>{{city.ImagePath}}</td>
-                <!-- <img src="https://localhost:5001/Resources/Images/1.PNG"> -->
+                <img id="Img" [src]="city.ImagePath">
                 <td>{{city.Status}}</td>
                 <td><i class="fa fa-pencil" (click)="edit(city.Id)"></i></td>
                 <td><i class="fa fa-trash" (click)="deleteCity(city.Id)"></i></td>
