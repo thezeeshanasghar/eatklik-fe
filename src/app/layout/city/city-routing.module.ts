@@ -10,7 +10,7 @@ const routes: Routes = [
     component: CityComponent
   },
   { path: 'add', component: AddComponent },
-  { path: 'edit', component: EditComponent }
+  { path: 'edit/:id', component: EditComponent }
 ];
 
 @NgModule({

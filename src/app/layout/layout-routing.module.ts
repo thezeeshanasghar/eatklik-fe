@@ -18,7 +18,8 @@ const routes: Routes = [
       { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
       { path: 'city', loadChildren: './city/city.module#CityModule' },
       { path: 'rider', loadChildren: './rider/rider.module#RiderModule' },
-      { path: 'promotion', loadChildren: './promotion/promotion.module#PromotionModule' }
+      { path: 'promotion', loadChildren: './promotion/promotion.module#PromotionModule' },
+      { path: 'setting', loadChildren: './setting/setting.module#SettingModule' }
     ]
   }
 ];

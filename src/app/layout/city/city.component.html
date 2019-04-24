@@ -24,7 +24,7 @@
                 <td>{{city.ImagePath}}</td>
                 <!-- <img src="https://localhost:5001/Resources/Images/1.PNG"> -->
                 <td>{{city.Status}}</td>
-                <td><i class="fa fa-pencil" (click)="edit()"></i></td>
+                <td><i class="fa fa-pencil" (click)="edit(city.Id)"></i></td>
                 <td><i class="fa fa-trash" (click)="deleteCity(city.Id)"></i></td>
               </tr>
             </tbody>

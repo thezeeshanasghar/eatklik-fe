@@ -35,8 +35,9 @@ export class CityComponent implements OnInit {
   addcity() {
     this.router.navigate(['/city/add']);
   }
-  delete(id) {
-    console.log(id);
+
+  edit(id:number) {
+    this.router.navigateByUrl("/city/edit/" + id)
   }
 
   async deleteCity(id) {
