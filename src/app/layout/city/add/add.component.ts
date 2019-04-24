@@ -1,6 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { EventEmitter } from 'events';
+import { City } from 'src/app/_model/city';
+import { CityService } from 'src/app/shared/services/city.service';
 
 @Component({
   selector: 'app-add',
@@ -12,7 +14,9 @@ export class AddComponent implements OnInit {
   public message: string;
   @Output() public onUploadFinished = new EventEmitter();
 
-  constructor(private http: HttpClient) {}
+  model = new City();
+
+  constructor(private http: HttpClient, private cityservice: CityService) {}
 
   ngOnInit() {}
 
@@ -30,8 +34,23 @@ export class AddComponent implements OnInit {
         this.progress = Math.round((100 * event.loaded) / event.total);
       } else if (event.type === HttpEventType.Response) {
         this.message = 'Upload success.';
-        this.onUploadFinished.emit(event.body);
+
+        //let json = JSON.parse(event.body);
+        let dbPath: any = event.body;
+        this.onUploadFinished.emit(dbPath);
+        console.log(dbPath.dbPath);
+        this.model.imagePath = dbPath.dbPath;
       }
     });
+  };
+
+  async addNewCity() {
+    console.log(this.model);
+     await this.cityservice.addCity(this.model).subscribe(
+       res => {},
+       err => {
+         console.log(err);
+       }
+     );
   }
 }
