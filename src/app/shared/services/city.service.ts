@@ -23,4 +23,9 @@ export class CityService extends BaseService {
       catchError(this.handleError)
     );
   }
+
+  getCity(id: number): Observable <City> {
+    const url = `${this.API_City}`;
+    return this.http.get<City> (url + id).pipe(catchError(this.handleError));
+  }
 }
