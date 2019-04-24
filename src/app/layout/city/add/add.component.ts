@@ -12,6 +12,7 @@ import { CityService } from 'src/app/shared/services/city.service';
 export class AddComponent implements OnInit {
   public progress: number;
   public message: string;
+  msg = 'error';
   @Output() public onUploadFinished = new EventEmitter();
 
   model = new City();
@@ -39,18 +40,18 @@ export class AddComponent implements OnInit {
         let dbPath: any = event.body;
         this.onUploadFinished.emit(dbPath);
         console.log(dbPath.dbPath);
-        this.model.imagePath = dbPath.dbPath;
+        this.model.ImagePath = dbPath.dbPath;
       }
     });
   };
 
   async addNewCity() {
     console.log(this.model);
-     await this.cityservice.addCity(this.model).subscribe(
-       res => {},
-       err => {
-         console.log(err);
-       }
-     );
+    await this.cityservice.addCity(this.model).subscribe(
+      res => {},
+      err => {
+        console.log(err);
+      }
+    );
   }
 }

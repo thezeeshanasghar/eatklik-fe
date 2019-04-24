@@ -20,10 +20,12 @@
             </thead>
             <tbody *ngFor="let city of cities">
               <tr>
-                <td>{{city.name}}</td>
-                <td>{{city.imagePath}}</td>
-                <img src="https://localhost:5001/Resources/Images/1.PNG">
-                <td>{{city.status}}</td>
+                <td>{{city.Name}}</td>
+                <td>{{city.ImagePath}}</td>
+                <!-- <img src="https://localhost:5001/Resources/Images/1.PNG"> -->
+                <td>{{city.Status}}</td>
+                <td><i class="fa fa-pencil" (click)="edit()"></i></td>
+                <td><i class="fa fa-trash" (click)="deleteCity(city.Id)"></i></td>
               </tr>
             </tbody>
           </table>

@@ -35,4 +35,18 @@ export class CityComponent implements OnInit {
   addcity() {
     this.router.navigate(['/city/add']);
   }
+  delete(id) {
+    console.log(id);
+  }
+
+  async deleteCity(id) {
+    await this.cityService.deleteCity(id).subscribe(
+      res => {
+        this.getCity();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }

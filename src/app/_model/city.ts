@@ -1,13 +1,13 @@
 import { status } from './status';
 
 export class City {
-  public id: number;
-  public name: string;
-  public imagePath: string;
-  public status: status;
+  public Id: number;
+  public Name: string;
+  public ImagePath: string;
+  public Status: status;
   constructor() {
-    this.id = 0;
-    this.name = '';
-    this.imagePath = '';
+    this.Id = 0;
+    this.Name = '';
+    this.ImagePath = '';
   }
 }
