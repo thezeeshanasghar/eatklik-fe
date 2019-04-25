@@ -4,7 +4,6 @@ export class Setting {
   public Value: string;
 
   constructor() {
-    this.Id = 0;
     this.Name = '';
     this.Value = '';
   }
