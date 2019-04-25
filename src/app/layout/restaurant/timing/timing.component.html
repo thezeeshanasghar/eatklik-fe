@@ -1,3 +1,42 @@
-<p>
-  timing works!
-</p>
+<div [@routerTransition]>
+    <app-page-header [heading]="'Restaurant Timings'" [icon]="'fa-table'"></app-page-header>
+    <div class="row">
+      <div class="col col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="card-header">
+            List of all restaurant timings
+            <div class="pull-right">
+              <a routerLink="add"> <i class="fa fa-plus"></i> Add </a>
+            </div>
+          </div>
+          <div class="card-body table-responsive">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Weekday</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let restaurantTiming of restaurantTimings; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ restaurantTiming.WeekDay }}</td>
+                  <td>{{ restaurantTiming.StartTime }}</td>
+                  <td>{{ restaurantTiming.EndTime }}</td>
+  
+                  <td>
+                    <i class="fa fa-pencil"></i>&nbsp;
+                    <i class="fa fa-trash"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

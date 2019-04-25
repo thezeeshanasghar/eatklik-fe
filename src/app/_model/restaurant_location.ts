@@ -3,13 +3,14 @@ import { City } from './city';
 export class RestaurantLocation {
   public Id: number;
   public Address: string;
-  public latitude: number;
-  public longitude: number;
+  public Latitude: number;
+  public Longitude: number;
   public CityId: number;
   public City: City;
+  public RestaurantId: number;
 
   constructor() {
     this.Address = '';
-    this.latitude = this.longitude = 0;
+    this.Latitude = this.Longitude = 0;
   }
 }

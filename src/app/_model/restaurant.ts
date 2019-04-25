@@ -15,15 +15,9 @@ export class Restaurant {
   public CoverImagePath: string;
 
   public RestaurantCuisines: RestaurantCuisine[];
-
-  public RestaurantLocationId: number;
-  public RestaurantLocation: RestaurantLocation;
-
+  public RestaurantLocation: RestaurantLocation[];
   public RestaurantTimings: RestaurantTiming[];
-
-  public RestaurantContactId: number;
-  public RestaurantContact: RestaurantContact;
-
+  public RestaurantContacts: RestaurantContact[];
   public CustomrReviews: Review[];
 
   constructor() {

@@ -3,6 +3,7 @@ export class RestaurantTiming {
   public WeekDay: WeekDay;
   public StartTime: string;
   public EndTime: string;
+  public RestaurantId: number;
 
   constructor() {
     this.WeekDay = WeekDay.Monday;
