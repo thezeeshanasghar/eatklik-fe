@@ -1,43 +1,46 @@
-<form #cityForm="ngForm" (ngf)="onSubmit(cityForm)" novalidate>
-  <div class="container">
-    <div class="card" style="width:400px">
-      <div class="card-body">
-        <div class="form-group" [class.has-error]="nameControl.invalid && nameControl.touched">
-          <label for="name" class="control-label">Enter City Name</label>
-          <input required id="name" required type="text" class="form-control" name="name" [(ngModel)]="model.Name"
-            #nameControl="ngModel" [ngModelOptions]="{standalone: true}">
-          <span class="help-block " *ngIf="nameControl.invalid && nameControl.touched"> city name is
-            required</span>
-          <div>
+<div [@routerTransition]>
+  <app-page-header [heading]="'Add City'" [icon]="'fa-table'"></app-page-header>
+  <form #cityForm="ngForm" (ngf)="onSubmit(cityForm)" novalidate>
+    <div class="container">
+      <div class="card" style="width:400px">
+        <div class="card-body">
+          <div class="form-group" [class.has-error]="nameControl.invalid && nameControl.touched">
+            <label for="name" class="control-label">Enter City Name</label>
+            <input required id="name" required type="text" class="form-control" name="name" [(ngModel)]="model.Name"
+              #nameControl="ngModel" [ngModelOptions]="{standalone: true}">
+            <span class="help-block " *ngIf="nameControl.invalid && nameControl.touched"> city name is
+              required</span>
             <div>
-              <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)"
-                style="display:none;">
-              <button type="button" class="btn btn-success uploadButton" (click)="file.click()">Image Upload</button>
+              <div>
+                <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)"
+                  style="display:none;">
+                <button type="button" class="btn btn-success uploadButton" (click)="file.click()">Image Upload</button>
+
+              </div>
+              <div>
+                <span class="upload" *ngIf="progress > 0">
+                  {{progress}}%
+                </span>
+                <span class="upload" *ngIf="message">
+                  {{message}}
+                </span>
+              </div>
 
             </div>
-            <div>
-              <span class="upload" *ngIf="progress > 0">
-                {{progress}}%
-              </span>
-              <span class="upload" *ngIf="message">
-                {{message}}
-              </span>
+            <img *ngIf="uploadimg == true" id="Img" [src]="imgpath" alt="abb"><br>
+            <input name="options" type="radio" [value]=0 [checked]="model.Status==0"
+              [(ngModel)]="model.Status" />Enable<br />
+            <input name="options" type="radio" [value]=1 [checked]="model.Status==1"
+              [(ngModel)]="model.Status" />Disable<br />
+
+            <div class="row" style="margin-bottom:15px;">
+              <button type="button" class="btn btn-dark Button" (click)="addNewCity()"
+                [disabled]="cityForm.form.invalid">Submit</button>
             </div>
 
           </div>
-          <img *ngIf="uploadimg == true" id="Img" [src]="imgpath" alt="abb"><br>
-          <input name="options" type="radio" [value]=0 [checked]="model.Status==0"
-            [(ngModel)]="model.Status" />Enable<br />
-          <input name="options" type="radio" [value]=1 [checked]="model.Status==1"
-            [(ngModel)]="model.Status" />Disable<br />
-
-          <div class="row" style="margin-bottom:15px;">
-            <button type="button" class="btn btn-dark Button" (click)="addNewCity()"
-              [disabled]="cityForm.form.invalid">Submit</button>
-          </div>
-
         </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
