@@ -19,7 +19,8 @@ const routes: Routes = [
       { path: 'city', loadChildren: './city/city.module#CityModule' },
       { path: 'rider', loadChildren: './rider/rider.module#RiderModule' },
       { path: 'promotion', loadChildren: './promotion/promotion.module#PromotionModule' },
-      { path: 'setting', loadChildren: './setting/setting.module#SettingModule' }
+      { path: 'setting', loadChildren: './setting/setting.module#SettingModule' },
+      { path: 'cuisine', loadChildren: './cuisine/cuisine.module#CuisineModule' }
     ]
   }
 ];
