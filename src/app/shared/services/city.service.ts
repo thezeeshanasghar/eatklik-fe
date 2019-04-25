@@ -34,6 +34,11 @@ export class CityService extends BaseService {
     return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
   }
 
+  editCity(id: string, data): Observable<any> {
+    const url = `${this.API_City}${id}/`;
+    return this.http.put(url, data, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
   deleteCity(id: string): Observable<any> {
     const url = `${this.API_City}${id}`;
     return this.http.delete(url, this.httpOptions).pipe(catchError(this.handleError));
