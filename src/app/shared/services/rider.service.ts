@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Rider } from 'src/app/_model/rider';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,9 @@ export class RiderService extends BaseService {
     super(http);
   }
 
-  getAllRiders(): Observable<any> {
+  getAllRiders(): Observable<Rider[]> {
     const url = `${this.API_Rider}`;
-    return this.http.get(url, this.httpOptions).pipe(
-      map(this.extractData),
+    return this.http.get<Rider[]>(url, this.httpOptions).pipe(
       catchError(this.handleError)
     );
   }

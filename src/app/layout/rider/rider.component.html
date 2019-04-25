@@ -1,3 +1,38 @@
-<p>
-  rider works!
-</p>
+<div [@routerTransition]>
+  <app-page-header [heading]="'Riders'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          List of all riders
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Mobile #</th>
+                <th>City</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="!isLoading">
+              <tr
+                *ngFor="let rider of riders; let i = index"
+                [ngClass]="{
+                  'table-success': rider.Status === 0,
+                  'table-danger': rider.Status === 1
+                }"
+              >
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ rider.Name }}</td>
+                <td>{{ rider.MobileNo }}</td>
+                <td>{{ rider.City.Name }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

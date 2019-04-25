@@ -1,5 +1,3 @@
-import { status } from './status';
-
 export class Setting {
   public Id: number;
   public Name: string;

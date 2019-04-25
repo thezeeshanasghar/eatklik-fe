@@ -1,4 +1,4 @@
-export enum status {
+export enum Status {
   Enable,
   Disable
 }

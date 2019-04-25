@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { RiderService } from 'src/app/shared/services/rider.service';
-import { PromotionService } from 'src/app/shared/services/promotion.service';
+import { Rider } from 'src/app/_model/rider';
+import { CityService } from 'src/app/shared/services/city.service';
+import { routerTransition } from 'src/app/router.animations';
+import { Status } from 'src/app/_model/status';
 
 @Component({
   selector: 'app-rider',
   templateUrl: './rider.component.html',
-  styleUrls: ['./rider.component.scss']
+  styleUrls: ['./rider.component.scss'],
+  animations: [routerTransition()]
 })
 export class RiderComponent implements OnInit {
-  riders: any;
+  riders: Rider[];
+  isLoading: boolean;
 
-  constructor(private riderService: RiderService, private promotionService: PromotionService) {}
+  Status: Status;
+
+  constructor(private riderService: RiderService, private cityService: CityService) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.getRiders();
   }
 
@@ -20,7 +28,13 @@ export class RiderComponent implements OnInit {
     this.riderService.getAllRiders().subscribe(
       res => {
         this.riders = res;
-        console.log(this.riders);
+        for (const rider of this.riders) {
+          this.cityService.getCity(rider.CityId).subscribe(data => {
+            rider.City = data;
+
+            this.isLoading = false;
+          });
+        }
       },
       err => {
         console.log(err);

@@ -22,7 +22,7 @@ export class BaseService {
   }
 
   protected extractData(res: Response) {
-    let body = res;
-    return body || {};
+    return res || {};
   }
+
 }
