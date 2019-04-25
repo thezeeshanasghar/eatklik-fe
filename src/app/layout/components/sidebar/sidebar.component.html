@@ -30,35 +30,29 @@
         </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
-                <i class="fa fa-plus"></i>&nbsp;
-                <span>{{ 'Menu' | translate }}</span>
+                <i class="fa fa-hotel"></i>&nbsp;
+                <span>{{ 'Restaurant' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)">
-                            <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Submenu' | translate }}</span>
+                        <a [routerLink]="['/restaurant']" [routerLinkActive]="['router-link-active']">
+                            <i class="fa fa-list"></i>&nbsp;
+                            <span>{{ 'List' | translate }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Submenu' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="fa fa-monument"></i>&nbsp;
-                            <span>{{ 'Submenu' | translate }}</span>
+                            <i class="fa fa-bars"></i>&nbsp;
+                            <span>{{ 'Menu Builder' | translate }}</span>
                         </a>
                     </li>
                 </ul>
             </li>
         </div>
-        <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-file-o"></i>&nbsp;
-            <span>{{ 'Blank Page' | translate }}</span>
+        <a [routerLink]="['/customer']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-users"></i>&nbsp;
+            <span>{{ 'Customer' | translate }}</span>
         </a>
         <a [routerLink]="['/city']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-globe"></i>&nbsp;

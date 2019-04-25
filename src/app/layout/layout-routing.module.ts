@@ -20,7 +20,9 @@ const routes: Routes = [
       { path: 'rider', loadChildren: './rider/rider.module#RiderModule' },
       { path: 'promotion', loadChildren: './promotion/promotion.module#PromotionModule' },
       { path: 'setting', loadChildren: './setting/setting.module#SettingModule' },
-      { path: 'cuisine', loadChildren: './cuisine/cuisine.module#CuisineModule' }
+      { path: 'cuisine', loadChildren: './cuisine/cuisine.module#CuisineModule' },
+      { path: 'restaurant', loadChildren: './restaurant/restaurant.module#RestaurantModule' },
+      { path: 'customer', loadChildren: './customer/customer.module#CustomerModule' }
     ]
   }
 ];
