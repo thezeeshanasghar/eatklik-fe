@@ -9,13 +9,15 @@ import { LocationComponent } from './location/location.component';
 import { TimingComponent } from './timing/timing.component';
 import { AddComponent } from './add/add.component';
 import { PageHeaderModule } from 'src/app/shared';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [RestaurantComponent, ContactComponent, CuisineComponent, LocationComponent, TimingComponent, AddComponent],
   imports: [
     CommonModule,
     RestaurantRoutingModule,
-    PageHeaderModule
+    PageHeaderModule,
+    NgbModule
   ]
 })
 export class RestaurantModule { }

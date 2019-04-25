@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from 'src/app/router.animations';
+import { Restaurant } from 'src/app/_model/restaurant';
+import { RestaurantService } from 'src/app/shared/services/restaurant.service';
 
 @Component({
   selector: 'app-restaurant',

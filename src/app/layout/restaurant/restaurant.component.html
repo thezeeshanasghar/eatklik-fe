@@ -1,31 +1,47 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Cuisines'" [icon]="'fa-table'"></app-page-header>
-    <div class="row">
-      <div class="col col-xl-12 col-lg-12">
-        <div class="card mb-3">
-          <div class="card-header">
-            List of all cuisines
-            <div class="pull-right">
-              <a routerLink="add"> <i class="fa fa-plus"></i> Add </a>
-            </div>
+  <app-page-header [heading]="'Restaurants'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          List of all restaurants
+          <div class="pull-right">
+            <a routerLink="add"> <i class="fa fa-plus"></i> Add </a>
           </div>
-        <div class="card-body table">
+        </div>
+        <div class="card-body table-responsive">
           <table class="table table-hover table-striped">
             <thead>
               <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Description</th>
-                <th>Image</th>
+                <th>MinOrder</th>
+                <th>MaxOrder</th>
+                <th>Logo</th>
+                <th>Actions</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
-            <tbody *ngFor="let cuisine of cuisines; let i = index">
-              <tr>
+            <tbody>
+              <tr *ngFor="let restaurant of restaurants; let i = index">
                 <th scope="row">{{ i + 1 }}</th>
-                <td>{{ cuisine.Name }}</td>
-                <td>{{ cuisine.Description }}</td>
-                <td><img class="small-image" [src]="'https://localhost:5001/'+cuisine.ImagePath" /></td>
+                <td>{{ restaurant.Name }}</td>
+                <td>{{ restaurant.MinOrderPrice }}</td>
+                <td>{{ restaurant.MaxOrderPrice }}</td>
+                <td>
+                  <a [href]="'https://localhost:5001/' + restaurant.LogoImagePath" target="_blank">
+                    <img class="small-image" [src]="'https://localhost:5001/' + restaurant.LogoImagePath" />
+                  </a>
+                </td>
+                <td>
+                  <a routerLink="location" placement="bottom" ngbTooltip="Manage Restaurant Location"> <i class="fa fa-map-marker"></i> </a
+                  >&nbsp;
+                  <a routerLink="timing" placement="bottom" ngbTooltip="Manage Restaurant Timing"> <i class="fa fa-clock-o"></i> </a>&nbsp;
+                  <a routerLink="contact" placement="bottom" ngbTooltip="Restaurant Contact Details"> <i class="fa fa-phone"></i> </a>&nbsp;
+                  <a routerLink="cuisine" placement="bottom" ngbTooltip="Restaurant Cuisines">
+                    <i class="fa fa-cutlery"></i>
+                  </a>
+                </td>
                 <td>
                   <i class="fa fa-pencil"></i>&nbsp;
                   <i class="fa fa-trash"></i>
