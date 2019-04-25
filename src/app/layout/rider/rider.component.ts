@@ -13,14 +13,13 @@ import { Status } from 'src/app/_model/status';
 })
 export class RiderComponent implements OnInit {
   riders: Rider[];
-  isLoading: boolean;
+  isLoading = true;
 
   Status: Status;
 
   constructor(private riderService: RiderService, private cityService: CityService) {}
 
   ngOnInit() {
-    this.isLoading = true;
     this.getRiders();
   }
 
@@ -28,17 +27,20 @@ export class RiderComponent implements OnInit {
     this.riderService.getAllRiders().subscribe(
       res => {
         this.riders = res;
-        for (const rider of this.riders) {
+        for (let i = 0; i < this.riders.length; i++) {
+          const rider = this.riders[i];
           this.cityService.getCity(rider.CityId).subscribe(data => {
             rider.City = data;
-
-            this.isLoading = false;
+            if (i === (this.riders.length - 1)) {
+              this.isLoading = false;
+            }
           });
         }
       },
       err => {
         console.log(err);
-      }
+      },
+      () => {}
     );
   }
 }
