@@ -1,0 +1,40 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Cuisines'" [icon]="'fa-table'"></app-page-header>
+    <div class="row">
+      <div class="col col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="card-header">
+            List of all cuisines
+            <div class="pull-right">
+              <a routerLink="add"> <i class="fa fa-plus"></i> Add </a>
+            </div>
+          </div>
+        <div class="card-body table">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let cuisine of cuisines; let i = index">
+              <tr>
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ cuisine.Name }}</td>
+                <td>{{ cuisine.Description }}</td>
+                <td><img class="small-image" [src]="'https://localhost:5001/'+cuisine.ImagePath" /></td>
+                <td>
+                  <i class="fa fa-pencil"></i>&nbsp;
+                  <i class="fa fa-trash"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
