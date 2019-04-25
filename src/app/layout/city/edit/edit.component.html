@@ -1,3 +1,72 @@
-<p>
-  edit works!
-</p>
+<div class="form-group">
+  <label for="name">Name</label>
+  <input type="text" class=" inputField" #name="ngModel" [(ngModel)]="model.Name" required>
+
+  <div class="row" style="margin-bottom:15px;">
+    <div class="col-md-3">
+      <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+      <button type="button" class="btn btn-success uploadButton" (click)="file.click()">Upload File</button>
+      <img id="Img" [src]="model.ImagePath" alt="abb">
+    </div>
+    <div class="col-md-4">
+      <span class="upload" *ngIf="progress > 0">
+        {{progress}}%
+      </span>
+      <span class="upload" *ngIf="message">
+        {{message}}
+      </span>
+    </div>
+
+  </div>
+
+
+
+
+  <!-- <form action="">
+    <input type="radio" [(ngModel)]="model.Status" name="Status" value="0">Enable<br>
+    <input type="radio" [(ngModel)]="model.Status" name="Status" value="1">Disable<br>
+
+    <input type="button" value="select Enable" (click)="model.Status='0'">
+    <input type="button" value="select Disable" (click)="model.Status='1'">
+    <div>Selected Radio: {{model.Status}}</div>
+  </form>
+
+
+
+  <input name="options" type="radio" [(ngModel)]="model.Status" [value]=1 [checked]="model.Status==1" /><br />
+  <input name="options" type="radio" [(ngModel)]="model.Status" [value]=2 [checked]="model.Status==2" /><br /> -->
+
+  <input name="options" type="radio" [value]=0 [checked]="model.Status==0" [(ngModel)]="model.Status"/>0<br />
+  <input name="options" type="radio" [value]=1 [checked]="model.Status==1" [(ngModel)]="model.Status"/>1<br />
+
+
+
+
+
+
+
+
+  <!-- 
+  <fieldset class="form-group">
+    <label>Status</label>
+
+    <div class="radio-inline">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value=0>Enable
+      </label>
+    </div>
+    <div class="radio-inline">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios3" value=1> Disable
+      </label>
+    </div>
+  </fieldset>
+   -->
+
+  <p>{{model.Status}}</p>
+
+  <div class="row" style="margin-bottom:15px;">
+    <button type="button" class="btn btn-dark Button" (click)="addNewCity()">Submit</button>
+  </div>
+
+</div>

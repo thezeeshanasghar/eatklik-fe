@@ -14,7 +14,6 @@ import { environment } from 'src/environments/environment';
 export class AddComponent implements OnInit {
   public progress: number;
   public message: string;
-  msg = 'error';
   @Output() public onUploadFinished = new EventEmitter();
 
   model = new City();
@@ -25,6 +24,7 @@ export class AddComponent implements OnInit {
 
   ngOnInit() {}
 
+  onSubmit() {}
   public uploadFile = files => {
     if (files.length === 0) {
       return;
@@ -34,7 +34,7 @@ export class AddComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post('https://localhost:5001/api/upload', formData, { reportProgress: true, observe: 'events' }).subscribe(event => {
+    this.http.post(environment.BASE_URL + 'upload', formData, { reportProgress: true, observe: 'events' }).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         this.progress = Math.round((100 * event.loaded) / event.total);
       } else if (event.type === HttpEventType.Response) {
