@@ -10,13 +10,12 @@ export class Promotion {
   Content: string;
   PromoType: PromoType;
   CityId: number;
-  city: City;
+  City: City;
 
   constructor() {
     this.Name = '';
     this.Content = '';
     this.PromoType = PromoType.Image;
-    this.city = new City();
   }
 }
 

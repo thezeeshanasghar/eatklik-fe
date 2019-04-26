@@ -16,25 +16,26 @@ import {Router} from '@angular/router';
 })
 export class PromotionComponent implements OnInit {
   promotions: Promotion[];  // Promotion Array
-  isLoading: boolean;
+  isLoading = true;
   httpError: string;
 
   constructor(private promotionService: PromotionService, private cityService: CityService, private router: Router) {}
 
   ngOnInit() {
-    this.isLoading = false;
     this.getPromotion();
   }
 
   getPromotion() {
-    this.isLoading = true;
     this.promotionService.getAllPromotions().subscribe(
       promotions => {
         this.promotions =  promotions;
-        for (const value of this.promotions) {
-          console.log('promotion');
-          this.cityService.getCity(value.CityId).subscribe(data => { value.city = data, this.isLoading = false;
-            console.log(value);
+        for (let i = 0; i < this.promotions.length; i++) {
+          const promotion = this.promotions[i];
+          this.cityService.getCity(promotion.CityId).subscribe(data => {
+            promotion.City = data;
+            if (i === (this.promotions.length - 1)) {
+              this.isLoading = false;
+            }
           });
         }
       },
@@ -43,10 +44,29 @@ export class PromotionComponent implements OnInit {
       }
     );
 
-
-
   }
-  addPromotion() {
-    this.router.navigate(['promotion/addpromotion']);
+
+  getPromotionType (id: number): string {
+    let value = '';
+      switch (id) {
+        case 0:
+          value = 'Image';
+          break;
+        case 1:
+          value = 'News';
+          break;
+        case 2:
+          value = 'Video';
+          break;
+      }
+    return value;
+  }
+
+  DeletePromotion (id) {
+    this.promotionService.DeletePromotion(id).subscribe(
+      res => {this.getPromotion(); },
+      err => { this.httpError = <any>err; console.log(err);
+      }
+    );
   }
 }

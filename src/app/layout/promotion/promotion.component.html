@@ -1,25 +1,34 @@
 <div [@routerTransition]>
-  <app-page-header [icon]="'fa-table'"></app-page-header>
+  <app-page-header [heading]="'Promotions'" [icon]="'fa-table'"></app-page-header>
   <div class="row">
-    <div class="col col-xl-6 col-lg-12">
+    <div class="col-12">
       <div class="card mb-3">
-        <div class="card-header">Promotions
-          <i class="fa fa-fw fa-edit" (click)="addPromotion()"></i>&nbsp;
+        <div class="card-header"> List of all promotions
+            <div class="pull-right">
+                <a routerLink="addpromotion"> <i class="fa fa-plus"></i> Add </a>
+            </div>
         </div>
-        <div class="card-body table table-hover" >
-          <table class="table table-hover table-striped">
+        <div class="card-body table-hover" >
+          <table class="table table-striped">
             <thead>
+              <th>#</th>
               <th>Name</th>
               <th>Content</th>
               <th>Promo Type</th>
               <th>City Name</th>
+              <th>&nbsp;&nbsp;</th>
             </thead>
             <tbody *ngIf ="!isLoading">
-              <tr  *ngFor="let promo of promotions">
+              <tr  *ngFor="let promo of promotions; let i = index">
+                <th scope="row">{{ i +1 }}</th>
                 <td>{{promo.Name}}</td>
                 <td>{{promo.Content}}</td>
-                <td>{{promo.PromoType}}</td>
-                <td>{{promo.city.Name}}</td>
+                <td>{{getPromotionType(promo.PromoType)}}</td>
+                <td>{{promo.City.Name}}</td>
+                <td> 
+                  <a [routerLink]="['editpromotion', promo.Id]"> <i class="fa fa-edit"></i></a>&nbsp;
+                  <i class="fa fa-trash"  (click)="DeletePromotion(promo.Id)"></i>
+                </td>
               </tr>
             </tbody>
           </table>

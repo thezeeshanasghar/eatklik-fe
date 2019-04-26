@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PromotionComponent } from './promotion.component';
 import {AddpromotionComponent} from './addpromotion/addpromotion.component';
+import { EditpromotionComponent } from './editpromotion/editpromotion.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,9 @@ const routes: Routes = [
   },
   {
     path: 'addpromotion', component: AddpromotionComponent
+  },
+  {
+    path: 'editpromotion/:id', component: EditpromotionComponent
   }
 ];
 

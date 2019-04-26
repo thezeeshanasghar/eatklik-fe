@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {routerTransition} from 'src/app/router.animations';
-import { FormControl } from '@angular/forms';
+import { routerTransition } from 'src/app/router.animations';
 import { CityService } from '../../../shared/services/city.service';
 import { City } from 'src/app/_model/city';
-import {Promotion} from 'src/app/_model/promotion';
+import { Promotion } from 'src/app/_model/promotion';
+import { PromotionService } from '../../../shared/services/promotion.service';
 
 @Component({
   selector: 'app-addpromotion',
@@ -14,9 +14,8 @@ import {Promotion} from 'src/app/_model/promotion';
 export class AddpromotionComponent implements OnInit {
 
   cities: City[];
-  promotion = new Promotion ();
-
-  constructor(private cityService: CityService) { }
+  promotion = new Promotion();
+  constructor(private cityService: CityService, private promotionService: PromotionService) { }
 
   ngOnInit() {
     this.getCity();
@@ -34,6 +33,10 @@ export class AddpromotionComponent implements OnInit {
   }
   onSubmit() {
 
+    this.promotionService.AddNewPromotion(this.promotion).subscribe(
+      promotion => { this.promotion = promotion; },
+      err => { console.log(err); });
+    console.log('Submit button click');
   }
 
 }
