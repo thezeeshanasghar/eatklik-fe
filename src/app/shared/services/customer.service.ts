@@ -9,34 +9,34 @@ import { Cuisine } from 'src/app/_model/cuisine';
 @Injectable({
   providedIn: 'root'
 })
-export class CuisineService extends BaseService {
-  private readonly API_Cuisine = `${environment.BASE_URL}Cuisine/`;
+export class CustomerService extends BaseService {
+  private readonly API_Customer = `${environment.BASE_URL}Customer/`;
 
   constructor(protected http: HttpClient) {
     super(http);
   }
 
   getAll(): Observable<Cuisine[]> {
-    const url = `${this.API_Cuisine}`;
+    const url = `${this.API_Customer}`;
     return this.http.get<Cuisine[]>(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 
-  getCuisineById(id: number): Observable<Cuisine> {
-    const url = `${this.API_Cuisine}`;
+  getCustomerById(id: number): Observable<Cuisine> {
+    const url = `${this.API_Customer}`;
     return this.http.get<Cuisine>(url + id).pipe(catchError(this.handleError));
   }
 
-  addCuisine(data): Observable<any> {
-    const url = `${this.API_Cuisine}`;
+  addCustomer(data): Observable<any> {
+    const url = `${this.API_Customer}`;
     return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
   }
 
-  editCuisine(id: number, data): Observable<any> {
-    const url = `${this.API_Cuisine}${id}`;
+  editCustomer(id: number, data): Observable<any> {
+    const url = `${this.API_Customer}${id}`;
     return this.http.put(url, data, this.httpOptions).pipe(catchError(this.handleError));
   }
-  deleteCuisine(id: number): Observable<any> {
-    const url = `${this.API_Cuisine}${id}`;
+  deleteCustomer(id: number): Observable<any> {
+    const url = `${this.API_Customer}${id}`;
     return this.http.delete(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 }

@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit {
+  customers: any;
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  deleteCustomer(id){
+
   }
-
 }

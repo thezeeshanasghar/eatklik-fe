@@ -21,7 +21,7 @@ export class Restaurant {
   public CustomrReviews: Review[];
 
   constructor() {
-    this.Name = this.Description = this.LogoImagePath = this.CoverImagePath = '';
-    this.MinOrderPrice = this.MaxOrderPrice = 0;
+    // this.Name = this.Description = this.LogoImagePath = this.CoverImagePath = '';
+    // this.MinOrderPrice = this.MaxOrderPrice = 0;
   }
 }

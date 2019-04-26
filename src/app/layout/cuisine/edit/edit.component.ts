@@ -1,31 +1,51 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Cuisine } from 'src/app/_model/cuisine';
-import { environment } from 'src/environments/environment.prod';
-import { CuisineService } from 'src/app/shared/services/cuisine.service';
-import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { HttpEventType, HttpClient } from '@angular/common/http';
+import { CuisineService } from 'src/app/shared/services/cuisine.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class AddComponent implements OnInit {
+export class EditComponent implements OnInit {
   public progress: number;
   public message: string;
   @Output() public onUploadFinished = new EventEmitter();
 
   model = new Cuisine();
-  uploadImg: boolean = false;
-  imgpath: string;
-  constructor(private http: HttpClient, private cuisineService: CuisineService, public router: Router) {}
+  id: any;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private http: HttpClient,
+    private cuisineService: CuisineService,
+    public router: Router
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(paramsId => {
+      this.id = paramsId.id;
+    });
+    this.getCuisineByid();
+  }
 
   onSubmit() {}
 
-  async addNewCuisine() {
-    await this.cuisineService.addCuisine(this.model).subscribe(
+  getCuisineByid() {
+    this.cuisineService.getCuisineById(this.id).subscribe(
+      res => {
+        this.model = res as Cuisine;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  editCuisine() {
+    this.cuisineService.editCuisine(this.id, this.model).subscribe(
       res => {
         this.router.navigate(['/cuisine']);
       },
@@ -53,7 +73,6 @@ export class AddComponent implements OnInit {
         let dbPath: any = event.body;
         this.onUploadFinished.emit(dbPath);
         this.model.ImagePath = environment.RESOURCES_URL + dbPath.dbPath;
-        this.uploadImg = true;
       }
     });
   };

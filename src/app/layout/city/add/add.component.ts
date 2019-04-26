@@ -17,14 +17,14 @@ export class AddComponent implements OnInit {
   @Output() public onUploadFinished = new EventEmitter();
 
   model = new City();
-  uploadimg: boolean = false;
+  uploadimg = false;
   imgpath: string;
   // = "assets/images/slider1.jpg"
   constructor(private http: HttpClient, private cityservice: CityService, public router: Router) {}
 
   ngOnInit() {}
 
-  onSubmit() {}
+  onSubmit(form: any) {}
   public uploadFile = files => {
     if (files.length === 0) {
       return;
@@ -40,15 +40,15 @@ export class AddComponent implements OnInit {
       } else if (event.type === HttpEventType.Response) {
         this.message = 'Upload success.';
 
-        //let json = JSON.parse(event.body);
-        let dbPath: any = event.body;
+        // let json = JSON.parse(event.body);
+        const dbPath: any = event.body;
         this.onUploadFinished.emit(dbPath);
         this.model.ImagePath = dbPath.dbPath;
         this.imgpath = environment.RESOURCES_URL + this.model.ImagePath;
         this.model.ImagePath = this.imgpath;
       }
     });
-  };
+  }
 
   async addNewCity() {
     await this.cityservice.addCity(this.model).subscribe(

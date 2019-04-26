@@ -1,3 +1,40 @@
-<p>
-  customer works!
-</p>
+<div [@routerTransition]>
+  <app-page-header [heading]="'Customers'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          List of all Customers
+          <div class="pull-right">
+            <a routerLink="add"> <i class="fa fa-plus"></i> Add </a>
+          </div>
+        </div>
+        <div class="card-body table">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let customer of customers; let i = index">
+              <tr>
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ customer.Name }}</td>
+                <td>{{ customer.Description }}</td>
+                <td><img class="small-image" [src]="customer.ImagePath" /></td>
+                <td>
+                  <a routerLink="edit/{{customer.Id}}"><i class="fa fa-pencil"></i></a>&nbsp;
+                  <a (click)="deleteCustomer(customer.Id)"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

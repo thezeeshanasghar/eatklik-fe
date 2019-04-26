@@ -3,40 +3,39 @@
   <div class="row">
     <div class="col col-xl-12 col-lg-12">
       <div class="card mb-3">
-        <div class="card-header">List of all cities
+        <div class="card-header">
+          List of all cities
           <div class="pull-right">
             <a routerLink="add"> <i class="fa fa-plus"></i> Add </a>
           </div>
         </div>
-
-        <div class="card-body table-responsive">
-          <table class="table">
+        <div class="card-body table">
+          <table class="table table-hover table-striped">
             <thead>
               <tr>
                 <th>#</th>
                 <th>Name</th>
                 <th>Image</th>
+                <th>&nbsp;</th>
               </tr>
             </thead>
             <tbody>
-
               <tr *ngFor="let city of cities; let i = index" [ngClass]="{
                 'table-success': city.Status === 0,
                 'table-danger': city.Status === 1
               }">
                 <th scope="row">{{ i + 1 }}</th>
-                <td>{{city.Name}}</td>
-                <img id="Img" [src]="city.ImagePath">
-
-                <td><i class="fa fa-pencil" (click)="edit(city.Id)"></i></td>
-                <td><i class="fa fa-trash" (click)="deleteCity(city.Id)"></i></td>
+                <td>{{ city.Name }}</td>
+                <td><img class="small-image" [src]="city.ImagePath" /></td>
+                <td>
+                  <a routerLink="edit/{{city.Id}}"> <i class="fa fa-pencil"></i> </a>&nbsp;
+                  <a (click)="deleteCity(city.Id)"> <i class="fa fa-trash"></i> </a>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-
-
     </div>
   </div>
 </div>

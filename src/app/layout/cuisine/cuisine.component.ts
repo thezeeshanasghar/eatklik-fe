@@ -31,4 +31,15 @@ export class CuisineComponent implements OnInit {
       () => {}
     );
   }
+
+  async deleteCity(id) {
+    await this.cuisineService.deleteCuisine(id).subscribe(
+      res => {
+        this.getCuisines();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 }

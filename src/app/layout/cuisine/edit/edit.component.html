@@ -1,5 +1,5 @@
 <div>
-  <app-page-header [heading]="'Add Cuisine'" [icon]="'fa-edit'"></app-page-header>
+  <app-page-header [heading]="'Edit Cuisine'" [icon]="'fa-edit'"></app-page-header>
 
   <div class="row">
     <div class="col-lg-6">
@@ -29,10 +29,10 @@
           </div>
 
         </div>
-        <img *ngIf="uploadImg == true" id="Img" [src]="model.ImagePath" alt="abb"><br>
+        <img id="Img" [src]="model.ImagePath" alt="abb"><br>
 
         <br>
-        <button type="submit" class="btn btn-dark" (click)="addNewCuisine()">Submit</button>
+        <button type="submit" class="btn btn-dark" (click)="editCuisine()">Submit</button>
 
       </form>
     </div>
