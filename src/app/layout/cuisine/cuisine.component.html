@@ -28,7 +28,7 @@
                 <td><img class="small-image" [src]="cuisine.ImagePath" /></td>
                 <td>
                   <a routerLink="edit/{{cuisine.Id}}"><i class="fa fa-pencil"></i></a>&nbsp;
-                  <a><i class="fa fa-trash"></i></a>
+                  <a (click)="deleteCity(cuisine.Id)"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
             </tbody>
