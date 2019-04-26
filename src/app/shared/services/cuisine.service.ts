@@ -10,7 +10,7 @@ import { Cuisine } from 'src/app/_model/cuisine';
   providedIn: 'root'
 })
 export class CuisineService extends BaseService {
-  private readonly API_Cuisine = `${environment.BASE_URL}Cuisine`;
+  private readonly API_Cuisine = `${environment.BASE_URL}Cuisine/`;
 
   constructor(protected http: HttpClient) {
     super(http);
@@ -21,8 +21,18 @@ export class CuisineService extends BaseService {
     return this.http.get<Cuisine[]>(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 
+  getCuisineById(id: number): Observable<Cuisine> {
+    const url = `${this.API_Cuisine}`;
+    return this.http.get<Cuisine>(url + id).pipe(catchError(this.handleError));
+  }
+
   addCuisine(data): Observable<any> {
     const url = `${this.API_Cuisine}`;
     return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  editCuisine(id: number, data): Observable<any> {
+    const url = `${this.API_Cuisine}${id}`;
+    return this.http.put(url, data, this.httpOptions).pipe(catchError(this.handleError));
   }
 }
