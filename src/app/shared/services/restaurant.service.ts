@@ -36,4 +36,10 @@ export class RestaurantService extends BaseService {
     const url = `${this.API}${Id}/contact`;
     return this.http.get<RestaurantContact[]>(url, this.httpOptions).pipe(catchError(this.handleError));
   }
+
+
+  addRestaurant(data): Observable<any> {
+    const url = `${this.API}`;
+    return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
+  }
 }

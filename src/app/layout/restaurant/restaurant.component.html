@@ -29,8 +29,8 @@
                 <td>{{ restaurant.MinOrderPrice }}</td>
                 <td>{{ restaurant.MaxOrderPrice }}</td>
                 <td>
-                  <a [href]="'https://localhost:5001/' + restaurant.LogoImagePath" target="_blank">
-                    <img class="small-image" [src]="'https://localhost:5001/' + restaurant.LogoImagePath" />
+                  <a [href]="resourceURL + restaurant.LogoImagePath" target="_blank">
+                    <img class="small-image" [src]="resourceURL + restaurant.LogoImagePath" />
                   </a>
                 </td>
                 <td>
