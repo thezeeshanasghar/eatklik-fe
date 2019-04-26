@@ -1,6 +1,6 @@
 <div [@routerTransition]>
   <app-page-header [heading]="'Add City'" [icon]="'fa-table'"></app-page-header>
-  <form #cityForm="ngForm" (ngf)="onSubmit(cityForm)" novalidate>
+  <form #cityForm="ngForm" (onsubmit)="onSubmit(cityForm)" novalidate>
     <div class="container">
       <div class="card" style="width:400px">
         <div class="card-body">
