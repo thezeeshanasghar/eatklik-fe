@@ -1,3 +1,40 @@
-<p>
-  add works!
-</p>
+<div>
+  <app-page-header [heading]="'Add Cuisine'" [icon]="'fa-edit'"></app-page-header>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <form (ngSubmit)="onSubmit()" #CuisineForm="ngForm">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Enter Cuisine Name" [(ngModel)]="model.Name"
+            #model.Name="ngModel" [ngModelOptions]="{standalone: true}" required>
+        </div>
+        <div class="form-group">
+          <textarea row="3" class="form-control" placeholder="Description" [(ngModel)]="model.Description"
+            #model.Description="ngModel" [ngModelOptions]="{standalone: true}" required> </textarea>
+        </div>
+
+        <div>
+          <div>
+            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+            <button type="button" class="btn btn-success uploadButton" (click)="file.click()">Image Upload</button>
+
+          </div>
+          <div>
+            <span class="upload" *ngIf="progress > 0">
+              {{progress}}%
+            </span>
+            <span class="upload" *ngIf="message">
+              {{message}}
+            </span>
+          </div>
+
+        </div>
+        <img *ngIf="uploadImg == true" id="Img" [src]="model.ImagePath" alt="abb"><br>
+
+        <br>
+        <button type="submit" class="btn btn-dark" (click)="addNewCuisine()">Submit</button>
+
+      </form>
+    </div>
+  </div>
+</div>

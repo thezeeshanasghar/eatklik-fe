@@ -18,8 +18,11 @@ export class CuisineService extends BaseService {
 
   getAll(): Observable<Cuisine[]> {
     const url = `${this.API_Cuisine}`;
-    return this.http.get<Cuisine[]>(url, this.httpOptions).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get<Cuisine[]>(url, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  addCuisine(data): Observable<any> {
+    const url = `${this.API_Cuisine}`;
+    return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
   }
 }

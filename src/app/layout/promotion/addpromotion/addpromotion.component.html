@@ -3,34 +3,38 @@
 
   <div class="row">
     <div class="col-lg-6">
-        <form (ngSubmit)="onSubmit()" #AddPromotionForm="ngForm">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Name" [(ngModel)]="promotion.Name" #promotion.Name="ngModel" [ngModelOptions]="{standalone: true}" required > 
-          </div>
-          <div class="form-group">
-              <textarea  row="3" class="form-control" placeholder="Content" [(ngModel)]="promotion.Content" #promotion.Content="ngModel" [ngModelOptions]="{standalone: true}" required > </textarea>
-          </div>
-          <div class="form-group">
-              <label>Type</label>
-              <select class="form-control"  [(ngModel)]="promotion.PromoType" #promotion.PromoType="ngModel" [ngModelOptions]="{standalone: true}" required >
-                  <option [value]="0">Image</option>
-                  <option [value]="1">News</option>
-                  <option [value]="2">Video</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <label>City</label>
-              <select class="form-control" [(ngModel)]="promotion.CityId" #promotion.city.Name="ngModel" [ngModelOptions]="{standalone: true}" >
-                  <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
-              </select>
-              
-          </div>
+      <form (ngSubmit)="onSubmit()" #AddPromotionForm="ngForm">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Name" [(ngModel)]="promotion.Name"
+            #promotion.Name="ngModel" [ngModelOptions]="{standalone: true}" required>
+        </div>
+        <div class="form-group">
+          <textarea row="3" class="form-control" placeholder="Content" [(ngModel)]="promotion.Content"
+            #promotion.Content="ngModel" [ngModelOptions]="{standalone: true}" required> </textarea>
+        </div>
+        <div class="form-group">
+          <label>Type</label>
+          <select class="form-control" [(ngModel)]="promotion.PromoType" #promotion.PromoType="ngModel"
+            [ngModelOptions]="{standalone: true}" required>
+            <option [value]="0">Image</option>
+            <option [value]="1">News</option>
+            <option [value]="2">Video</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>City</label>
+          <select class="form-control" [(ngModel)]="promotion.CityId" #promotion.city.Name="ngModel"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
+          </select>
 
-          <br>
-          <button type="submit" class="btn btn-secondary">Submit Button</button>
-          &nbsp;&nbsp;
-          <button type="reset" class="btn btn-secondary">Reset Button</button>
-          
+        </div>
+
+        <br>
+        <button type="submit" class="btn btn-secondary">Submit Button</button>
+        &nbsp;&nbsp;
+        <button type="reset" class="btn btn-secondary">Reset Button</button>
+
       </form>
     </div>
   </div>

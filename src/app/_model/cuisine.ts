@@ -5,6 +5,8 @@ export class Cuisine {
   public ImagePath: string;
 
   constructor() {
-      this.Name = this.Description = this.ImagePath = '';
+    this.Name = '';
+    this.Description = '';
+    this.ImagePath = '';
   }
 }
