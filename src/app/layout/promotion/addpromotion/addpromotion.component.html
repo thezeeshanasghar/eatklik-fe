@@ -3,17 +3,37 @@
 
   <div class="row ">
     <!-- <div class="col-6 offset-md-2">  -->
-    <div class="col-6" >
+    <div class="col-8" >
       <div class="card ">
           <div class="card-header">Add New Promotion </div>
       <div class="card-body">
+          <p *ngIf="success">
+              <ngb-alert class="alert-dismissible fade show" type="success" (close)="closeAlert(alert)"> Promotion has been added <strong>Successfully!</strong>
+                <a class="bootstrap-link" [routerLink]="[ '/promotion' ]">Click Here</a> to view promotions list
+              </ngb-alert>
+          </p>
         <form (ngSubmit)="onSubmit()" #AddPromotionForm="ngForm">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Name" [(ngModel)]="promotion.Name" name="PromoName" required > 
-            <!-- <label *ngIf="promotion.Name.errors?.required">Username is invalid</label> -->
+            <input type="text" class="form-control" #name="ngModel" placeholder="Name" [(ngModel)]="promotion.Name" name="PromoName" required minlength="2"
+            [ngClass]="{
+              'is-invalid': name.invalid && (name.dirty || name.touched),
+              'is-valid' : name.valid && ( name.dirty || name.touched)
+            }"> 
+            <div class="invalid-feedback" *ngIf ="name.invalid">
+              <p *ngIf="name.errors.required"> Promotion name is required </p>
+              <p *ngIf="name.errors.minlength">Promotion name should be at least 2 characters</p>
+            </div>
           </div>
           <div class="form-group">
-              <textarea  row="3" class="form-control" placeholder="Content" [(ngModel)]="promotion.Content" name="Content" required > </textarea>
+              <textarea  row="3" class="form-control" #content ="ngModel" placeholder="Content" [(ngModel)]="promotion.Content" name="Content" required minlength="2"
+                [ngClass]="{
+                  'is-invalid': content.invalid && (content.dirty || content.touched),
+                  'is-valid': content.valid && (content.dirty || content.touched)
+                }"> </textarea>
+              <div class="invalid-feedback" *ngIf="content.invalid">
+                <p *ngIf="content.errors.required">Promotion content is required</p>
+                <p *ngIf="content.errors.minlength">Content should  be at least 2 characters</p>
+              </div>
           </div>
           <div class="form-group">
               <label>Type</label>
@@ -25,16 +45,23 @@
           </div>
           <div class="form-group">
               <label>City</label>
-              <select class="form-control" [(ngModel)]="promotion.CityId" name="City" >
+              <select class="form-control" #city="ngModel" [(ngModel)]="promotion.CityId" name="City" required
+                [ngClass]="{
+                  'is-invalid': city.invalid && (city.dirty || city.touched),
+                  'is-valid': city.valid && (city.dirty || city.touched)
+                }">
                   <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
               </select>
-              
+
+              <div class="invalid-feedback" *ngIf="city.invalid">
+                <p *ngIf="city.errors.required"> Promotion city is required</p>
+              </div>
           </div>
 
           <div class="form-group">
-          <button type="submit" class="btn btn-primary">Submit</button>
-          &nbsp;&nbsp;
-          <button type="reset" class="btn btn-secondary" type="reset" value="Reset">Reset</button>
+            <button type="submit" [disabled]="AddPromotionForm.invalid" class="btn btn-primary">Submit</button>
+            &nbsp;&nbsp;
+            <button type="reset" class="btn btn-secondary" type="reset" value="Reset">Reset</button>
           </div>
       </form>
     </div>

@@ -6,6 +6,7 @@ import { routerTransition } from 'src/app/router.animations';
 import {Promotion} from 'src/app/_model/promotion';
 import { CityService } from './../../shared/services/city.service';
 import {Router} from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 // ----- End of zameer code ----
 
 @Component({
@@ -19,7 +20,8 @@ export class PromotionComponent implements OnInit {
   isLoading = true;
   httpError: string;
 
-  constructor(private promotionService: PromotionService, private cityService: CityService, private router: Router) {}
+  constructor(private promotionService: PromotionService, private modalService: NgbModal,
+     private cityService: CityService, private router: Router) {}
 
   ngOnInit() {
     this.getPromotion();
@@ -62,11 +64,24 @@ export class PromotionComponent implements OnInit {
     return value;
   }
 
-  DeletePromotion (id) {
-    this.promotionService.DeletePromotion(id).subscribe(
-      res => {this.getPromotion(); },
-      err => { this.httpError = <any>err; console.log(err);
+  // DeletePromotion (id) {
+  //   this.promotionService.DeletePromotion(id).subscribe(
+  //     res => {this.getPromotion(); },
+  //     err => { this.httpError = <any>err; console.log(err);
+  //     }
+  //   );
+  // }
+  open(content, Id: any) {
+    this.modalService.open(content).result.then(result => {
+      if (result === 'Yes') {
+        this.promotionService.DeletePromotion(Id).subscribe(
+          res => {
+            this.getPromotion();
+          },
+          err => { this.httpError = <any>err; console.log(err);
+          }
+        );
       }
-    );
+    });
   }
 }

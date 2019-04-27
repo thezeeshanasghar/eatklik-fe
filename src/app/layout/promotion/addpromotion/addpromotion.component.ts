@@ -15,6 +15,7 @@ export class AddpromotionComponent implements OnInit {
 
   cities: City[];
   promotion = new Promotion();
+  success = false;
   constructor(private cityService: CityService, private promotionService: PromotionService) { }
 
   ngOnInit() {
@@ -34,9 +35,11 @@ export class AddpromotionComponent implements OnInit {
   onSubmit() {
 
     this.promotionService.AddNewPromotion(this.promotion).subscribe(
-      promotion => { this.promotion = promotion; },
+      promotion => { this.promotion = promotion, this.success = true; },
       err => { console.log(err); });
     console.log('Submit button click');
   }
-
+  public closeAlert(alert: any) {
+    this.success = false;
+  }
 }

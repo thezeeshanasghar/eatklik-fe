@@ -19,7 +19,7 @@ export class EditpromotionComponent implements OnInit {
   promoId: any;
   isLoading = true;
   cities: City[];
-
+  success = false;
   constructor(private activatedRoute: ActivatedRoute, private promotionService: PromotionService, private cityService: CityService) { }
 
   ngOnInit() {
@@ -38,11 +38,14 @@ export class EditpromotionComponent implements OnInit {
       );
   }
   UpdatePromotion() {
-    this.promotionService.UpdatePromotion(this.promotion).subscribe(promo => {promo = promo, console.log('Promotion Updated'); },
+    this.promotionService.UpdatePromotion(this.promotion).subscribe(promo => {promo = promo, this.success = true; },
         err => {
           console.log(err);
         }
     );
+  }
+  public closeAlert(alert: any) {
+    this.success = false;
   }
 
 }
