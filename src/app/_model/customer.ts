@@ -16,7 +16,11 @@ export class Customer {
   public RestaurantReviews: Review[];
 
   constructor() {
-    this.Name = this.Email = this.Password = this.ImagePath = this.Address = '';
+    this.Name = '';
+    this.Email = '';
+    this.Password = '';
+    this.ImagePath = '';
+    this.Address = '';
     this.Status = Status.Enable;
   }
 }

@@ -1,4 +1,4 @@
-<div [@routerTransition]>
+<div>
   <app-page-header [heading]="'Customers'" [icon]="'fa-table'"></app-page-header>
   <div class="row">
     <div class="col col-xl-12 col-lg-12">
@@ -15,20 +15,27 @@
               <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Description</th>
+                <th>Email</th>
                 <th>Image</th>
+                <th>Address</th>
+                <th>City Name</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
-            <tbody *ngFor="let customer of customers; let i = index">
-              <tr>
+            <tbody *ngIf="!isLoading">
+              <tr *ngFor="let customer of customers; let i = index" [ngClass]="{
+                'table-success': customer.Status === 0,
+                'table-danger': customer.Status === 1
+              }">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ customer.Name }}</td>
-                <td>{{ customer.Description }}</td>
+                <td>{{ customer.Email }}</td>
                 <td><img class="small-image" [src]="customer.ImagePath" /></td>
+                <td>{{ customer.Address }}</td>
+                <td>{{customer.City.Name}}</td>
                 <td>
                   <a routerLink="edit/{{customer.Id}}"><i class="fa fa-pencil"></i></a>&nbsp;
-                  <a (click)="deleteCustomer(customer.Id)"><i class="fa fa-trash"></i></a>
+                  <a (click)="open(content, customer.Id)"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
             </tbody>
@@ -38,3 +45,19 @@
     </div>
   </div>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Alert</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this ?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="c('Yes')">Yes</button>
+    <button type="button" class="btn btn-secondary" (click)="c('No')">No</button>
+  </div>
+</ng-template>

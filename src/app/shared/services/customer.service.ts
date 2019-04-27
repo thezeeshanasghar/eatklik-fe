@@ -16,7 +16,7 @@ export class CustomerService extends BaseService {
     super(http);
   }
 
-  getAll(): Observable<Cuisine[]> {
+  getAllCustomer(): Observable<Cuisine[]> {
     const url = `${this.API_Customer}`;
     return this.http.get<Cuisine[]>(url, this.httpOptions).pipe(catchError(this.handleError));
   }
