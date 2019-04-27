@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { TimingRoutingModule } from './timing-routing.module';
 import { TimingComponent } from './timing.component';
 import { PageHeaderModule } from 'src/app/shared';
+import { AddComponent } from './add/add.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [TimingComponent],
+  declarations: [TimingComponent, AddComponent],
   imports: [
     CommonModule,
-    TimingRoutingModule, PageHeaderModule
+    TimingRoutingModule, PageHeaderModule, FormsModule
   ]
 })
 export class TimingModule { }

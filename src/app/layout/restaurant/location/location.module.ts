@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { LocationRoutingModule } from './location-routing.module';
 import { LocationComponent } from './location.component';
 import { PageHeaderModule } from 'src/app/shared';
+import { AddComponent } from './add/add.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [LocationComponent],
+  declarations: [LocationComponent, AddComponent],
   imports: [
     CommonModule,
-    LocationRoutingModule, PageHeaderModule
+    LocationRoutingModule, PageHeaderModule, FormsModule
   ]
 })
 export class LocationModule { }

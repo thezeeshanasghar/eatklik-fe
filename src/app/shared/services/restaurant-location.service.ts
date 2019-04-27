@@ -11,10 +11,16 @@ import { RestaurantLocation } from 'src/app/_model/restaurant_location';
 })
 export class RestaurantLocationService extends BaseService {
 
-  private readonly API_Rider = `${environment.BASE_URL}restaurantlocation`;
+  private readonly API = `${environment.BASE_URL}restaurantlocation`;
 
   constructor(protected http: HttpClient) {
     super(http);
+  }
+
+
+  addRestaurantLocation(data: RestaurantLocation): Observable<any> {
+    const url = `${this.API}`;
+    return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
   }
 
 }

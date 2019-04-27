@@ -11,10 +11,15 @@ import { RestaurantTiming } from 'src/app/_model/restaurant_timing';
 })
 export class RestaurantTimingService extends BaseService {
 
-  private readonly API_Rider = `${environment.BASE_URL}restauranttiming`;
+  private readonly API = `${environment.BASE_URL}restauranttiming`;
 
   constructor(protected http: HttpClient) {
     super(http);
+  }
+
+  addRestaurantTiming(data: RestaurantTiming): Observable<any> {
+    const url = `${this.API}`;
+    return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
   }
 
 }

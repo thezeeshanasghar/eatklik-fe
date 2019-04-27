@@ -6,6 +6,6 @@ export class RestaurantContact {
   public RestaurantId: number;
 
   constructor() {
-    this.Email = this.MobileNo = this.URL = '';
+    // this.Email = this.MobileNo = this.URL = '';
   }
 }

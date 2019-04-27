@@ -10,7 +10,7 @@ export class RestaurantLocation {
   public RestaurantId: number;
 
   constructor() {
-    this.Address = '';
-    this.Latitude = this.Longitude = 0;
+    // this.Address = '';
+    // this.Latitude = this.Longitude = 0;
   }
 }

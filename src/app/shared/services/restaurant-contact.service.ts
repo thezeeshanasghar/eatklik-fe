@@ -11,10 +11,15 @@ import { RestaurantContact } from 'src/app/_model/restaurant_contact';
 })
 export class RestaurantContactService extends BaseService {
 
-  private readonly API_Rider = `${environment.BASE_URL}restaurantcontact`;
+  private readonly API = `${environment.BASE_URL}restaurantcontact`;
 
   constructor(protected http: HttpClient) {
     super(http);
+  }
+
+  addRestaurantContact(data: RestaurantContact): Observable<any> {
+    const url = `${this.API}`;
+    return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
   }
 
 }

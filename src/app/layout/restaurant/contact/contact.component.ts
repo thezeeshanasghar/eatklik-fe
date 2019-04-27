@@ -3,6 +3,7 @@ import { routerTransition } from 'src/app/router.animations';
 import { RestaurantContact } from 'src/app/_model/restaurant_contact';
 import { RestaurantContactService } from 'src/app/shared/services/restaurant-contact.service';
 import { RestaurantService } from 'src/app/shared/services/restaurant.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -15,14 +16,15 @@ export class ContactComponent implements OnInit {
   isLoading = true;
 
   constructor(private restaurantContactService: RestaurantContactService,
-          private restaurantService: RestaurantService) {}
+          private restaurantService: RestaurantService,
+          private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.getRestaurantContacts();
+    this.getRestaurantContacts(Number(this.activatedRoute.snapshot.paramMap.get('Id')));
   }
 
-  getRestaurantContacts() {
-    this.restaurantService.getContacts(1).subscribe(
+  getRestaurantContacts(Id: number) {
+    this.restaurantService.getContacts(Id).subscribe(
       res => {
         this.restaurantContacts = res;
         this.isLoading = false;
