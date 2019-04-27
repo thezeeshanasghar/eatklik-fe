@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../router.animations';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-signup',
@@ -8,7 +9,10 @@ import { routerTransition } from '../router.animations';
     animations: [routerTransition()]
 })
 export class SignupComponent implements OnInit {
-    constructor() {}
+    APP_NAME: string;
+    constructor() {
+      this.APP_NAME = environment.APP_NAME;
+    }
 
     ngOnInit() {}
 }
