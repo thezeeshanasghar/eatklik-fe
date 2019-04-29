@@ -27,7 +27,7 @@ export class AddComponent implements OnInit {
   }
 
   getCity() {
-    this.cityService.getAllCity().subscribe(
+    this.cityService.getAll().subscribe(
       cities => {
         this.cities = cities;
       },

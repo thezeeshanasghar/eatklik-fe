@@ -16,7 +16,7 @@ export class CityService extends BaseService {
     super(http);
   }
 
-  getAllCity(): Observable<City[]> {
+  getAll(): Observable<City[]> {
     const url = `${this.API_City}`;
     return this.http.get<City[]>(url, this.httpOptions).pipe(
       // map(this.extractData),

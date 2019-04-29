@@ -12,46 +12,19 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-  public progress: number;
-  public message: string;
-  @Output() public onUploadFinished = new EventEmitter();
 
-  model = new City();
-  uploadimg = false;
-  imgpath: string;
-  // = "assets/images/slider1.jpg"
-  constructor(private http: HttpClient, private cityservice: CityService, public router: Router) {}
+  public uploadProgress: number;
+  resourceURL: string;
+  city = new City();
+
+  constructor(private http: HttpClient, private cityService: CityService, private router: Router) {
+    this.resourceURL = environment.RESOURCES_URL;
+  }
 
   ngOnInit() {}
 
-  onSubmit(form: any) {}
-  public uploadFile = files => {
-    if (files.length === 0) {
-      return;
-    }
-    this.uploadimg = true;
-    const fileToUpload = <File>files[0];
-    const formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
-
-    this.http.post(environment.BASE_URL + 'upload', formData, { reportProgress: true, observe: 'events' }).subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.progress = Math.round((100 * event.loaded) / event.total);
-      } else if (event.type === HttpEventType.Response) {
-        this.message = 'Upload success.';
-
-        // let json = JSON.parse(event.body);
-        const dbPath: any = event.body;
-        this.onUploadFinished.emit(dbPath);
-        this.model.ImagePath = dbPath.dbPath;
-        this.imgpath = environment.RESOURCES_URL + this.model.ImagePath;
-        this.model.ImagePath = this.imgpath;
-      }
-    });
-  }
-
-  async addNewCity() {
-    await this.cityservice.addCity(this.model).subscribe(
+  onSubmit(form) {
+    this.cityService.addCity(this.city).subscribe(
       res => {
         this.router.navigate(['/city']);
       },
@@ -60,4 +33,22 @@ export class AddComponent implements OnInit {
       }
     );
   }
+
+  public uploadLogo = files => {
+    if (files.length === 0) {
+      return;
+    }
+    const fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this.http.post(environment.BASE_URL + 'upload', formData, { reportProgress: true, observe: 'events' }).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.uploadProgress = Math.round((100 * event.loaded) / event.total);
+      } else if (event.type === HttpEventType.Response) {
+        this.city.ImagePath = event.body['dbPath'];
+      }
+    });
+  }
+
 }

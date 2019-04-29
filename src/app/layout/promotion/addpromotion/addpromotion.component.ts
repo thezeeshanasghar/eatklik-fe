@@ -22,7 +22,7 @@ export class AddpromotionComponent implements OnInit {
     this.getCity();
   }
   getCity() {
-    this.cityService.getAllCity().subscribe(
+    this.cityService.getAll().subscribe(
       cities => {
         this.cities = cities;
         console.log(this.cities);

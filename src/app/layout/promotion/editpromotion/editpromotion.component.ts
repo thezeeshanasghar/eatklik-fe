@@ -24,7 +24,7 @@ export class EditpromotionComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(promo => {this.promoId =  promo.id; });
-    this.cityService.getAllCity().subscribe(cities => { this.cities = cities;
+    this.cityService.getAll().subscribe(cities => { this.cities = cities;
       },
       err => {
         console.log(err);

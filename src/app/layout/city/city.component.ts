@@ -4,6 +4,8 @@ import { routerTransition } from 'src/app/router.animations';
 import { HttpEventType, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { City } from 'src/app/_model/city';
+import { environment } from 'src/environments/environment';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-city',
@@ -12,19 +14,24 @@ import { City } from 'src/app/_model/city';
   animations: [routerTransition()]
 })
 export class CityComponent implements OnInit {
-  cities: City[];
 
-  constructor(private cityService: CityService, public router: Router, private http: HttpClient) {}
+  resourceURL: string;
+  cities: City[];
+  isLoading = true;
+
+  constructor(private cityService: CityService, public router: Router, private modalService: NgbModal) {
+    this.resourceURL = environment.RESOURCES_URL;
+  }
 
   ngOnInit() {
-    this.getCity();
+    this.getCities();
   }
 
-  getCity() {
-    this.cityService.getAllCity().subscribe(
+  getCities() {
+    this.cityService.getAll().subscribe(
       res => {
         this.cities = res as City[];
-        console.log(this.cities);
+        this.isLoading = false;
       },
       err => {
         console.log(err);
@@ -32,22 +39,22 @@ export class CityComponent implements OnInit {
     );
   }
 
-  addcity() {
-    this.router.navigate(['/city/add']);
+  edit(id: number) {
+    this.router.navigateByUrl('/city/edit/' + id);
   }
 
-  edit(id:number) {
-    this.router.navigateByUrl("/city/edit/" + id)
-  }
-
-  async deleteCity(id) {
-    await this.cityService.deleteCity(id).subscribe(
-      res => {
-        this.getCity();
-      },
-      err => {
-        console.log(err);
+  open(content, Id: string) {
+    this.modalService.open(content).result.then(result => {
+      if (result === 'Yes') {
+        this.cityService.deleteCity(Id).subscribe(
+          res => {
+            this.getCities();
+          },
+          err => {
+            console.log(err);
+          }
+        );
       }
-    );
+    });
   }
 }

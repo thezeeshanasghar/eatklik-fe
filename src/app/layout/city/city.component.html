@@ -19,17 +19,17 @@
                 <th>&nbsp;</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="!isLoading">
               <tr *ngFor="let city of cities; let i = index" [ngClass]="{
                 'table-success': city.Status === 0,
                 'table-danger': city.Status === 1
               }">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ city.Name }}</td>
-                <td><img class="small-image" [src]="city.ImagePath" /></td>
+                <td><img class="small-image" [src]="resourceURL + city.ImagePath" alt="no image" /></td>
                 <td>
                   <a routerLink="edit/{{city.Id}}"> <i class="fa fa-pencil"></i> </a>&nbsp;
-                  <a (click)="deleteCity(city.Id)"> <i class="fa fa-trash"></i> </a>
+                  <i (click)="open(content, city.Id)" class="fa fa-trash" style="cursor: pointer"></i>
                 </td>
               </tr>
             </tbody>
@@ -39,3 +39,20 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Alert</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this ?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="c('Yes')">Yes</button>
+    <button type="button" class="btn btn-secondary" (click)="c('No')">No</button>
+  </div>
+</ng-template>
