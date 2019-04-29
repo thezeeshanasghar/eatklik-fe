@@ -3,37 +3,33 @@
 
   <div class="row">
     <div class="col-lg-6">
-      <form (ngSubmit)="onSubmit()" #CuisineForm="ngForm">
+      <form (ngSubmit)="onSubmit()" #form="ngForm">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Enter Cuisine Name" [(ngModel)]="model.Name"
-            #model.Name="ngModel" [ngModelOptions]="{standalone: true}" required>
+          <label class="form-control-label" for="name">Name</label>
+          <input type="text" class="form-control" [(ngModel)]="cuisine.Name" id="name" name="name" #model.Name="ngModel"
+            [ngModelOptions]="{standalone: true}" required>
         </div>
         <div class="form-group">
-          <textarea row="3" class="form-control" placeholder="Description" [(ngModel)]="model.Description"
+          <label class="form-control-label" for="desc">Description</label>
+          <textarea row="3" class="form-control" [(ngModel)]="cuisine.Description" id="desc" name="desc"
             #model.Description="ngModel" [ngModelOptions]="{standalone: true}" required> </textarea>
         </div>
 
-        <div>
-          <div>
-            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-            <button type="button" class="btn btn-success uploadButton" (click)="file.click()">Image Upload</button>
-
+        <div class="row">
+          <div class="form-group col-md-8">
+            <label class="form-control-label" for="logo">Image</label>
+            <input type="file" id="logo" name="logo" #logo placeholder="Choose file" (change)="uploadLogo(logo.files)"
+              style="display:none;" accept=".jpg, .jpeg, .png, .gif">
+            <button type="button" class="btn btn-success form-control" (click)="logo.click()">Upload Image</button>
+            <ngb-progressbar class="top-15" *ngIf="uploadProgress > 0 && uploadProgress < 99" type="success"
+              [value]="uploadProgress">{{uploadProgress}}</ngb-progressbar>
+            <img class="thumbnail top-15" *ngIf="cuisine.ImagePath" [src]="resourceURL + cuisine.ImagePath" alt="logoimage">
           </div>
-          <div>
-            <span class="upload" *ngIf="progress > 0">
-              {{progress}}%
-            </span>
-            <span class="upload" *ngIf="message">
-              {{message}}
-            </span>
-          </div>
-
         </div>
-        <img *ngIf="uploadImg == true" id="Img" [src]="model.ImagePath" alt="abb"><br>
 
-        <br>
-        <button type="submit" class="btn btn-dark" (click)="addNewCuisine()">Submit</button>
-
+        <div class="form-group">
+          <button type="submit" [disabled]="form.invalid" class="btn btn-secondary form-control-label">Submit</button>
+        </div>
       </form>
     </div>
   </div>
