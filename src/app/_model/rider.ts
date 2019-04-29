@@ -12,10 +12,6 @@ export class Rider {
     public City: City;
 
     constructor() {
-        this.Name = '';
-        this.MobileNo = '';
-        this.Password = '';
         this.Status = Status.Enable;
-        this.City = new City();
     }
 }

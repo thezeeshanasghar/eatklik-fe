@@ -1,3 +1,79 @@
-<p>
-  add works!
-</p>
+<app-page-header [heading]="'Rider'" [icon]="'fa-edit'"></app-page-header>
+
+<div class="row ">
+  <!-- <div class="col-6 offset-md-2">  -->
+  <div class="col-8">
+    <div class="card ">
+      <div class="card-header">Add new rider </div>
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" #form="ngForm">
+
+          <div class="form-group">
+            <label class="form-control-label" for="Name">Name</label>
+            <input type="text" class="form-control" #name="ngModel" [(ngModel)]="rider.Name" name="Name" id="Name"
+              required minlength="2" [ngClass]="{
+              'is-invalid': name.invalid && (name.dirty || name.touched),
+              'is-valid' : name.valid && ( name.dirty || name.touched)}">
+            <div class="invalid-feedback" *ngIf="name.invalid">
+              <p *ngIf="name.errors.required"> name is required </p>
+              <p *ngIf="name.errors.minlength">name should be at least 2 characters</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="MobileNo">Mobile Number</label>
+            <input type="text" class="form-control" #MobileNo="ngModel" [(ngModel)]="rider.MobileNo" name="MobileNo"
+              id="MobileNo" required minlength="6" [ngClass]="{
+              'is-invalid': MobileNo.invalid && (MobileNo.dirty || MobileNo.touched),
+              'is-valid' : MobileNo.valid && ( MobileNo.dirty || MobileNo.touched)}">
+            <div class="invalid-feedback" *ngIf="MobileNo.invalid">
+              <p *ngIf="MobileNo.errors.required"> mobile number is required </p>
+              <p *ngIf="MobileNo.errors.minlength">mobile number should be at least 6 characters</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="Password">Password</label>
+            <input type="password" class="form-control" #Password="ngModel" [(ngModel)]="rider.Password" name="Password"
+              id="Password" required minlength="3" [ngClass]="{
+              'is-invalid': Password.invalid && (Password.dirty || Password.touched),
+              'is-valid' : Password.valid && ( Password.dirty || Password.touched)}">
+            <div class="invalid-feedback" *ngIf="Password.invalid">
+              <p *ngIf="Password.errors.required"> password is required </p>
+              <p *ngIf="Password.errors.minlength">password should be at least 3 characters</p>
+            </div>
+          </div>
+
+          <div class="btn-group btn-group-toggle mb-3" ngbRadioGroup name="radioBasic" [(ngModel)]="rider.Status">
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" [value]="0"> Enable
+            </label>
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="1"> Disable
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>City</label>
+            <select class="form-control" #city="ngModel" [(ngModel)]="rider.CityId" name="City" required [ngClass]="{
+                  'is-invalid': city.invalid && (city.dirty || city.touched),
+                  'is-valid': city.valid && (city.dirty || city.touched)
+                }">
+              <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
+            </select>
+
+            <div class="invalid-feedback" *ngIf="city.invalid">
+              <p *ngIf="city.errors.required"> Rider's city is required</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+            &nbsp;&nbsp;
+            <button type="reset" class="btn btn-secondary" type="reset" value="Reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

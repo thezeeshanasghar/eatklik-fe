@@ -16,10 +16,21 @@ export class RiderService extends BaseService {
     super(http);
   }
 
-  getAllRiders(): Observable<Rider[]> {
+  getAll(): Observable<Rider[]> {
     const url = `${this.API_Rider}`;
     return this.http.get<Rider[]>(url, this.httpOptions).pipe(
       catchError(this.handleError)
     );
+  }
+
+  add (rider: Rider): Observable <Rider> {
+    const url = `${this.API_Rider}`;
+    return this.http.post<Rider>(url, rider, this.httpOptions).pipe
+    (catchError(this.handleError));
+  }
+
+  delete(id: string): Observable<any> {
+    const url = `${this.API_Rider}/${id}`;
+    return this.http.delete(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 }

@@ -7,8 +7,6 @@ export class City {
   public Status: Status;
 
   constructor() {
-    this.Name = '';
-    this.ImagePath = '';
     this.Status = Status.Enable;
   }
 }

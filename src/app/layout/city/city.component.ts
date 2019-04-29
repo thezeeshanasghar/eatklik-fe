@@ -39,10 +39,6 @@ export class CityComponent implements OnInit {
     );
   }
 
-  edit(id: number) {
-    this.router.navigateByUrl('/city/edit/' + id);
-  }
-
   open(content, Id: string) {
     this.modalService.open(content).result.then(result => {
       if (result === 'Yes') {

@@ -17,6 +17,7 @@
                 <th>Name</th>
                 <th>Mobile #</th>
                 <th>City</th>
+                <th>&nbsp;</th>
               </tr>
             </thead>
             <tbody *ngIf="!isLoading">
@@ -31,6 +32,10 @@
                 <td>{{ rider.Name }}</td>
                 <td>{{ rider.MobileNo }}</td>
                 <td>{{ rider.City.Name }}</td>
+                <td>
+                  <a routerLink="edit/{{rider.Id}}"> <i class="fa fa-pencil"></i> </a>&nbsp;
+                  <i (click)="open(content, rider.Id)" class="fa fa-trash" style="cursor: pointer"></i>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -39,3 +44,20 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Alert</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this ?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="c('Yes')">Yes</button>
+    <button type="button" class="btn btn-secondary" (click)="c('No')">No</button>
+  </div>
+</ng-template>
