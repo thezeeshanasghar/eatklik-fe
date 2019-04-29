@@ -11,19 +11,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EditComponent implements OnInit {
 
   restaurantContact = new RestaurantContact();
-  cotactId: any;
+
   constructor(
     private restaurantContactService: RestaurantContactService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
     this.restaurantContact.RestaurantId = Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+    this.restaurantContact.Id = Number(this.activatedRoute.snapshot.paramMap.get('Id2'));
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(data => {this.cotactId =  data.id; });
-    this.restaurantContactService.getContact(this.cotactId).subscribe(
-      restaurantContact => {this.restaurantContact = restaurantContact; },
-      err  => {console.log(err); });
+    this.restaurantContactService.getContact(this.restaurantContact.Id).subscribe(
+      restaurantContact => { this.restaurantContact = restaurantContact; },
+      err => { console.log(err); });
   }
 
   onSubmit() {

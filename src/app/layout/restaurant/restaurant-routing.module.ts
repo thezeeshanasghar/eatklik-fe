@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: ':Id/contact', loadChildren: './contact/contact.module#ContactModule' },
   { path: ':Id/cuisine', loadChildren: 'src/app/layout/restaurant/cuisine/cuisine.module#CuisineModule' },
   { path: ':Id/location', loadChildren: './location/location.module#LocationModule' },
-  { path: ':Id/timing', loadChildren: './timing/timing.module#TimingModule' }
+  { path: ':Id/timing', loadChildren: './timing/timing.module#TimingModule' },
+  { path: ':Id/menu', loadChildren: './menu/menu.module#MenuModule' }
 ];
 
 @NgModule({

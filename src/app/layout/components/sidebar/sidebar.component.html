@@ -28,7 +28,11 @@
             <i class="fa fa-th-list"></i>&nbsp;
             <span>{{ 'Component' | translate }}</span>
         </a>
-        <div class="nested-menu">
+        <a [routerLink]="['/restaurant']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-hotel"></i>&nbsp;
+            <span>{{ 'Restaurant' | translate }}</span>
+        </a>
+        <!-- <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
                 <i class="fa fa-hotel"></i>&nbsp;
                 <span>{{ 'Restaurant' | translate }}</span>
@@ -47,7 +51,7 @@
                     </li>
                 </ul>
             </li>
-        </div>
+        </div> -->
         <a [routerLink]="['/customer']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-users"></i>&nbsp;
             <span>{{ 'Customer' | translate }}</span>
