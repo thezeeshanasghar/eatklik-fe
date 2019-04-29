@@ -1,3 +1,55 @@
-<p>
-  setting works!
-</p>
+<div [@routerTransition]>
+  <app-page-header [heading]="'Settings'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          List of all settings
+          <div class="pull-right">
+            <a routerLink="add"> <i class="fa fa-plus"></i> Add </a>
+          </div>
+        </div>
+        <div class="card-body table">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="!isLoading">
+              <tr *ngFor="let setting of settings; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ setting.Name }}</td>
+                <td>{{ setting.Value }}</td>
+                <td>
+                  <a routerLink="edit/{{setting.Id}}"> <i class="fa fa-pencil"></i> </a>&nbsp;
+                  <i (click)="open(content, setting.Id)" class="fa fa-trash" style="cursor: pointer"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Alert</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this ?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="c('Yes')">Yes</button>
+    <button type="button" class="btn btn-secondary" (click)="c('No')">No</button>
+  </div>
+</ng-template>
