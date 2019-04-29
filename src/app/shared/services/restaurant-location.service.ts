@@ -11,7 +11,7 @@ import { RestaurantLocation } from 'src/app/_model/restaurant_location';
 })
 export class RestaurantLocationService extends BaseService {
 
-  private readonly API = `${environment.BASE_URL}restaurantlocation`;
+  private readonly API = `${environment.BASE_URL}restaurantlocation/`;
 
   constructor(protected http: HttpClient) {
     super(http);
@@ -21,6 +21,24 @@ export class RestaurantLocationService extends BaseService {
   addRestaurantLocation(data: RestaurantLocation): Observable<any> {
     const url = `${this.API}`;
     return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  getLocation(Id: number): Observable<RestaurantLocation> {
+    const url = `${this.API}`;
+    return this.http.get<RestaurantLocation>(url + Id, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  updateRestaurantLocation(data: RestaurantLocation): Observable<RestaurantLocation> {
+    const url = `${this.API}`;
+    return this.http.put<RestaurantLocation>(url + data.Id, data,  this.httpOptions ).pipe(
+      catchError(this.handleError));
+  }
+
+  deleteRestaurantLocation(id: string): Observable<any> {
+    const url = `${this.API}${id}`;
+    console.log(url);
+    return this.http.delete(url, this.httpOptions).pipe(
+      catchError(this.handleError));
   }
 
 }

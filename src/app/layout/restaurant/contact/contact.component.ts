@@ -4,6 +4,7 @@ import { RestaurantContact } from 'src/app/_model/restaurant_contact';
 import { RestaurantContactService } from 'src/app/shared/services/restaurant-contact.service';
 import { RestaurantService } from 'src/app/shared/services/restaurant.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-contact',
@@ -16,7 +17,7 @@ export class ContactComponent implements OnInit {
   isLoading = true;
 
   constructor(private restaurantContactService: RestaurantContactService,
-          private restaurantService: RestaurantService,
+          private restaurantService: RestaurantService, private modalService: NgbModal,
           private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
@@ -34,5 +35,18 @@ export class ContactComponent implements OnInit {
       },
       () => {}
     );
+  }
+  open(content, Id: any) {
+    this.modalService.open(content).result.then(result => {
+      if (result === 'Yes') {
+        this.restaurantContactService.deleteRestaurantContact(Id).subscribe(
+          res => {
+            this.getRestaurantContacts(Number(this.activatedRoute.snapshot.paramMap.get('Id')));
+          },
+          err => { console.log(err);
+          }
+        );
+      }
+    });
   }
 }

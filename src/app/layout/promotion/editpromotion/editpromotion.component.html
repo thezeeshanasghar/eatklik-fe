@@ -12,7 +12,8 @@
           </p>
         <form (ngSubmit)="UpdatePromotion()" #EditPromotionForm="ngForm">
           <div class="form-group">
-            <input type="text" #name ="ngModel" class="form-control" placeholder="Name" [(ngModel)]="promotion.Name" name="name" required minlength="2"
+            <label class="form-control-label" for="name"> Name</label>
+            <input type="text" #name ="ngModel" class="form-control"  [(ngModel)]="promotion.Name" name="name" required minlength="2"
             [ngClass]="{
               'is-invalid': name.invalid && (name.dirty || name.touched),
               'is-valid' : name.valid && ( name.dirty || name.touched)
@@ -23,6 +24,7 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="form-control-label" for = "Content">Content</label>
               <textarea  row="3" #content="ngModel" class="form-control" placeholder="Content" [(ngModel)]="promotion.Content"  name="Content" required minlength="2"
               [ngClass]="{
                 'is-invalid': content.invalid && (content.dirty || content.touched),

@@ -3,7 +3,7 @@
   <div class="col col-xl-8 col-lg-8">
     <div class="card mb-3">
       <div class="card-header">
-        Add a new restaurant contact
+        Update restaurant contact
       </div>
       <div class="card-body">
         <form role="form" #myform="ngForm" (ngSubmit)="onSubmit()">
@@ -21,7 +21,6 @@
               <p *ngIf="Email.errors.pattern"> Email should be of valid pattern </p>
             </div>
           </div>
-
 
           <div class="form-group">
             <label class="form-control-label" for="MobileNo">Mobile Number</label>

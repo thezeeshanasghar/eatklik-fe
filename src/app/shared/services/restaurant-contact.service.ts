@@ -11,15 +11,28 @@ import { RestaurantContact } from 'src/app/_model/restaurant_contact';
 })
 export class RestaurantContactService extends BaseService {
 
-  private readonly API = `${environment.BASE_URL}restaurantcontact`;
+  private readonly URL_Contact = `${environment.BASE_URL}restaurantcontact/`;
 
   constructor(protected http: HttpClient) {
     super(http);
   }
 
   addRestaurantContact(data: RestaurantContact): Observable<any> {
-    const url = `${this.API}`;
-    return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
+    return this.http.post(this.URL_Contact, data, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  getContact(Id: number): Observable<RestaurantContact> {
+    return this.http.get<RestaurantContact>(this.URL_Contact + Id, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  updateRestaurantContact(data: RestaurantContact): Observable<RestaurantContact> {
+    return this.http.put<RestaurantContact>(this.URL_Contact + data.Id, data,  this.httpOptions ).pipe(
+      catchError(this.handleError));
+  }
+
+  deleteRestaurantContact(id: string): Observable<any> {
+    return this.http.delete(this.URL_Contact + id, this.httpOptions).pipe(
+      catchError(this.handleError));
   }
 
 }

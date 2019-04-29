@@ -14,38 +14,33 @@ import {HttpErrorMsgsService} from './http-error-msgs.service';
   providedIn: 'root'
 })
 export class PromotionService extends BaseService {
-  private readonly API_Promotion = `${environment.BASE_URL}promotion/`;
+  private readonly URL_Promotion = `${environment.BASE_URL}promotion/`;
 
   constructor(protected http: HttpClient, private httpErrorMsgsService: HttpErrorMsgsService) {
     super(http);
   }
 
   getPromotion(id: string): Observable<Promotion> {
-    const url = `${this.API_Promotion}`;
-    return this.http.get<Promotion>(url + id).pipe(catchError(this.httpErrorMsgsService.handleError));
+    return this.http.get<Promotion>(this.URL_Promotion + id).pipe(catchError(this.httpErrorMsgsService.handleError));
   }
   getAllPromotions(): Observable<Promotion[]> {
-    const url = `${this.API_Promotion}`;
-    return this.http.get<Promotion[]>(url, this.httpOptions).pipe(catchError(this.httpErrorMsgsService.handleError)
+    return this.http.get<Promotion[]>(this.URL_Promotion, this.httpOptions).pipe(catchError(this.httpErrorMsgsService.handleError)
     );
   }
 
   AddNewPromotion (promotion: Promotion): Observable <Promotion> {
-    const url = `${this.API_Promotion}`;
     console.log(promotion);
-    return this.http.post<Promotion>(url, promotion, this.httpOptions).pipe
+    return this.http.post<Promotion>(this.URL_Promotion, promotion, this.httpOptions).pipe
     (catchError(this.httpErrorMsgsService.handleError));
   }
 
   UpdatePromotion(promotion: Promotion): Observable <Promotion> {
-    const url = `${this.API_Promotion}`;
-    return this.http.put<Promotion>(url + promotion.Id, promotion, this.httpOptions).pipe
+    return this.http.put<Promotion>(this.URL_Promotion + promotion.Id, promotion, this.httpOptions).pipe
     (catchError(this.httpErrorMsgsService.handleError));
   }
 
   DeletePromotion (id: string): Observable<any> {
-    const url = `${this.API_Promotion}${id}`;
-    return this.http.delete(url, this.httpOptions).pipe
+    return this.http.delete(this.URL_Promotion + id, this.httpOptions).pipe
     (catchError(this.httpErrorMsgsService.handleError));
   }
 

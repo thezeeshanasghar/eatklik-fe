@@ -1,0 +1,58 @@
+<app-page-header [heading]="'Restaurants'" [icon]="'fa-table'"></app-page-header>
+<div class="row">
+  <div class="col col-xl-8 col-lg-8">
+    <div class="card mb-3">
+      <div class="card-header">
+        Update restaurant timings
+      </div>
+      <div class="card-body">
+        <form role="form" #myform="ngForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label>WeekDay</label>
+            <select class="form-control" [(ngModel)]="restaurantTiming.WeekDay" name="WeekDay" required>
+              <option [value]="0">Monday</option>
+              <option [value]="1">Tuesday</option>
+              <option [value]="3">Wednesday</option>
+              <option [value]="4">Thursday</option>
+              <option [value]="5">Friday</option>
+              <option [value]="6">Saturday</option>
+              <option [value]="7">Sunday</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label class="form-control-label" for="StartTime">Start Time</label>
+            <input type="text" class="form-control" id="StartTime" name="StartTime" required #StartTime="ngModel"
+              [(ngModel)]="restaurantTiming.StartTime" [ngClass]="{
+                    'is-invalid': StartTime.invalid && (StartTime.dirty || StartTime.touched),
+                    'is-valid': StartTime.valid && (StartTime.dirty || StartTime.touched)
+                  }">
+            <div class="invalid-feedback" *ngIf="StartTime.invalid">
+              <p *ngIf="StartTime.errors.required"> Start Time is required </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="EndTime">End Time</label>
+            <input type="text" class="form-control" id="EndTime" name="EndTime" required #EndTime="ngModel"
+              [(ngModel)]="restaurantTiming.EndTime" [ngClass]="{
+                    'is-invalid': EndTime.invalid && (EndTime.dirty || EndTime.touched),
+                    'is-valid': EndTime.valid && (EndTime.dirty || EndTime.touched)
+                  }">
+            <div class="invalid-feedback" *ngIf="EndTime.invalid">
+              <p *ngIf="EndTime.errors.required"> End Time is required </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" [disabled]="myform.invalid"
+              class="btn btn-primary form-control-label">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,7 +14,8 @@
           </p>
         <form (ngSubmit)="onSubmit()" #AddPromotionForm="ngForm">
           <div class="form-group">
-            <input type="text" class="form-control" #name="ngModel" placeholder="Name" [(ngModel)]="promotion.Name" name="PromoName" required minlength="2"
+            <label class="form-control-label" for = "name"> Name</label>
+            <input type="text" class="form-control" #name="ngModel"  [(ngModel)]="promotion.Name" name="PromoName" required minlength="2"
             [ngClass]="{
               'is-invalid': name.invalid && (name.dirty || name.touched),
               'is-valid' : name.valid && ( name.dirty || name.touched)
@@ -25,7 +26,8 @@
             </div>
           </div>
           <div class="form-group">
-              <textarea  row="3" class="form-control" #content ="ngModel" placeholder="Content" [(ngModel)]="promotion.Content" name="Content" required minlength="2"
+            <label class="form-control-label" for= "Content">Content</label>
+              <textarea  row="3" class="form-control" #content ="ngModel" [(ngModel)]="promotion.Content" name="Content" required minlength="2"
                 [ngClass]="{
                   'is-invalid': content.invalid && (content.dirty || content.touched),
                   'is-valid': content.valid && (content.dirty || content.touched)

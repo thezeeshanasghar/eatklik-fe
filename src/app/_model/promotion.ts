@@ -15,7 +15,7 @@ export class Promotion {
   constructor() {
     this.Name = '';
     this.Content = '';
-    this.PromoType = PromoType.Image;
+    // this.PromoType = PromoType.Image;
   }
 }
 
