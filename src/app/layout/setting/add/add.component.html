@@ -24,7 +24,7 @@
           <div class="form-group">
             <label class="form-control-label" for="value">Value</label>
             <input type="text" class="form-control" #value="ngModel" required id="value" name="value"
-              [(ngModel)]="setting.value" [ngClass]="{
+              [(ngModel)]="setting.Value" [ngClass]="{
                 'is-invalid': value.invalid && (value.dirty || value.touched),
                 'is-valid': value.valid && (value.dirty || value.touched)
               }">

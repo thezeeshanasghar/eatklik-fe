@@ -5,7 +5,7 @@ export class Coupon {
     public Code: string;
     public Discount: number;
     public PctDiscount: number;
-    public ValidTill: Date;
+    public ValidTill: any;
     public Status: Status;
 
     constructor() {
