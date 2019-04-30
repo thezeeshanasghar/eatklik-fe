@@ -76,6 +76,10 @@
             <i class="fa fa-cutlery"></i>&nbsp;
             <span>{{ 'Cuisine' | translate }}</span>
         </a>
+        <a [routerLink]="['/coupon']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-barcode"></i>&nbsp;
+            <span>{{ 'Coupons' | translate }}</span>
+        </a>
 
         <div class="header-fields">
             <a (click)="rltAndLtr()" class="list-group-item">
