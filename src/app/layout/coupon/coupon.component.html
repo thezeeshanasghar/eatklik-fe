@@ -1,34 +1,38 @@
 <div [@routerTransition]>
-  <app-page-header [heading]="'Cuisines'" [icon]="'fa-table'"></app-page-header>
+  <app-page-header [heading]="'Coupon Codes'" [icon]="'fa-table'"></app-page-header>
   <div class="row">
     <div class="col col-xl-12 col-lg-12">
       <div class="card mb-3">
         <div class="card-header">
-          List of all cuisines
+          List of all coupon codes
           <div class="pull-right">
             <a routerLink="add"> <i class="fa fa-plus"></i> Add </a>
           </div>
         </div>
-        <div class="card-body table">
+        <div class="card-body table-responsive">
           <table class="table table-hover table-striped">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Image</th>
+                <th>Code</th>
+                <th>Discount</th>
+                <th>PctDiscount</th>
+                <th>ValidTill</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
-            <tbody *ngFor="let cuisine of cuisines; let i = index">
-              <tr>
+            <tbody *ngIf="!isLoading">
+              <tr *ngFor="let coupon of coupons; let i = index" [ngClass]="{
+                'table-success': coupon.Status === 0,
+                'table-danger': coupon.Status === 1
+              }">
                 <th scope="row">{{ i + 1 }}</th>
-                <td>{{ cuisine.Name }}</td>
-                <td>{{ cuisine.Description }}</td>
-                <td><img class="small-image" [src]="resourceURL + cuisine.ImagePath" alt="no image" /></td>
+                <td>{{ coupon.Code }}</td>
+                <td>{{ coupon.Discount }}</td>
+                <td>{{ coupon.PctDiscount }}</td>
+                <td>{{ coupon.ValidTill }}</td>
                 <td>
-                  <a routerLink="edit/{{cuisine.Id}}"><i class="fa fa-pencil"></i></a>&nbsp;
-                  <i (click)="open(content, cuisine.Id)" class="fa fa-trash" style="cursor: pointer"></i>
+                  <i (click)="open(content, coupon.Id)" class="fa fa-trash" style="cursor: pointer"></i>
                 </td>
               </tr>
             </tbody>
@@ -38,7 +42,6 @@
     </div>
   </div>
 </div>
-
 
 
 <ng-template #content let-c="close" let-d="dismiss">

@@ -11,21 +11,24 @@ import { HttpEventType, HttpClient } from '@angular/common/http';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-  public progress: number;
-  public message: string;
-  @Output() public onUploadFinished = new EventEmitter();
 
-  model = new Cuisine();
-  uploadImg: boolean = false;
-  imgpath: string;
-  constructor(private http: HttpClient, private cuisineService: CuisineService, public router: Router) {}
+
+  public uploadProgress: number;
+  resourceURL: string;
+
+  cuisine = new Cuisine();
+
+  constructor(
+    private http: HttpClient,
+    private cuisineService: CuisineService,
+    public router: Router) {
+      this.resourceURL = environment.RESOURCES_URL;
+    }
 
   ngOnInit() {}
 
-  onSubmit() {}
-
-  async addNewCuisine() {
-    await this.cuisineService.addCuisine(this.model).subscribe(
+  async onSubmit() {
+    await this.cuisineService.addCuisine(this.cuisine).subscribe(
       res => {
         this.router.navigate(['/cuisine']);
       },
@@ -35,7 +38,7 @@ export class AddComponent implements OnInit {
     );
   }
 
-  public uploadFile = files => {
+  public uploadLogo = files => {
     if (files.length === 0) {
       return;
     }
@@ -45,16 +48,11 @@ export class AddComponent implements OnInit {
 
     this.http.post(environment.BASE_URL + 'upload', formData, { reportProgress: true, observe: 'events' }).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
-        this.progress = Math.round((100 * event.loaded) / event.total);
+        this.uploadProgress = Math.round((100 * event.loaded) / event.total);
       } else if (event.type === HttpEventType.Response) {
-        this.message = 'Upload success.';
-
-        //let json = JSON.parse(event.body);
-        let dbPath: any = event.body;
-        this.onUploadFinished.emit(dbPath);
-        this.model.ImagePath = environment.RESOURCES_URL + dbPath.dbPath;
-        this.uploadImg = true;
+        this.cuisine.ImagePath = event.body['dbPath'];
       }
     });
-  };
+  }
+
 }

@@ -1,0 +1,45 @@
+<app-page-header [heading]="'Settings'" [icon]="'fa-table'"></app-page-header>
+<div class="row">
+  <div class="col col-xl-8 col-lg-8">
+    <div class="card mb-3">
+      <div class="card-header">
+        Add a new setting
+      </div>
+      <div class="card-body">
+        <form role="form" #myform="ngForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label class="form-control-label" for="name">Name</label>
+            <input type="text" class="form-control" #name="ngModel" required minlength="3" id="name" name="name"
+              [(ngModel)]="setting.Name" [ngClass]="{
+                'is-invalid': name.invalid && (name.dirty || name.touched),
+                'is-valid': name.valid && (name.dirty || name.touched)
+              }">
+            <div class="invalid-feedback" *ngIf="name.invalid">
+              <p *ngIf="name.errors.required"> city name is required </p>
+              <p *ngIf="name.errors.minlength"> city name should be at least 3 chracters </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="value">Value</label>
+            <input type="text" class="form-control" #value="ngModel" required id="value" name="value"
+              [(ngModel)]="setting.Value" [ngClass]="{
+                'is-invalid': value.invalid && (value.dirty || value.touched),
+                'is-valid': value.valid && (value.dirty || value.touched)
+              }">
+            <div class="invalid-feedback" *ngIf="value.invalid">
+              <p *ngIf="value.errors.required">  value is required </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" [disabled]="myform.invalid"
+              class="btn btn-secondary form-control-label">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<p>
+  add works!
+</p>
+<app-page-header [heading]="'Cities'" [icon]="'fa-table'"></app-page-header>
+<div class="row">
+  <div class="col col-xl-8 col-lg-8">
+    <div class="card mb-3">
+      <div class="card-header">
+        Add a new city
+      </div>
+      <div class="card-body">
+        <form role="form" #myform="ngForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label class="form-control-label" for="Code">Code</label>
+            <input type="text" class="form-control" #Code="ngModel" required minlength="3" id="Code" name="Code"
+              [(ngModel)]="coupon.Code" [ngClass]="{
+                'is-invalid': Code.invalid && (Code.dirty || Code.touched),
+                'is-valid': Code.valid && (Code.dirty || Code.touched)
+              }">
+            <div class="invalid-feedback" *ngIf="Code.invalid">
+              <p *ngIf="Code.errors.required"> Code is required </p>
+              <p *ngIf="Code.errors.minlength"> Code should be at least 3 chracters </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="Discount">Discount</label>
+            <input type="number" class="form-control" #Discount="ngModel" required id="Discount" name="Discount"
+              [(ngModel)]="coupon.Discount" [ngClass]="{
+                'is-invalid': Discount.invalid && (Discount.dirty || Discount.touched),
+                'is-valid': Discount.valid && (Discount.dirty || Discount.touched)
+              }">
+            <div class="invalid-feedback" *ngIf="Discount.invalid">
+              <p *ngIf="Discount.errors.required"> Discount is required </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="PctDiscount">Percentage Discount</label>
+            <input type="number" class="form-control" #PctDiscount="ngModel" required id="PctDiscount"
+              name="PctDiscount" [(ngModel)]="coupon.PctDiscount" [ngClass]="{
+                'is-invalid': PctDiscount.invalid && (PctDiscount.dirty || PctDiscount.touched),
+                'is-valid': PctDiscount.valid && (PctDiscount.dirty || PctDiscount.touched)
+              }">
+            <div class="invalid-feedback" *ngIf="PctDiscount.invalid">
+              <p *ngIf="PctDiscount.errors.required"> Percentage Discount is required </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="ValidTill">Valid Till</label>
+            <div class="input-group datepicker-input">
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="coupon.ValidTill"
+                ngbDatepicker #d="ngbDatepicker">
+              <button class="input-group-addon" (click)="d.toggle()" type="button">
+                <!-- <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/> -->
+                <span class="fa fa-calendar"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" [disabled]="myform.invalid"
+              class="btn btn-secondary form-control-label">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

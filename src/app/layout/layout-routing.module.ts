@@ -22,7 +22,8 @@ const routes: Routes = [
       { path: 'setting', loadChildren: './setting/setting.module#SettingModule' },
       { path: 'cuisine', loadChildren: './cuisine/cuisine.module#CuisineModule' },
       { path: 'restaurant', loadChildren: './restaurant/restaurant.module#RestaurantModule' },
-      { path: 'customer', loadChildren: './customer/customer.module#CustomerModule' }
+      { path: 'customer', loadChildren: './customer/customer.module#CustomerModule' },
+      { path: 'coupon', loadChildren: './coupon/coupon.module#CouponModule' }
     ]
   }
 ];
