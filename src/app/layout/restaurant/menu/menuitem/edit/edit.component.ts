@@ -4,36 +4,34 @@ import { MenuItem } from 'src/app/_model/menu_item';
 import { ResturantMenuItemsService } from 'src/app/shared/services/resturant-menu-items.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import {Menu} from 'src/app/_model/menu';
-import { MenuService } from 'src/app/shared/services/restaurant-menu.service';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class AddComponent implements OnInit {
+export class EditComponent implements OnInit {
 
   public uploadProgress: number;
   resourceURL: string;
   menuItem = new MenuItem();
-  menu = new Menu();
+
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,
-    private menuItemService: ResturantMenuItemsService, private menuService: MenuService, private router: Router) {
+    private menuItemService: ResturantMenuItemsService, private router: Router) {
     this.resourceURL = environment.RESOURCES_URL;
-    this.menuItem.MenuId = Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-    this.menuService.getMenu(this.menuItem.MenuId).subscribe(
-      menu => {this.menu = menu; }
-    );
+    this.menuItem.Id = Number(this.activatedRoute.snapshot.paramMap.get('Id2'));
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.menuItemService.getMenuItem(this.menuItem.Id).subscribe(
+      menuItem => { this.menuItem = menuItem; });
+  }
 
   onSubmit(form) {
-    console.log(this.menuItem.MenuId);
-    this.menuItemService.addMenuItem(this.menuItem).subscribe(
+
+    this.menuItemService.updateMenuItem(this.menuItem).subscribe(
       res => {
-        this.router.navigate(['/restaurant/' + this.menu.RestaurantId + '/menu/' + this.menu.Id + '/menuitem']);
+        this.router.navigate(['/restaurant/' + this.menuItem.MenuId + '/menu/' + this.menuItem.Id + '/menuitem']);
       },
       err => {
         console.log(err);

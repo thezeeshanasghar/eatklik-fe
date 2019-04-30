@@ -3,7 +3,7 @@
   <div class="col col-xl-8 col-lg-8">
     <div class="card mb-3">
       <div class="card-header">
-        Add a new menu
+        Update menu
       </div>
       <div class="card-body">
         <form role="form" #myform="ngForm" (ngSubmit)="onSubmit(myform)">
@@ -45,7 +45,7 @@
 
           <div class="form-group">
             <button type="submit" [disabled]="myform.invalid"
-              class="btn btn-primary form-control-label">Submit</button>
+              class="btn btn-secondary form-control-label">Submit</button>
           </div>
         </form>
 

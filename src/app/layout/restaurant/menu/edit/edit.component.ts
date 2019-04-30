@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpEventType } from '@angular/common/http';
-import { EventEmitter } from 'events';
 import { Menu } from 'src/app/_model/menu';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MenuService } from 'src/app/shared/services/restaurant-menu.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class AddComponent implements OnInit {
+export class EditComponent implements OnInit {
 
   public uploadProgress: number;
   resourceURL: string;
@@ -19,17 +18,20 @@ export class AddComponent implements OnInit {
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private menuService: MenuService, private router: Router) {
     this.resourceURL = environment.RESOURCES_URL;
-    this.menu.RestaurantId = Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+    this.menu.Id = Number(this.activatedRoute.snapshot.paramMap.get('Id2'));
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // console.log('update Menu');
+    this.menuService.getMenu(this.menu.Id).subscribe(
+      menu => { this.menu = menu; }
+    );
+  }
 
   onSubmit(form) {
-
-    // console.log(this.resourceURL + this.menu.ImagePath);
     this.menuService.addMenuList(this.menu).subscribe(
       res => {
-        this.router.navigate(['/restaurant/' + this.menu.RestaurantId + '/menu']);
+        this.router.navigate(['/restaurant/' + this.menu.Id + '/menu']);
       },
       err => {
         console.log(err);

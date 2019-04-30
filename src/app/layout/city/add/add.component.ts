@@ -24,6 +24,7 @@ export class AddComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(form) {
+    console.log(this.city);
     this.cityService.addCity(this.city).subscribe(
       res => {
         this.router.navigate(['/city']);

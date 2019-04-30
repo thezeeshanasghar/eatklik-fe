@@ -3,7 +3,7 @@
   <div class="col col-xl-8 col-lg-8">
     <div class="card mb-3">
       <div class="card-header">
-        Add a new menu Item
+        Update menu Item
       </div>
       <div class="card-body">
         <form role="form" #myform="ngForm" (ngSubmit)="onSubmit(myform)">
@@ -24,7 +24,7 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label class="form-control-label" for="price">Price</label>
-                <input type="number" class="form-control" id="price" name="price" required
+                <input type="text" class="form-control" id="price" name="price" required
                   #price="ngModel" [(ngModel)]="menuItem.Price"
                   [ngClass]="{
                     'is-invalid': price.invalid && (price.dirty || price.touched),

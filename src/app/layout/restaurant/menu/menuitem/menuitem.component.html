@@ -1,3 +1,64 @@
-<p>
-  menuitem works!
-</p>
+<div [@routerTransition]>
+  <app-page-header [heading]="'Restaurants Menu'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          List of all menu Items
+          <div class="pull-right">
+            <a routerLink="add"> <i class="fa fa-plus"></i> Add </a>
+          </div>
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Price</th>
+                <th>Image Path</th>
+                <th>Actions</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="!isLoading">
+              <tr *ngFor="let menuItem of menuItems; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ menuItem.Name }}</td>
+                <td>{{ getMenuSize(menuItem.Size)}}</td>
+                <td> {{menuItem.Price}} </td>
+                <td>  
+                  <a [href]="resourceURL + menuItem.ImagePath" target="_blank">
+                    <img class="small-image" style = "width:100px; height:50px;" [src]="resourceURL + menuItem.ImagePath" />
+                  </a>
+                </td>
+                <td>
+                  <a [routerLink]="[ 'edit', menuItem.Id ]"><i class="fa fa-pencil-square-o fa-lg"></i></a> &nbsp;
+                  <i class="fa fa-trash-o fa-lg" style="cursor: pointer" (click)="open(content, menuItem.Id)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Alert</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this ?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="c('Yes')">Yes</button>
+    <button type="button" class="btn btn-secondary" (click)="c('No')">No</button>
+  </div>
+</ng-template>

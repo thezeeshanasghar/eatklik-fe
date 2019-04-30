@@ -18,6 +18,7 @@ export class RestaurantTimingService extends BaseService {
   }
 
   addRestaurantTiming(data: RestaurantTiming): Observable<any> {
+    console.log(this.URL_Rest_Timing);
     return this.http.post(this.URL_Rest_Timing, data, this.httpOptions).pipe(catchError(this.handleError));
   }
   getRestaurantTiming(Id: number): Observable<RestaurantTiming> {

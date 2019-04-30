@@ -1,3 +1,65 @@
-<p>
-  menu works!
-</p>
+<div [@routerTransition]>
+  <app-page-header [heading]="'Restaurants Menu'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          List of all menus
+          <div class="pull-right">
+            <a routerLink="add"> <i class="fa fa-plus"></i> Add </a>
+          </div>
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Image Path</th>
+                <th>Actions</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="!isLoading" >
+              <tr *ngFor="let menu of menus; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ menu.Name }}</td>
+                <td>
+                  <a [href]="resourceURL + menu.ImagePath" target="_blank">
+                    <img class="small-image" style="width:100px; height:50px;" [src]="resourceURL + menu.ImagePath" />
+                  </a>
+                </td>
+                <td>
+                  <a routerLink="{{menu.Id}}/menuitem" placement="bottom" ngbTooltip="Restaurant Menu">
+                    <i class="fa fa-book fa-2x"></i>
+                  </a>
+                </td>
+                <td>
+                  <a [routerLink]="[ 'edit', menu.Id ]"><i class="fa fa-pencil-square-o fa-lg"></i></a> &nbsp;
+                  <i class="fa fa-trash-o fa-lg" style="cursor: pointer" (click)="open(content, menu.Id)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Alert</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this ?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="c('Yes')">Yes</button>
+    <button type="button" class="btn btn-secondary" (click)="c('No')">No</button>
+  </div>
+</ng-template>

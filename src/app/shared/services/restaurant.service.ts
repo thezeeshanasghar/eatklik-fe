@@ -8,6 +8,7 @@ import { Restaurant } from 'src/app/_model/restaurant';
 import { RestaurantLocation } from 'src/app/_model/restaurant_location';
 import { RestaurantTiming } from 'src/app/_model/restaurant_timing';
 import { RestaurantContact } from 'src/app/_model/restaurant_contact';
+import {Menu} from 'src/app/_model/menu';
 
 @Injectable({
   providedIn: 'root'
