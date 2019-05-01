@@ -10,8 +10,8 @@ const routes: Routes = [
     component: MenuComponent
   },
   { path: 'add', component: AddComponent },
-  {path: 'edit/:Id2', component: EditComponent},
-  { path: ':Id/menuitem', loadChildren: './menuitem/menuitem.module#MenuitemModule' },
+  {path: 'edit/:MenuId', component: EditComponent},
+  { path: ':MenuId/menuitem', loadChildren: './menuitem/menuitem.module#MenuitemModule' },
 ];
 
 @NgModule({

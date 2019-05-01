@@ -16,7 +16,7 @@ export class EditComponent implements OnInit {
     private restaurantContactService: RestaurantContactService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
-    this.restaurantContact.RestaurantId = Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+    this.restaurantContact.RestaurantId = Number(this.activatedRoute.snapshot.paramMap.get('ResId'));
     this.restaurantContact.Id = Number(this.activatedRoute.snapshot.paramMap.get('Id2'));
   }
 

@@ -16,7 +16,7 @@ export class AddComponent implements OnInit {
     private restaurantTimingService: RestaurantTimingService,
     private router: Router,
     private route: ActivatedRoute) {
-    this.restaurantTiming.RestaurantId = Number(this.route.snapshot.paramMap.get('Id'));
+    this.restaurantTiming.RestaurantId = Number(this.route.snapshot.paramMap.get('ResId'));
   }
 
   ngOnInit() {

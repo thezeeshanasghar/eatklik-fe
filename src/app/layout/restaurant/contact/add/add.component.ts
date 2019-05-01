@@ -16,7 +16,7 @@ export class AddComponent implements OnInit {
     private restaurantContactService: RestaurantContactService,
     private router: Router,
     private route: ActivatedRoute) {
-    this.restaurantContact.RestaurantId = Number(this.route.snapshot.paramMap.get('Id'));
+    this.restaurantContact.RestaurantId = Number(this.route.snapshot.paramMap.get('ResId'));
   }
 
   ngOnInit() {

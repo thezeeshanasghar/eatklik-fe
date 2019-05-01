@@ -21,7 +21,7 @@ export class ContactComponent implements OnInit {
           private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.getRestaurantContacts(Number(this.activatedRoute.snapshot.paramMap.get('Id')));
+    this.getRestaurantContacts(Number(this.activatedRoute.snapshot.paramMap.get('ResId')));
   }
 
   getRestaurantContacts(Id: number) {
@@ -41,7 +41,7 @@ export class ContactComponent implements OnInit {
       if (result === 'Yes') {
         this.restaurantContactService.deleteRestaurantContact(Id).subscribe(
           res => {
-            this.getRestaurantContacts(Number(this.activatedRoute.snapshot.paramMap.get('Id')));
+            this.getRestaurantContacts(Number(this.activatedRoute.snapshot.paramMap.get('ResId')));
           },
           err => { console.log(err);
           }

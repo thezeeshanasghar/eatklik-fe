@@ -10,7 +10,7 @@ const routes: Routes = [
     component: MenuitemComponent
   },
   { path: 'add', component: AddComponent },
-  {path: 'edit/:Id2', component: EditComponent},
+  {path: 'edit/:MenuItemId', component: EditComponent},
 
 ];
 

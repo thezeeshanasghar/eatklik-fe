@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-  <app-page-header [heading]="'Restaurants Menu'" [icon]="'fa-table'"></app-page-header>
+  <app-page-header [heading]="'Restaurants'" [heading1] = "'Menu Items'" [icon]="'fa-table'"></app-page-header>
   <div class="row">
     <div class="col col-xl-12 col-lg-12">
       <div class="card mb-3">
@@ -19,7 +19,6 @@
                 <th>Price</th>
                 <th>Image Path</th>
                 <th>Actions</th>
-                <th>&nbsp;</th>
               </tr>
             </thead>
             <tbody *ngIf="!isLoading">

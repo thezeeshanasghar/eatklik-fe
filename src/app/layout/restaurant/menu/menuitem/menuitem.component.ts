@@ -5,7 +5,7 @@ import { MenuItem } from 'src/app/_model/menu_item';
 import { ResturantMenuItemsService } from 'src/app/shared/services/resturant-menu-items.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
-
+import {MenuService} from 'src/app/shared/services/restaurant-menu.service';
 @Component({
   selector: 'app-menuitem',
   templateUrl: './menuitem.component.html',
@@ -17,18 +17,20 @@ export class MenuitemComponent implements OnInit {
   menuItems: MenuItem[];
   isLoading = true;
   resourceURL: string;
-
+  menuItem = new MenuItem();
   constructor(private menuItemService: ResturantMenuItemsService,
-    private modalService: NgbModal,
+    private modalService: NgbModal, private menuService: MenuService,
     private activatedRoute: ActivatedRoute) {
     this.resourceURL = environment.RESOURCES_URL;
+    this.menuItem.MenuId = Number(this.activatedRoute.snapshot.paramMap.get('MenuId'));
   }
   ngOnInit() {
     this.getMenuItems();
   }
 
   getMenuItems() {
-    this.menuItemService.getMenuItems().subscribe(
+    console.log(this.menuItem.MenuId);
+    this.menuService.getMenuItems(this.menuItem.MenuId).subscribe(
       res => { this.menuItems = res; console.log(this.menuItems); this.isLoading = false; },
       err => { console.log(err); }
     );

@@ -16,7 +16,7 @@ export class EditComponent implements OnInit {
     private restaurantTimingService: RestaurantTimingService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
-    this.restaurantTiming.RestaurantId = Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+    this.restaurantTiming.RestaurantId = Number(this.activatedRoute.snapshot.paramMap.get('ResId'));
   }
 
   ngOnInit() {

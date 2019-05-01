@@ -24,9 +24,7 @@ export class ResturantMenuItemsService extends BaseService {
   getMenuItem(id: number): Observable<MenuItem> {
     return this.http.get<MenuItem>(this.URL_Rest_Menu_Item + id, this.httpOptions).pipe(catchError(this.handleError));
   }
-  getMenuItems(): Observable<MenuItem[]> {
-    return this.http.get<MenuItem[]>(this.URL_Rest_Menu_Item, this.httpOptions).pipe(catchError(this.handleError));
-  }
+
   updateMenuItem(data: MenuItem): Observable<MenuItem> {
     return this.http.put<MenuItem>(this.URL_Rest_Menu_Item + data.Id, data, this.httpOptions).pipe(catchError(this.handleError));
   }

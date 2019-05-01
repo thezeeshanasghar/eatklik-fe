@@ -18,7 +18,7 @@ export class EditComponent implements OnInit {
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private menuService: MenuService, private router: Router) {
     this.resourceURL = environment.RESOURCES_URL;
-    this.menu.Id = Number(this.activatedRoute.snapshot.paramMap.get('Id2'));
+    this.menu.Id = Number(this.activatedRoute.snapshot.paramMap.get('MenuId'));
   }
 
   ngOnInit() {

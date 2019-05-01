@@ -18,10 +18,10 @@ export class TimingComponent implements OnInit {
 
   constructor(private restaurantTimingService: RestaurantTimingService,
     private restaurantService: RestaurantService, private modalService: NgbModal,
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getRestaurantTimings(Number(this.activatedRoute.snapshot.paramMap.get('Id')));
+    this.getRestaurantTimings(Number(this.activatedRoute.snapshot.paramMap.get('ResId')));
   }
 
   getRestaurantTimings(Id: number) {
@@ -33,17 +33,45 @@ export class TimingComponent implements OnInit {
       err => {
         console.log(err);
       },
-      () => {}
+      () => { }
     );
+  }
+  getDay(id: number): string {
+    let day = '';
+    switch (id) {
+      case 1:
+        day = 'Monday';
+        break;
+      case 2:
+        day = 'Tuesday';
+        break;
+      case 3:
+        day = 'Wednesday';
+        break;
+      case 4:
+        day = 'Thursday';
+        break;
+      case 5:
+        day = 'Friday';
+        break;
+      case 6:
+        day = 'Saturday';
+        break;
+      case 7:
+        day = 'Sunday';
+        break;
+    }
+    return day;
   }
   open(content, Id: any) {
     this.modalService.open(content).result.then(result => {
       if (result === 'Yes') {
         this.restaurantTimingService.deleteRestaurantTiming(Id).subscribe(
           res => {
-            this.getRestaurantTimings(Number(this.activatedRoute.snapshot.paramMap.get('Id')));
+            this.getRestaurantTimings(Number(this.activatedRoute.snapshot.paramMap.get('ResId')));
           },
-          err => { console.log(err);
+          err => {
+            console.log(err);
           }
         );
       }

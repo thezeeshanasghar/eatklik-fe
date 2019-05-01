@@ -19,7 +19,7 @@ export class AddComponent implements OnInit {
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private menuService: MenuService, private router: Router) {
     this.resourceURL = environment.RESOURCES_URL;
-    this.menu.RestaurantId = Number(this.activatedRoute.snapshot.paramMap.get('Id'));
+    this.menu.RestaurantId = Number(this.activatedRoute.snapshot.paramMap.get('ResId'));
   }
 
   ngOnInit() { }

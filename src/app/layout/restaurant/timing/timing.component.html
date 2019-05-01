@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Restaurant Timings'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header [heading]="'Restaurant'" [heading1] = "'Timings'" [icon]="'fa-table'"></app-page-header>
     <div class="row">
       <div class="col col-xl-12 col-lg-12">
         <div class="card mb-3">
@@ -23,7 +23,7 @@
               <tbody>
                 <tr *ngFor="let restaurantTiming of restaurantTimings; let i = index">
                   <th scope="row">{{ i + 1 }}</th>
-                  <td>{{ restaurantTiming.WeekDay }}</td>
+                  <td>{{ getDay(restaurantTiming.WeekDay) }}</td>
                   <td>{{ restaurantTiming.StartTime }}</td>
                   <td>{{ restaurantTiming.EndTime }}</td>
   

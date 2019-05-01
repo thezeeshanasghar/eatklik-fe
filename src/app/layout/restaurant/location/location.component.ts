@@ -23,7 +23,7 @@ export class LocationComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.getRestaurantLocations(Number(this.activatedRoute.snapshot.paramMap.get('Id')));
+    this.getRestaurantLocations(Number(this.activatedRoute.snapshot.paramMap.get('ResId')));
   }
 
   getRestaurantLocations(Id: number) {
@@ -43,7 +43,7 @@ export class LocationComponent implements OnInit {
       if (result === 'Yes') {
         this.restaurantLocationService.deleteRestaurantLocation(Id).subscribe(
           res => {
-            this.getRestaurantLocations(Number(this.activatedRoute.snapshot.paramMap.get('Id')));
+            this.getRestaurantLocations(Number(this.activatedRoute.snapshot.paramMap.get('ResId')));
           },
           err => { console.log(err);
           }

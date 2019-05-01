@@ -19,7 +19,10 @@ export class EditComponent implements OnInit {
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,
     private menuItemService: ResturantMenuItemsService, private router: Router) {
     this.resourceURL = environment.RESOURCES_URL;
-    this.menuItem.Id = Number(this.activatedRoute.snapshot.paramMap.get('Id2'));
+    // console.log(this.activatedRoute.snapshot.paramMap.get('ResId'));
+    // console.log(this.activatedRoute.snapshot.paramMap.get('MenuId'));
+    // console.log(this.activatedRoute.snapshot.paramMap.get('MenuItemId'));
+    this.menuItem.Id = Number(this.activatedRoute.snapshot.paramMap.get('MenuItemId'));
   }
 
   ngOnInit() {
@@ -31,7 +34,7 @@ export class EditComponent implements OnInit {
 
     this.menuItemService.updateMenuItem(this.menuItem).subscribe(
       res => {
-        this.router.navigate(['/restaurant/' + this.menuItem.MenuId + '/menu/' + this.menuItem.Id + '/menuitem']);
+        this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
       },
       err => {
         console.log(err);

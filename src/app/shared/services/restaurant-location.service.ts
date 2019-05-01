@@ -20,6 +20,7 @@ export class RestaurantLocationService extends BaseService {
 
   addRestaurantLocation(data: RestaurantLocation): Observable<any> {
     const url = `${this.API}`;
+    console.log(url);
     return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
   }
 

@@ -5,7 +5,6 @@ import { ResturantMenuItemsService } from 'src/app/shared/services/resturant-men
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import {Menu} from 'src/app/_model/menu';
-import { MenuService } from 'src/app/shared/services/restaurant-menu.service';
 
 @Component({
   selector: 'app-add',
@@ -18,13 +17,12 @@ export class AddComponent implements OnInit {
   resourceURL: string;
   menuItem = new MenuItem();
   menu = new Menu();
+
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,
-    private menuItemService: ResturantMenuItemsService, private menuService: MenuService, private router: Router) {
+    private menuItemService: ResturantMenuItemsService, private router: Router) {
     this.resourceURL = environment.RESOURCES_URL;
-    this.menuItem.MenuId = Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-    this.menuService.getMenu(this.menuItem.MenuId).subscribe(
-      menu => {this.menu = menu; }
-    );
+    this.menuItem.MenuId = Number(this.activatedRoute.snapshot.paramMap.get('MenuId'));
+
   }
 
   ngOnInit() { }
@@ -33,7 +31,7 @@ export class AddComponent implements OnInit {
     console.log(this.menuItem.MenuId);
     this.menuItemService.addMenuItem(this.menuItem).subscribe(
       res => {
-        this.router.navigate(['/restaurant/' + this.menu.RestaurantId + '/menu/' + this.menu.Id + '/menuitem']);
+        this.router.navigate(['../'], { relativeTo: this.activatedRoute });
       },
       err => {
         console.log(err);

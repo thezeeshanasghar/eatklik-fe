@@ -12,7 +12,7 @@ export class RestaurantTiming {
 }
 
 export enum WeekDay {
-  Monday,
+  Monday = 1,
   Tuesday,
   Wednesday,
   Thursday,

@@ -5,6 +5,7 @@ import { Menu } from 'src/app/_model/menu';
 import { MenuService } from 'src/app/shared/services/restaurant-menu.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { RestaurantService } from 'src/app/shared/services/restaurant.service';
 
 @Component({
   selector: 'app-menu',
@@ -19,18 +20,18 @@ export class MenuComponent implements OnInit {
   resourceURL: string;
 
   constructor(private menuService: MenuService,
-     private modalService: NgbModal,
+     private modalService: NgbModal, private restaurantService: RestaurantService,
     private activatedRoute: ActivatedRoute) {
       this.resourceURL = environment.RESOURCES_URL;
+
     }
 
-
   ngOnInit() {
-    this.getRestaurantMenus();
+    this.getRestaurantMenus(Number(this.activatedRoute.snapshot.paramMap.get('ResId')));
   }
 
-  getRestaurantMenus () {
-    this.menuService.getMenuList().subscribe(
+  getRestaurantMenus (Id: number) {
+    this.restaurantService.getMenuList(Id).subscribe(
       res => {this.menus = res; console.log(this.menus); this.isLoading = false; },
       err => { console.log(err); }
     );
@@ -40,7 +41,7 @@ export class MenuComponent implements OnInit {
       if (result === 'Yes') {
         this.menuService.deleteMenuList(Id).subscribe(
           res => {
-            this.getRestaurantMenus();
+            this.getRestaurantMenus(Number(this.activatedRoute.snapshot.paramMap.get('ResId')));
           },
           err => { console.log(err);
           }

@@ -9,11 +9,11 @@ const routes: Routes = [
     component: RestaurantComponent
   },
   { path: 'add', component: AddComponent },
-  { path: ':Id/contact', loadChildren: './contact/contact.module#ContactModule' },
-  { path: ':Id/cuisine', loadChildren: 'src/app/layout/restaurant/cuisine/cuisine.module#CuisineModule' },
-  { path: ':Id/location', loadChildren: './location/location.module#LocationModule' },
-  { path: ':Id/timing', loadChildren: './timing/timing.module#TimingModule' },
-  { path: ':Id/menu', loadChildren: './menu/menu.module#MenuModule' }
+  { path: ':ResId/contact', loadChildren: './contact/contact.module#ContactModule' },
+  { path: ':ResId/cuisine', loadChildren: 'src/app/layout/restaurant/cuisine/cuisine.module#CuisineModule' },
+  { path: ':ResId/location', loadChildren: './location/location.module#LocationModule' },
+  { path: ':ResId/timing', loadChildren: './timing/timing.module#TimingModule' },
+  { path: ':ResId/menu', loadChildren: './menu/menu.module#MenuModule' }
 ];
 
 @NgModule({
