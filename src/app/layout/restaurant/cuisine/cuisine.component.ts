@@ -15,8 +15,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CuisineComponent implements OnInit {
   resourceURL = environment.RESOURCES_URL;
-  cuisineId: any;
-  cuisines: RestaurantCuisine[];
+  restaurantId: any;
+  restaurantCuisine: RestaurantCuisine[];
   isLoading = true;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,23 +26,19 @@ export class CuisineComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(paramsId => {
-      this.cuisineId = paramsId.Id;
-    });
+    this.restaurantId = Number(this.activatedRoute.snapshot.paramMap.get('ResId'));
     this.getCuisine();
   }
 
   getCuisine() {
-    this.restaurantCuisineService.getCuisineByRestrantId(this.cuisineId).subscribe(
+    this.restaurantCuisineService.getCuisineByRestrantId(this.restaurantId).subscribe(
       res => {
-        this.cuisines = res;
-        console.log(this.cuisines);
-        this.isLoading = false;
-        for (let i = 0; i < this.cuisines.length; i++) {
-          const rider = this.cuisines[i];
-          this.cusineService.getCuisineById(rider.CuisineId).subscribe(data => {
-            rider.Cuisine = data;
-            if (i === this.cuisines.length - 1) {
+        this.restaurantCuisine = res;
+        for (let i = 0; i < this.restaurantCuisine.length; i++) {
+          const rc = this.restaurantCuisine[i];
+          this.cusineService.getCuisineById(rc.CuisineId).subscribe(data => {
+            rc.Cuisine = data;
+            if (i === this.restaurantCuisine.length - 1) {
               this.isLoading = false;
             }
           });
@@ -58,14 +54,14 @@ export class CuisineComponent implements OnInit {
   open(content, Id: string) {
     this.modalService.open(content).result.then(result => {
       if (result === 'Yes') {
-        this.restaurantCuisineService.deleteCuisine(Id).subscribe(
-          res => {
-            this.getCuisine();
-          },
-          err => {
-            console.log(err);
-          }
-        );
+        // this.restaurantCuisineService.deleteCuisine(Id).subscribe(
+        //   res => {
+        //     this.getCuisine();
+        //   },
+        //   err => {
+        //     console.log(err);
+        //   }
+        // );
       }
     });
   }

@@ -20,7 +20,7 @@
               </tr>
             </thead>
             <tbody *ngIf="!isLoading">
-              <tr *ngFor="let cuisine of cuisines; let i = index">
+              <tr *ngFor="let cuisine of restaurantCuisine; let i = index">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ cuisine.Cuisine.Name }}</td>
                 <td>
