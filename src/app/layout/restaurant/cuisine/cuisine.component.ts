@@ -54,14 +54,14 @@ export class CuisineComponent implements OnInit {
   open(content, Id: string) {
     this.modalService.open(content).result.then(result => {
       if (result === 'Yes') {
-        // this.restaurantCuisineService.deleteCuisine(Id).subscribe(
-        //   res => {
-        //     this.getCuisine();
-        //   },
-        //   err => {
-        //     console.log(err);
-        //   }
-        // );
+        this.restaurantCuisineService.deleteCuisine(Id).subscribe(
+          res => {
+            this.getCuisine();
+          },
+          err => {
+            console.log(err);
+          }
+        );
       }
     });
   }

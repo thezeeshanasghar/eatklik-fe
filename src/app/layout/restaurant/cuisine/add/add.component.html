@@ -1,3 +1,31 @@
-<p>
-  add works!
-</p>
+<div [@routerTransition]>
+  <app-page-header [heading]="'Add Cuisine'" [icon]="'fa-edit'"></app-page-header>
+
+  <div class="row ">
+    <!-- <div class="col-6 offset-md-2">  -->
+    <div class="col-8">
+      <div class="card ">
+        <div class="card-header">Add New Cuisine </div>
+        <div class="card-body">
+
+
+
+          <form (ngSubmit)="onSubmit()" #AddPromotionForm="ngForm">
+            <div class="form-group">
+              <label>City</label>
+              <select class="form-control" name="City" [(ngModel)]="restaurantCuisine.CuisineId" required>
+                <option *ngFor="let cuisine of cuisines" [value]="cuisine.Id">{{cuisine.Name}}</option>
+              </select>
+
+            </div>
+
+            <div>
+              <button type="submit" [disabled]="AddPromotionForm.invalid" class="btn btn-primary">Submit</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

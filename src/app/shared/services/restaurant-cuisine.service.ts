@@ -11,14 +11,23 @@ import { RestaurantCuisine } from 'src/app/_model/restaurant_cuisine';
   providedIn: 'root'
 })
 export class RestaurantCuisineService extends BaseService {
-  private readonly API_RESTAURANT = `${environment.BASE_URL}restaurant/`;
+  private readonly API_RESTAURANT = `${environment.BASE_URL}restaurant`;
 
   constructor(protected http: HttpClient) {
     super(http);
   }
 
   getCuisineByRestrantId(id: number): Observable<RestaurantCuisine[]> {
-    return this.http.get<RestaurantCuisine[]>(this.API_RESTAURANT + id + '/cuisine')
-            .pipe(catchError(this.handleError));
+    return this.http.get<RestaurantCuisine[]>(this.API_RESTAURANT + '/' + id + '/cuisine').pipe(catchError(this.handleError));
+  }
+
+  addNewCuisine(id: number, data): Observable<any> {
+    const url = `${this.API_RESTAURANT + 'cuisine'}`;
+    return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  deleteCuisine(id: string): Observable<any> {
+    const url = `${this.API_RESTAURANT + 'cuisine/'}${id}`;
+    return this.http.delete(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 }
