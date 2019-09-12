@@ -12,6 +12,7 @@ export class Customer {
   public Status: Status;
   public CityId: number;
   public City: City;
+  public MobileNumber: number;
 
   public RestaurantReviews: Review[];
 
@@ -20,7 +21,7 @@ export class Customer {
     this.Email = '';
     this.Password = '';
     this.ImagePath = '';
-    this.Address = '';
+    this.Address = ''; 
     this.Status = Status.Enable;
   }
 }
