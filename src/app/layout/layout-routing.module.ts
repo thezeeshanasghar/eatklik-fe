@@ -23,6 +23,7 @@ const routes: Routes = [
       { path: 'cuisine', loadChildren: './cuisine/cuisine.module#CuisineModule' },
       { path: 'restaurant', loadChildren: './restaurant/restaurant.module#RestaurantModule' },
       { path: 'customer', loadChildren: './customer/customer.module#CustomerModule' },
+      { path: 'order', loadChildren: './order/order.module#OrderModule' },
       { path: 'coupon', loadChildren: './coupon/coupon.module#CouponModule' }
     ]
   }

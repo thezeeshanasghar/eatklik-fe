@@ -1,0 +1,89 @@
+<div>
+  <app-page-header [heading]="'Orders'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          List of all Orders
+        </div>
+        <div class="card-body table">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Sub Total</th>
+                <th>Fee</th>
+                <th>GST</th>
+                <th>Grand Total</th>
+                <th>Created</th>
+                <th>Status</th>
+                <th>Customer Id</th>
+                <th>Order Items</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="!isLoading">
+               <tr *ngFor="let order of orders; let i = index" [ngClass]="{
+                'd-none': order.Status == 'Pending'
+              }">   
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ order.Subtotal }}</td>
+                <td>{{ order.Fee }}</td>
+                <td>{{ order.GST }}</td>
+                <td>{{ order.GrandTotal }}</td>
+                <td>{{ order.Created }}</td>
+                <td>{{ order.Status }}</td>
+                <td>{{ order.CustomerId }}</td>
+                <td>{{ order.OrderItems}}</td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- pending orders row -->
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          List of Pending Orders 
+        </div>
+        <div class="card-body table">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Sub Total</th>
+                <th>Fee</th>
+                <th>GST</th>
+                <th>Grand Total</th>
+                <th>Created</th>
+                <th>Status</th>
+                <th>Customer Id</th>
+                <th>Order Items</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="!isLoading">
+               <tr *ngFor="let order of orders; let i = index" [ngClass]="{
+                'table-danger': order.Status == 'Pending',
+                'd-none': order.Status !== 'Pending'
+              }">   
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ order.Subtotal }}</td>
+                <td>{{ order.Fee }}</td>
+                <td>{{ order.GST }}</td>
+                <td>{{ order.GrandTotal }}</td>
+                <td>{{ order.Created }}</td>
+                <td>{{ order.Status }}</td>
+                <td>{{ order.CustomerId }}</td>
+                <td>{{ order.OrderItems}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

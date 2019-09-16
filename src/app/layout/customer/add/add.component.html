@@ -36,6 +36,12 @@
           </select>
 
         </div>
+       
+        <div class="form-group">
+          <input type="tel" class="form-control" placeholder="Mobile Number" [(ngModel)]="model.MobileNumber"
+            #model.MobileNumber="ngModel" [ngModelOptions]="{standalone: true}" required>
+        </div>
+
         <div>
           <div>
             <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
