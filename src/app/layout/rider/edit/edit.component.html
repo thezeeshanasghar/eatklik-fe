@@ -1,0 +1,50 @@
+<div>
+  <app-page-header [heading]="'Edit Rider'" [icon]="'fa-table'"></app-page-header>
+  <form #riderForm="ngForm" novalidate>
+    <div class="container">
+      <div class="card" style="width:400px">
+        <div class="card-body">
+           
+          
+        
+        <div class="form-group" [class.has-error]="nameControl.invalid && nameControl.touched">
+            <label for="name" class="control-label">Name</label>
+            <input required id="name" required type="text" class="form-control" [(ngModel)]="model.Name"
+              #nameControl="ngModel" [ngModelOptions]="{standalone: true}">
+            <span class="help-block " *ngIf="nameControl.invalid && nameControl.touched"> Name is
+              required</span><br  /> 
+            </div> 
+        <div class="form-group" [class.has-error]="nameControl.invalid && nameControl.touched">
+            <label for="mobile" class="control-label">Mobile No</label>
+            <input required id="mobile" required type="tel" class="form-control"  [(ngModel)]="model.MobileNo"
+              #mobileControl="ngModel" [ngModelOptions]="{standalone: true}">
+            <span class="help-block " *ngIf="mobileControl.invalid && mobileControl.touched"> Mobile No is
+              required</span><br  /> 
+            </div> 
+
+            <div class="form-group">
+              <label>City</label>
+              <select class="form-control" #city="ngModel" [(ngModel)]="model.CityId" name="cityId"
+              [ngClass]="{
+                'is-invalid': city.invalid && (city.dirty || city.touched),
+                'is-valid': city.valid && (city.dirty || city.touched)
+              }">
+                  <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
+              </select>
+              <div class="invalid-feedback" *ngIf="city.invalid">
+                  <p *ngIf="city.errors.required">  city is required</p>
+              </div>
+          </div> 
+        
+
+          <div class="row" style="margin-bottom:15px;">
+            <button type="button" class="btn btn-primary Button ml-3" (click)="editRider()"
+              [disabled]="riderForm.form.invalid">Submit</button>
+              <button type="button" routerLink="/rider" class="btn btn-dark ml-3">Back</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    
+  </form>
+</div>
