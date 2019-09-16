@@ -8,7 +8,8 @@ const routes: Routes = [
     path: '',
     component: RiderComponent
   },
-  { path: 'add', component: AddComponent }
+  { path: 'add', component: AddComponent },
+  // { path: 'edit/:id', component: EditComponent }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
