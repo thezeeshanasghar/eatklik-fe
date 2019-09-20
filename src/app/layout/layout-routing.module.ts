@@ -8,23 +8,23 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'prefix' },
-      { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-      { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
-      { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
-      { path: 'forms', loadChildren: './form/form.module#FormModule' },
-      { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },
-      { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
-      { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
-      { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
-      { path: 'city', loadChildren: './city/city.module#CityModule' },
-      { path: 'rider', loadChildren: './rider/rider.module#RiderModule' },
-      { path: 'promotion', loadChildren: './promotion/promotion.module#PromotionModule' },
-      { path: 'setting', loadChildren: './setting/setting.module#SettingModule' },
-      { path: 'cuisine', loadChildren: './cuisine/cuisine.module#CuisineModule' },
-      { path: 'restaurant', loadChildren: './restaurant/restaurant.module#RestaurantModule' },
-      { path: 'customer', loadChildren: './customer/customer.module#CustomerModule' },
-      { path: 'order', loadChildren: './order/order.module#OrderModule' },
-      { path: 'coupon', loadChildren: './coupon/coupon.module#CouponModule' }
+      { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule) },
+      { path: 'tables', loadChildren: () => import('./tables/tables.module').then(m => m.TablesModule) },
+      { path: 'forms', loadChildren: () => import('./form/form.module').then(m => m.FormModule) },
+      { path: 'bs-element', loadChildren: () => import('./bs-element/bs-element.module').then(m => m.BsElementModule) },
+      { path: 'grid', loadChildren: () => import('./grid/grid.module').then(m => m.GridModule) },
+      { path: 'components', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) },
+      { path: 'blank-page', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
+      { path: 'city', loadChildren: () => import('./city/city.module').then(m => m.CityModule) },
+      { path: 'rider', loadChildren: () => import('./rider/rider.module').then(m => m.RiderModule)},
+      { path: 'promotion', loadChildren: () => import('./promotion/promotion.module').then(m => m.PromotionModule) },
+      { path: 'setting', loadChildren: () => import('./setting/setting.module').then(m => m.SettingModule) },
+      { path: 'cuisine', loadChildren: () => import('./cuisine/cuisine.module').then(m => m.CuisineModule) },
+      { path: 'restaurant', loadChildren: () => import('./restaurant/restaurant.module').then(m => m.RestaurantModule) },
+      { path: 'customer', loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule) },
+      { path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
+      { path: 'coupon', loadChildren: () => import('./coupon/coupon.module').then(m => m.CouponModule) }
     ]
   }
 ];
@@ -33,4 +33,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class LayoutRoutingModule {}
+export class LayoutRoutingModule { }
