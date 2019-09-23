@@ -5,7 +5,8 @@ import { OrderComponent } from './order.component';
 const routes: Routes = [{
   path: '', component: OrderComponent
 },
-{ path: ':Id', loadChildren: './order-item/order-item.module#OrderItemModule' }
+{ path: ':Id', loadChildren: () => import('./order-item/order-item.module').then(m => m.OrderItemModule)}
+
 ];
 
 @NgModule({

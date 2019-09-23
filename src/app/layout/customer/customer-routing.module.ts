@@ -8,7 +8,9 @@ const routes: Routes = [{
   component: CustomerComponent
 },
  { path: 'add', component: AddComponent },
- { path: ':CustomerId/orders', loadChildren: './customer-order/customer-order.module#CustomerOrderModule' }
+ { path: ':CustomerId/orders', loadChildren: () => import('./customer-order/customer-order.module').then(m => m.CustomerOrderModule) }
+
+
 ];
 
 @NgModule({
