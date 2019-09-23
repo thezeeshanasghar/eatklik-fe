@@ -12,7 +12,14 @@ import { AuthGuard } from './shared';
 import {HttpErrorMsgsService} from './shared/services/http-error-msgs.service';
 
 @NgModule({
-  imports: [CommonModule, BrowserModule, BrowserAnimationsModule, HttpClientModule, LanguageTranslationModule, AppRoutingModule],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        LanguageTranslationModule,
+        AppRoutingModule
+    ],
   declarations: [AppComponent],
   providers: [AuthGuard, HttpErrorMsgsService],
   bootstrap: [AppComponent]
