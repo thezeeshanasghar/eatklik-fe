@@ -22,9 +22,8 @@ export class CustomerComponent implements OnInit {
       res => {
         this.customers = res;
         for (let i = 0; i < this.customers.length; i++) {
-          const customer = this.customers[i];
-          this.cityService.getCity(customer.CityId).subscribe(data => {
-            customer.City = data;
+          this.cityService.getCity(this.customers[i].CityId).subscribe(data => {
+            this.customers[i].City = data;
             if (i === this.customers.length - 1) {
               this.isLoading = false;
             }

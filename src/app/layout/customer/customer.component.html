@@ -34,7 +34,7 @@
                 <td>{{ customer.Email }}</td>
                 <td><img class="small-image" [src]="customer.ImagePath" /></td>
                 <td>{{customer.Address }}</td>
-                <td>{{customer.City.Name}}</td>
+                <td *ngIf="customer.City">{{customer.City.Name}}</td>
                 <td>{{customer.MobileNumber}}</td>
                 <td><a routerLink="{{customer.Id}}/orders" placement="bottom" ngbTooltip="View Customer Orders">
                   <i class="fa fa-shopping-cart fa-lg"></i>
