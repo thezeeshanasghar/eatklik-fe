@@ -33,7 +33,7 @@
                 <td>{{ order.Created }}</td>
                 <td>{{ order.Status }}</td>
                 <td>{{ order.CustomerId }}</td>
-                <td>{{ order.OrderItems}}</td>
+                <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
               </tr>
             </tbody>
 
@@ -78,7 +78,7 @@
                 <td>{{ order.Created }}</td>
                 <td>{{ order.Status }}</td>
                 <td>{{ order.CustomerId }}</td>
-                <td>{{ order.OrderItems}}</td>
+                <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
               </tr>
             </tbody>
           </table>

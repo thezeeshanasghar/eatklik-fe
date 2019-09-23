@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { OrderComponent } from './order.component';
 
 const routes: Routes = [{
-  path: '',
-  component: OrderComponent
-}
+  path: '', component: OrderComponent
+},
+{ path: ':Id', loadChildren: './order-item/order-item.module#OrderItemModule' }
 ];
 
 @NgModule({

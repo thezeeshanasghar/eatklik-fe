@@ -23,8 +23,7 @@ export class OrderComponent implements OnInit {
       res => {
         this.orders = res['ResponseData'];;
         this.isLoading = false;
-        
-       
+        console.log(res);
       },
       err => {
         console.log(err);

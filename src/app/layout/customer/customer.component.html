@@ -20,6 +20,7 @@
                 <th>Address</th>
                 <th>City Name</th>
                 <th>Mobile Number</th>
+                <th>Orders</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
@@ -35,6 +36,9 @@
                 <td>{{customer.Address }}</td>
                 <td>{{customer.City.Name}}</td>
                 <td>{{customer.MobileNumber}}</td>
+                <td><a routerLink="{{customer.Id}}/orders" placement="bottom" ngbTooltip="View Customer Orders">
+                  <i class="fa fa-shopping-cart fa-lg"></i>
+                </a>&nbsp;</td>
                 <td>
                   <a routerLink="edit/{{customer.Id}}"><i class="fa fa-pencil"></i></a>&nbsp;
                   <a (click)="open(content, customer.Id)"><i class="fa fa-trash"></i></a>

@@ -7,7 +7,7 @@ export class Order {
   public GrandTotal: number;
   public Created: string;
   public CustomerId: number;
-  public OrderItems: number;
+  public OrderItems: any;
   public Status: string;
 
   constructor() {

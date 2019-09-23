@@ -1,0 +1,40 @@
+<div>
+  <app-page-header [heading]="'Customer Orders'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          Customer Orders
+        </div>
+        <div class="card-body table">
+          
+            <!-- <div *ngFor="let order of orders;"> -->
+             <div>
+          <table  class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th> 
+              </tr>
+            </thead>
+            <tbody *ngIf="!isLoading">   
+              <tr *ngFor=" let oi of orders.OrderItems; let i = index">  
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ oi.Name }}</td>
+                <td>{{ oi.Size }}</td>
+                <td>{{ oi.Price }}</td>
+                <td>{{ oi.Quantity }}</td>
+                <td>{{ oi.Total }}</td>
+
+            </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
