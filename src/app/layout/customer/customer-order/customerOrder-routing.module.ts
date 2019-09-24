@@ -3,9 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { CustomerOrderComponent } from './customer-order.component';
 
 
-const routes: Routes = [
-  { path: '', component: CustomerOrderComponent }, 
-  { path: ':Id', loadChildren: './order-item/order-item.module#OrderItemModule' }
+
+
+const routes: Routes = [{
+  path: '',
+  component: CustomerOrderComponent
+},
+ { path: ':Id', loadChildren: () => import('./order-item/order-item.module').then(m => m.OrderItemModule) }
+
 ];
 
 @NgModule({
