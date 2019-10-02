@@ -4,7 +4,7 @@ import { CityService } from 'src/app/shared/services/city.service';
 import { EventEmitter } from 'events';
 import { Router } from '@angular/router';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { CustomerService } from 'src/app/shared/services/customer.service';
 
 @Component({
