@@ -42,8 +42,11 @@ export class EditComponent implements OnInit {
       } else if (event.type === HttpEventType.Response) {
         this.message = 'Upload success.';
         let dbPath: any = event.body;
-        this.onUploadFinished.emit(dbPath);
-        this.model.ImagePath = environment.RESOURCES_URL + dbPath.dbPath;
+         this.onUploadFinished.emit(dbPath);
+        //  this.model.ImagePath = environment.RESOURCES_URL + dbPath.dbPath;
+          this.model.ImagePath = dbPath.dbPath;
+
+        
       }
     });
   };

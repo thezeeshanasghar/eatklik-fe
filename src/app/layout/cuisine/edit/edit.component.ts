@@ -72,7 +72,7 @@ export class EditComponent implements OnInit {
         //let json = JSON.parse(event.body);
         let dbPath: any = event.body;
         this.onUploadFinished.emit(dbPath);
-        this.model.ImagePath = environment.RESOURCES_URL + dbPath.dbPath;
+         this.model.ImagePath = dbPath.dbPath;
       }
     });
   };
