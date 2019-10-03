@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Cuisine } from 'src/app/_model/cuisine';
+import { Customer } from 'src/app/_model/customer';
 import { Order } from 'src/app/_model/Order';
 
 @Injectable({
@@ -19,14 +19,14 @@ export class CustomerService extends BaseService {
     super(http);
   }
 
-  getAllCustomer(): Observable<Cuisine[]> {
+  getAllCustomer(): Observable<Customer[]> {
     const url = `${this.API_Customer}`;
-    return this.http.get<Cuisine[]>(url, this.httpOptions).pipe(catchError(this.handleError));
+    return this.http.get<Customer[]>(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 
-  getCustomerById(id: number): Observable<Cuisine> {
+  getCustomerById(id: number): Observable<Customer> {
     const url = `${this.API_Customer}`;
-    return this.http.get<Cuisine>(url + id).pipe(catchError(this.handleError));
+    return this.http.get<Customer>(url + id).pipe(catchError(this.handleError));
   }
 
   addCustomer(data): Observable<any> {

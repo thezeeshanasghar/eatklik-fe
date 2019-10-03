@@ -1,13 +1,12 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/shared/services/customer.service';
-import { CustomerRoutingModule } from '../customer-routing.module';
 import { Customer } from 'src/app/_model/customer';
 import { City } from 'src/app/_model/city';
 import { EventEmitter } from 'events';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { CityService } from '../../../shared/services/city.service';
+import { CityService } from 'src/app/shared/services/city.service';
 
 
 
@@ -35,55 +34,57 @@ export class EditComponent implements OnInit {
 
 
 
-  ngOnInit() {
-    this.activatedRoute.params.subscribe(customer => { this. customerid = customer.id; });
-    this.cityService.getAll().subscribe(cities => { this.cities = cities; });
-    this.getCustomerByid();
-  }
 
-  getCustomerByid() {
-    this.customerService.getCustomerById(this.customerid).subscribe(
-      res => {
-        this.model = res['ResponseData'] as Customer;
-console.log(this.model);
+   ngOnInit() {
+     this.activatedRoute.params.subscribe(customer => { this. customerid = customer.id; });
+     this.cityService.getAll().subscribe(cities => { this.cities = cities; });
+     this.getCustomerByid();
+   }
 
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+   getCustomerByid() {
+     this.customerService.getCustomerById(this.customerid).subscribe(
+       res => {
+         this.model = res;
+ console.log(this.model);
 
-editCustomer() {
-    this.customerService.editCustomer(this.customerid, this.model).subscribe(
-      res => {
-        this.router.navigate(['/customer']);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+       },
+       err => {
+         console.log(err);
+       }
+     );
+   }
+
+ editCustomer() {
+     this.customerService.editCustomer(this.customerid, this.model).subscribe(
+       res => {
+         this.router.navigate(['/customer']);
+       },
+       err => {
+         console.log(err);
+       }
+     );
+   }
 
 
 
-  public uploadFile = files => {
-    if (files.length === 0) {
-      return;
-    }
-    const fileToUpload = <File>files[0];
-    const formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
+   public uploadFile = files => {
+     if (files.length === 0) {
+       return;
+     }
+     const fileToUpload = <File>files[0];
+     const formData = new FormData();
+     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post(environment.BASE_URL + 'upload', formData, { reportProgress: true, observe: 'events' }).subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.progress = Math.round((100 * event.loaded) / event.total);
-      } else if (event.type === HttpEventType.Response) {
-        this.message = 'Upload success.';
-        const dbPath: any = event.body;
-        this.onUploadFinished.emit(dbPath);
-        this.model.ImagePath = environment.RESOURCES_URL + dbPath.dbPath;
-      }
-    });
-  }
+     this.http.post(environment.BASE_URL + 'upload', formData, { reportProgress: true, observe: 'events' }).subscribe(event => {
+       if (event.type === HttpEventType.UploadProgress) {
+         this.progress = Math.round((100 * event.loaded) / event.total);
+       } else if (event.type === HttpEventType.Response) {
+         this.message = 'Upload success.';
+         const dbPath: any = event.body;
+         this.onUploadFinished.emit(dbPath);
+         this.model.ImagePath = environment.RESOURCES_URL + dbPath.dbPath;
+       }
+     });
+   }
+
 }
