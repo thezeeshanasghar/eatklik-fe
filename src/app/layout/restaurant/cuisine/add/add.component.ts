@@ -39,8 +39,6 @@ export class AddComponent implements OnInit {
     );
   }
 
-  addCuisine() {}
-
   onSubmit() {
     this.restaurantCuisine.CuisineId = Number(this.restaurantCuisine.CuisineId);
     this.restaurantCuisineService.addNewCuisine(this.restaurantCuisine.RestaurantId, this.restaurantCuisine).subscribe(

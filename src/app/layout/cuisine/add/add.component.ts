@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Cuisine } from 'src/app/_model/cuisine';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { CuisineService } from 'src/app/shared/services/cuisine.service';
 import { Router } from '@angular/router';
 import { HttpEventType, HttpClient } from '@angular/common/http';

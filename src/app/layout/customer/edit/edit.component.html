@@ -1,0 +1,77 @@
+ <div>
+  <app-page-header [heading]="'Edit Customer'" [icon]="'fa-edit'"></app-page-header>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <form #customerForm="ngForm" novalidate>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Enter Name" [(ngModel)]="model.Name"
+            #model.Name="ngModel" [ngModelOptions]="{standalone: true}" required>
+        </div>
+        <div class="form-group">
+          <input row="3" class="form-control" placeholder="Email" [(ngModel)]="model.Email" #model.Email="ngModel"
+            [ngModelOptions]="{standalone: true}" required>
+        </div>
+        <div class="form-group">
+          <input row="3" class="form-control" placeholder="Password" [(ngModel)]="model.Password"
+            #model.Password="ngModel" [ngModelOptions]="{standalone: true}" required>
+        </div>
+        <div class="form-group">
+          <textarea row="3" class="form-control" placeholder="Address" [(ngModel)]="model.Address"
+            #model.Address="ngModel" [ngModelOptions]="{standalone: true}" required> </textarea>
+        </div>
+
+        <div class="form-group">
+          <label>City</label>
+          <select class="form-control" [(ngModel)]="model.CityId" #promotion.city.Name="ngModel"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
+          </select>
+
+        </div>
+       
+        <div class="form-group">
+          <input type="tel" class="form-control" placeholder="Mobile Number" [(ngModel)]="model.MobileNumber"
+            #model.MobileNumber="ngModel" [ngModelOptions]="{standalone: true}" required>
+        </div>
+        <div>
+          <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)"
+            style="display:none;">
+          <button type="button" class="btn btn-success uploadButton" (click)="file.click()">Image Upload</button>
+
+        </div>
+        <div>
+          <span class="upload" *ngIf="progress > 0">
+            {{progress}}%
+          </span>
+          <span class="upload" *ngIf="message">
+            {{message}}
+          </span>
+        </div>
+
+      
+      <img id="Img" [src]="model.ImagePath" alt="abb"><br>
+      <input name="options" type="radio" [value]=0 [checked]="model.Status==0"
+        [(ngModel)]="model.Status" />Enable<br />
+      <input name="options" type="radio" [value]=1 [checked]="model.Status==1"
+        [(ngModel)]="model.Status" />Disable<br />
+
+        <!-- <div>
+          <div>
+            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+            <button type="button" class="btn btn-success uploadButton" (click)="file.click()">Image Upload</button>
+
+          </div>
+          
+
+        </div>
+        <img *ngIf="uploadImg == true" id="Img" [src]="model.ImagePath" alt="abb"><br> -->
+
+        <br>
+        <button type="button" class="btn btn-primary Button " (click)="editCustomer()"
+              [disabled]="customerForm.form.invalid">Submit</button>
+
+      </form>
+    </div>
+  </div>
+</div>

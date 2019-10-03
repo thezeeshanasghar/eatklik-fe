@@ -10,17 +10,17 @@
 
 
 
-          <form (ngSubmit)="onSubmit()" #AddPromotionForm="ngForm">
+          <form (ngSubmit)="onSubmit()" #AddForm="ngForm">
             <div class="form-group">
-              <label>City</label>
-              <select class="form-control" name="City" [(ngModel)]="restaurantCuisine.CuisineId" required>
+              <label>Select Cuisine</label>
+              <select class="form-control" name="Cuisine" [(ngModel)]="restaurantCuisine.CuisineId" required>
                 <option *ngFor="let cuisine of cuisines" [value]="cuisine.Id">{{cuisine.Name}}</option>
               </select>
 
             </div>
 
             <div>
-              <button type="submit" [disabled]="AddPromotionForm.invalid" class="btn btn-primary">Submit</button>
+              <button type="submit" [disabled]="AddForm.invalid" class="btn btn-primary">Submit</button>
             </div>
 
           </form>

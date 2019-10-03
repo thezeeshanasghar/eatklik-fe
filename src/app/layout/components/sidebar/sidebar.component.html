@@ -28,6 +28,15 @@
             <i class="fa fa-th-list"></i>&nbsp;
             <span>{{ 'Component' | translate }}</span>
         </a>
+
+        <a [routerLink]="['/city']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-globe"></i>&nbsp;
+            <span>{{ 'City' | translate }}</span>
+        </a>
+        <a [routerLink]="['/cuisine']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-cutlery"></i>&nbsp;
+            <span>{{ 'Cuisine' | translate }}</span>
+        </a>
         <a [routerLink]="['/restaurant']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-hotel"></i>&nbsp;
             <span>{{ 'Restaurant' | translate }}</span>
@@ -61,11 +70,6 @@
             <i class="fa fa-users"></i>&nbsp;
             <span>{{ 'Order' | translate }}</span>
         </a>
-
-        <a [routerLink]="['/city']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-globe"></i>&nbsp;
-            <span>{{ 'City' | translate }}</span>
-        </a>
         <a [routerLink]="['/rider']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-motorcycle"></i>&nbsp;
             <span>{{ 'Rider' | translate }}</span>
@@ -77,10 +81,6 @@
         <a [routerLink]="['/setting']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-cog"></i>&nbsp;
             <span>{{ 'Setting' | translate }}</span>
-        </a>
-        <a [routerLink]="['/cuisine']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-cutlery"></i>&nbsp;
-            <span>{{ 'Cuisine' | translate }}</span>
         </a>
         <a [routerLink]="['/coupon']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-barcode"></i>&nbsp;
