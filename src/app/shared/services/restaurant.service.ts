@@ -9,6 +9,7 @@ import { RestaurantLocation } from 'src/app/_model/restaurant_location';
 import { RestaurantTiming } from 'src/app/_model/restaurant_timing';
 import { RestaurantContact } from 'src/app/_model/restaurant_contact';
 import { Menu } from 'src/app/_model/menu';
+import { ExtraItem } from 'src/app/_model/extra_items';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,11 @@ export class RestaurantService extends BaseService {
   getContacts(Id: number): Observable<RestaurantContact[]> {
     const url = `${this.API}${Id}/contact`;
     return this.http.get<RestaurantContact[]>(url, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  getExtraItems(Id: number): Observable<ExtraItem[]> {
+    const url = `${this.API}${Id}/extraitem`;
+    return this.http.get<ExtraItem[]>(url, this.httpOptions).pipe(catchError(this.handleError));
   }
   getMenuList(Id: number): Observable<Menu[]> {
     const url = `${this.API}${Id}/menu`;
