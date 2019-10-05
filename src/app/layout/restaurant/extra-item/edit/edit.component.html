@@ -1,0 +1,42 @@
+<app-page-header [heading]="'Edit'" [icon]="'fa-table'"></app-page-header>
+<div class="row">
+  <div class="col col-xl-8 col-lg-8">
+    <div class="card mb-3">
+      <div class="card-header">
+        Update Extra Item
+      </div>
+      <div class="card-body">
+        <form role="form" #myform="ngForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label class="form-control-label" for="name">Name</label>
+            <input type="text" class="form-control" #name="ngModel" required  id="name" name="name"
+              [(ngModel)]="extraItem.Name" >
+
+            <label class="form-control-label" for="price">Price</label>
+            <input type="text" class="form-control" #name="ngModel" required  id="price" name="price"
+              [(ngModel)]="extraItem.Price">            
+          </div>
+
+          
+            <div class="form-group">
+              <label class="form-control-label" for="image">Image</label>
+              <input type="file" id="image" name="logo" #image placeholder="Choose file" (change)="uploadImage(image.files)"
+                style="display:none;" accept=".jpg, .jpeg, .png, .gif">
+              <button type="button" class="btn btn-success" (click)="image.click()">Upload Image</button>
+              <ngb-progressbar class="top-15" *ngIf="progressImage > 0 && progressImage < 99" type="success" [value]="progressImage">{{progressImage}}</ngb-progressbar>
+              <img class="thumbnail top-15" *ngIf="extraItem.ImagePath" [src]="resourceURL + extraItem.ImagePath" alt="itemimage">
+            </div>
+    
+
+
+          <div class="form-group">
+            <button type="submit" [disabled]="myform.invalid"
+              class="btn btn-secondary form-control-label">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

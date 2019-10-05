@@ -6,11 +6,12 @@ import { ExtraItemComponent } from './extra-item.component';
 import { PageHeaderModule } from 'src/app/shared';
 import { FormsModule } from '@angular/forms';
 import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
-  declarations: [ExtraItemComponent, AddComponent],
+  declarations: [ExtraItemComponent, AddComponent,EditComponent],
   imports: [CommonModule, ExtraItemRoutingModule, PageHeaderModule, FormsModule, NgbModule]
 })
 export class ExtraItemModule {}
