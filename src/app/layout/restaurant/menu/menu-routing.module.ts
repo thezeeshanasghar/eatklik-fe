@@ -11,7 +11,8 @@ const routes: Routes = [
   },
   { path: 'add', component: AddComponent },
   {path: 'edit/:MenuId', component: EditComponent},
-  { path: ':MenuId/menuitem', loadChildren: './menuitem/menuitem.module#MenuitemModule' },
+  { path: ':MenuId/menuitem', loadChildren: () => import('./menuitem/menuitem.module').then(m => m.MenuitemModule) }
+
 ];
 
 @NgModule({
