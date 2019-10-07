@@ -26,6 +26,12 @@ export class RestaurantService extends BaseService {
     const url = `${this.API}`;
     return this.http.get<Restaurant[]>(url, this.httpOptions).pipe(catchError(this.handleError));
   }
+
+  getRestaurantById(id: number): Observable<Restaurant> {
+    const url = `${this.API}`;
+    return this.http.get<Restaurant>(url + id).pipe(catchError(this.handleError));
+  }
+
   getLocations(Id: number): Observable<RestaurantLocation[]> {
     const url = `${this.API}${Id}/location`;
     return this.http.get<RestaurantLocation[]>(url, this.httpOptions).pipe(catchError(this.handleError));
@@ -51,6 +57,12 @@ export class RestaurantService extends BaseService {
     const url = `${this.API}`;
     return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
   }
+
+  editRestaurant(id: number , data ): Observable<any> {
+    const url = `${this.API}${id}`;
+    return this.http.put(url, data , this.httpOptions).pipe(catchError(this.handleError));
+  }
+
 
   deleteRestaurant(Id: number): Observable<any> {
     const url = `${this.API}` + Id;

@@ -7,9 +7,10 @@ import { RestaurantComponent } from './restaurant.component';
 import { AddComponent } from './add/add.component';
 import { PageHeaderModule } from 'src/app/shared';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
-  declarations: [RestaurantComponent, AddComponent],
+  declarations: [RestaurantComponent, AddComponent, EditComponent],
   imports: [CommonModule, RestaurantRoutingModule, PageHeaderModule, NgbModule, FormsModule]
 })
 export class RestaurantModule {}

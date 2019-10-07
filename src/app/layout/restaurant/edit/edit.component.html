@@ -1,0 +1,98 @@
+<app-page-header [heading]="'Restaurants'" [icon]="'fa-table'"></app-page-header>
+<div class="row">
+  <div class="col col-xl-8 col-lg-8">
+    <div class="card mb-3">
+      <div class="card-header">
+        Add a new restaurant
+      </div>
+      <div class="card-body">
+        <form role="form" #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+
+          <div class="form-group">
+            <label class="form-control-label" for="name">Name</label>
+            <input type="text" class="form-control" #name="ngModel" required minlength="3"
+              id="name" name="name" [(ngModel)]="model.Name"
+              [ngClass]="{
+                'is-invalid': name.invalid && (name.dirty || name.touched),
+                'is-valid': name.valid && (name.dirty || name.touched)
+              }">
+            <div class="invalid-feedback" *ngIf="name.invalid">
+              <p *ngIf="name.errors.required"> restaurant name is required </p>
+              <p *ngIf="name.errors.minlength"> restaurant name should be at least 3 chracters </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="minimum">Minimum Order</label>
+                <input type="text" class="form-control" id="minimum" name="minimum" required
+                  #minimum="ngModel" [(ngModel)]="model.MinOrderPrice"
+                  [ngClass]="{
+                    'is-invalid': minimum.invalid && (minimum.dirty || minimum.touched),
+                    'is-valid': minimum.valid && (minimum.dirty || minimum.touched)
+                  }">
+                  <div class="invalid-feedback" *ngIf="minimum.invalid">
+                    <p *ngIf="minimum.errors.required"> minimum order price is required </p>
+                  </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="maximum">Maximum Order</label>
+                <input type="text" class="form-control" id="maximum" name="maximum" required
+                  #maximum="ngModel" [(ngModel)]="model.MaxOrderPrice"
+                  [ngClass]="{
+                    'is-invalid': maximum.invalid && (maximum.dirty || maximum.touched),
+                    'is-valid': maximum.valid && (maximum.dirty || maximum.touched)
+                  }">
+                  <div class="invalid-feedback" *ngIf="maximum.invalid">
+                    <p *ngIf="maximum.errors.required"> maximum order price is required </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="desc">Description</label>
+            <textarea class="form-control is-valid" id="desc" name="desc" rows="3" name="desc"
+              required #desc="ngModel" [(ngModel)]="model.Description"
+              [ngClass]="{
+                'is-invalid': desc.invalid && (desc.dirty || desc.touched),
+                'is-valid': desc.valid && (desc.dirty || desc.touched)
+              }"></textarea>
+              <div class="invalid-feedback" *ngIf="desc.invalid">
+                <p *ngIf="desc.errors.required"> description is required </p>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label class="form-control-label" for="logo">Logo</label>
+              <input type="file" id="logo" name="logo" #logo placeholder="Choose file" (change)="uploadLogo(logo.files)"
+                style="display:none;" accept=".jpg, .jpeg, .png, .gif">
+              <button type="button" class="btn btn-success form-control" (click)="logo.click()">Upload Logo</button>
+              <ngb-progressbar class="top-15" *ngIf="progressLogo > 0 && progressLogo < 99" type="success" [value]="progressLogo">{{progressLogo}}</ngb-progressbar>
+              <img class="thumbnail top-15" *ngIf="model.LogoImagePath" [src]="resourceURL + model.LogoImagePath" alt="logoimage">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label class="form-control-label" for="cover">Cover Image</label>
+              <input type="file" id="cover" #cover placeholder="Choose file" (change)="uploadCover(cover.files)"
+                style="display:none;" accept=".jpg, .jpeg, .png, .gif">
+              <button type="button" class="btn btn-success form-control" (click)="cover.click()">Upload Cover</button>
+              <ngb-progressbar class="top-15" *ngIf="progressCover > 0 && progressCover < 99" type="success" [value]="progressCover">{{progressCover}}</ngb-progressbar>
+              <img class="thumbnail top-15" *ngIf="model.CoverImagePath" [src]="resourceURL + model.CoverImagePath" alt="coverimage">
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <button type="submit" [disabled]="myform.invalid" class="btn btn-secondary form-control-label">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
