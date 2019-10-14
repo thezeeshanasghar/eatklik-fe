@@ -21,7 +21,8 @@ export class OrderComponent implements OnInit {
   getAllOrder() {
     this.orderService.getAllOrder().subscribe(
       res => {
-        this.orders = res['ResponseData'];;
+        //this.orders = res['ResponseData'];
+        this.orders = res;
         this.isLoading = false;
         console.log(res);
       },

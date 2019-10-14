@@ -23,7 +23,7 @@ export class CustomerOrderComponent implements OnInit {
   getCustomerOrders(Id: number) {
     this.customerService.getOrders(Id).subscribe(
       res => {
-        this.orders = res['ResponseData'];
+        this.orders = res;
         this.isLoading = false;
         // let asbc= this.customerOrders[0].OrderItems;
         //         console.log(asbc);
