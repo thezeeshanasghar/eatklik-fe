@@ -26,4 +26,11 @@ export class OrderService extends BaseService {
     const url = `${this.API_Order}`;
     return this.http.get<Order>(url + id).pipe(catchError(this.handleError));
   }
-}
+  
+  editOrder(id: number, data): Observable<any> {
+    const url = `${this.API_Order}${id}`;
+    return this.http.put(url, data, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
+  }
+

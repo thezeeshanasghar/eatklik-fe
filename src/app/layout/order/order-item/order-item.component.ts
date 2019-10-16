@@ -24,7 +24,7 @@ export class OrderItemComponent implements OnInit {
     
     this.customerService.getOrderById(Id).subscribe(
       res => {
-        this.orders = res['ResponseData'] as Order[];
+        this.orders = res;
         this.isLoading = false;
         console.log(this.orders);
         //  let items= this.orderitems[0].OrderItems;
