@@ -18,20 +18,14 @@ export class OrderItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getCustomerOrders(Number(this.activatedRoute.snapshot.paramMap.get('CustomerId')));
+   this.getCustomerOrders(Number(this.activatedRoute.snapshot.paramMap.get('Id')));
   }
   getCustomerOrders(Id: number) {
-    //Id = 1;
     this.customerService.getOrderById(Id).subscribe(
       res => {
-       // this.orders = res['ResponseData'] as Order[];
        this.orders = res;
         this.isLoading = false;
         console.log(this.orders);
-        //  let items= this.orderitems[0].OrderItems;
-        //       console.log(items); 
-        
-        // console.log(this.orderitems);
       },
       err => {
         console.log(err);
