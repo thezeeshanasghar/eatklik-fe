@@ -17,6 +17,8 @@
                 <th>Name</th>
                 <th>Mobile #</th>
                 <th>City</th>
+                <th>CNIC</th>
+                <th>Address</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
@@ -32,6 +34,8 @@
                 <td>{{ rider.Name }}</td>
                 <td>{{ rider.MobileNo }}</td>
                 <td>{{ rider.City.Name }}</td>
+                <td>{{ rider.CNIC }}</td>
+                <td>{{ rider.Address }}</td>
                 <td>
                   <a routerLink="edit/{{rider.Id}}"> <i class="fa fa-pencil"></i> </a>&nbsp;
                   <i (click)="open(content, rider.Id)" class="fa fa-trash" style="cursor: pointer"></i>

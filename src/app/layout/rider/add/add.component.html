@@ -33,6 +33,25 @@
           </div>
 
           <div class="form-group">
+            <label class="form-control-label" for="CNIC">CNIC Number</label>
+            <input type="text" class="form-control" #CNIC="ngModel" [(ngModel)]="rider.CNIC" name="CNIC"
+              id="CNIC" required minlength="13" [ngClass]="{
+              'is-invalid': CNIC.invalid && (CNIC.dirty || CNIC.touched),
+              'is-valid' : CNIC.valid && ( CNIC.dirty || CNIC.touched)}">
+            <div class="invalid-feedback" *ngIf="CNIC.invalid">
+              <p *ngIf="CNIC.errors.required"> CNIC number is required </p>
+              <p *ngIf="CNIC.errors.minlength">CNIC number should be at least 13 characters</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="Address">Address</label>
+            <input type="text" class="form-control" #Address="ngModel" [(ngModel)]="rider.Address" name="Address"
+              id="Address" required >
+            </div>
+          
+
+          <div class="form-group">
             <label class="form-control-label" for="Password">Password</label>
             <input type="password" class="form-control" #Password="ngModel" [(ngModel)]="rider.Password" name="Password"
               id="Password" required minlength="3" [ngClass]="{

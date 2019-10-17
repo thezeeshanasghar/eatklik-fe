@@ -7,9 +7,11 @@ export class Rider {
     public MobileNo: string;
     public Password: string;
     public Status: Status;
-
     public CityId: number;
     public City: City;
+    public CNIC: number;
+    public Address: string;
+
 
     constructor() {
         this.Status = Status.Enable;
