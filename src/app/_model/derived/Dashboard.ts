@@ -7,4 +7,10 @@ export class Dashboard {
     public RestaurantCount: number;
     public ReviewCount: number;
     public RiderCount: number;
+    public InProgressOrderCount: number;
+    public CancelledOrderCount: number;
+    public CompletedOrderCount: number;
+    public NewOrderCount: number;
+    public ActiveRiderCount: number;
+    public ActiveOrderCount: number;
 }

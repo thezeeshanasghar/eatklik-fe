@@ -32,6 +32,24 @@
     <hr />
     <div class="row">
         <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'danger'" [icon]="'fa-users'" [count]="dashboard.NewOrderCount" [label]="'New Orders'" ></app-stat>
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'danger'" [icon]="'fa-users'" [count]="dashboard.InProgressOrderCount" [label]="'In Progress Orders'" ></app-stat>
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'danger'" [icon]="'fa-users'" [count]="dashboard.CompletedOrderCount" [label]="'Completed Orders'" ></app-stat>
+        </div>
+
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'danger'" [icon]="'fa-users'" [count]="dashboard.CancelledOrderCount" [label]="'Cancelled Orders'" ></app-stat>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-xl-3 col-lg-6">
             <app-stat [bgClass]="'success'" [icon]="'fa-hotel'" [count]="dashboard.RestaurantCount" [label]="'Restaurants'" ></app-stat>
         </div>
         <div class="col-xl-3 col-lg-6">
@@ -41,6 +59,17 @@
             <app-stat [bgClass]="'primary'" [icon]="'fa-motorcycle'" [count]="dashboard.RiderCount" [label]="'Riders'" ></app-stat>
         </div>
 
+        <div class="col-xl-3 col-lg-6">
+            <app-stat [bgClass]="'primary'" [icon]="'fa-motorcycle'" [count]="dashboard.ActiveOrderCount" [label]="'Active Order'" ></app-stat>
+        </div>
+    </div>
+    <hr />
+    
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'primary'" [icon]="'fa-motorcycle'" [count]="dashboard.ActiveRiderCount" [label]="'Active Riders'" ></app-stat>
+    </div>
+
+    <div class="row">
         <div class="col-xl-3 col-lg-6">
             <app-stat [bgClass]="'success'" [icon]="'fa-bullhorn'" [count]="dashboard.PromotionCount" [label]="'Promotions'"></app-stat>
         </div>
