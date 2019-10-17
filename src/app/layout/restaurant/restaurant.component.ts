@@ -16,13 +16,27 @@ export class RestaurantComponent implements OnInit {
   resourceURL: string;
   restaurants: Restaurant[];
   isLoading = true;
+  cities : any ;
 
   constructor(private restaurantService: RestaurantService, private cityService: CityService, private modalService: NgbModal) {
     this.resourceURL = environment.RESOURCES_URL;
   }
 
   ngOnInit() {
+    this.getCity();
     this.getRestaurants();
+  }
+
+  getCity() {
+    this.cityService.getAll().subscribe(
+      cities => {
+        this.cities = cities;
+        console.log(this.cities);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   getRestaurants() {

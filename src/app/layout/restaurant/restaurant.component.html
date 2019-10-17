@@ -2,6 +2,11 @@
   <app-page-header [heading]="'Restaurants'" [icon]="'fa-table'"></app-page-header>
   <div class="row">
     <div class="col col-xl-12 col-lg-12">
+     
+      <select [(ngModel)]="restaurants.CityId">
+        <option selected hidden> Select by City </option>
+        <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
+      </select>
       <div class="card mb-3">
         <div class="card-header">
           List of all restaurants
@@ -24,7 +29,7 @@
               </tr>
             </thead>
             <tbody *ngIf="!isLoading">
-              <tr *ngFor="let restaurant of restaurants; let i = index">
+              <tr *ngFor="let restaurant of restaurants; let i = index" >
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ restaurant.Name }}</td>
                 <td>{{ restaurant.City.Name }}</td>
