@@ -15,6 +15,7 @@
               <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>City</th>
                 <th>MinOrder</th>
                 <th>MaxOrder</th>
                 <th>Logo</th>
@@ -26,6 +27,7 @@
               <tr *ngFor="let restaurant of restaurants; let i = index">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ restaurant.Name }}</td>
+                <td>{{ restaurant.City.Name }}</td>
                 <td>{{ restaurant.MinOrderPrice }}</td>
                 <td>{{ restaurant.MaxOrderPrice }}</td>
                 <td>

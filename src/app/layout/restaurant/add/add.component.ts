@@ -4,6 +4,7 @@ import { Restaurant } from 'src/app/_model/restaurant';
 import { environment } from 'src/environments/environment';
 import { RestaurantService } from 'src/app/shared/services/restaurant.service';
 import { Router } from '@angular/router';
+import { CityService } from 'src/app/shared/services/city.service';
 
 @Component({
   selector: 'app-add',
@@ -14,13 +15,28 @@ export class AddComponent implements OnInit {
 
   public progressLogo: number;
   public progressCover: number;
+  public cities : any;
   resourceURL: string;
   restaurant = new Restaurant();
-  constructor(private http: HttpClient, private restaurantService: RestaurantService, private router: Router) {
+  constructor(private http: HttpClient, private restaurantService: RestaurantService, 
+    private router: Router,private cityService: CityService) {
     this.resourceURL = environment.RESOURCES_URL;
   }
 
-  ngOnInit() {}
+  ngOnInit() {this.getCity();}
+
+
+  getCity() {
+    this.cityService.getAll().subscribe(
+      cities => {
+        this.cities = cities;
+        console.log(this.cities);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 
   onSubmit(form) {
     this.restaurantService.addRestaurant(this.restaurant).subscribe(

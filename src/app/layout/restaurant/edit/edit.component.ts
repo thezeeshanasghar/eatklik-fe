@@ -4,6 +4,7 @@ import { Restaurant } from 'src/app/_model/restaurant';
 import { environment } from 'src/environments/environment';
 import { RestaurantService } from 'src/app/shared/services/restaurant.service';
 import { Router , ActivatedRoute } from '@angular/router';
+import { CityService } from 'src/app/shared/services/city.service';
 
 @Component({
   selector: 'app-edit',
@@ -18,13 +19,28 @@ export class EditComponent implements OnInit {
   restaurant: Restaurant;
   model = new Restaurant ();
   restaurantid: any;
-  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private restaurantService: RestaurantService, private router: Router)
+  cities : any ;
+  constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, 
+    private restaurantService: RestaurantService, private cityService: CityService, private router: Router)
    { this.resourceURL = environment.RESOURCES_URL;}
 
   
   ngOnInit() {
     this.activatedRoute.params.subscribe(restaurant => { this.restaurantid = restaurant.id; });
+    this.getCity();
     this.getRestaurantById();
+
+  }
+  getCity() {
+    this.cityService.getAll().subscribe(
+      cities => {
+        this.cities = cities;
+        console.log(this.cities);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   getRestaurantById() {

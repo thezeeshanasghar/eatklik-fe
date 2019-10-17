@@ -3,6 +3,7 @@ import { RestaurantContact } from './restaurant_contact';
 import { RestaurantTiming } from './restaurant_timing';
 import { RestaurantCuisine } from './restaurant_cuisine';
 import { Review } from './review';
+import { City } from './city';
 
 export class Restaurant {
   public Id: number;
@@ -10,7 +11,8 @@ export class Restaurant {
   public MinOrderPrice: number;
   public MaxOrderPrice: number;
   public Description: string;
-
+  public CityId: number;
+  public City: City;
   public LogoImagePath: string;
   public CoverImagePath: string;
 
