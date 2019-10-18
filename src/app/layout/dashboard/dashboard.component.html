@@ -65,14 +65,14 @@
     </div>
     <hr />
     
-    <div class="col-xl-3 col-lg-6">
-        <app-stat [bgClass]="'primary'" [icon]="'fa-motorcycle'" [count]="dashboard.ActiveRiderCount" [label]="'Active Riders'" ></app-stat>
-    </div>
-
     <div class="row">
         <div class="col-xl-3 col-lg-6">
             <app-stat [bgClass]="'success'" [icon]="'fa-bullhorn'" [count]="dashboard.PromotionCount" [label]="'Promotions'"></app-stat>
         </div>
+
+        <div class="col-xl-3 col-lg-6">
+                <app-stat [bgClass]="'primary'" [icon]="'fa-motorcycle'" [count]="dashboard.ActiveRiderCount" [label]="'Active Riders'" ></app-stat>
+            </div>
     </div>
     <hr />
     <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
