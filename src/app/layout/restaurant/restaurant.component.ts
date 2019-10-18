@@ -14,9 +14,11 @@ import { CityService } from 'src/app/shared/services/city.service';
 })
 export class RestaurantComponent implements OnInit {
   resourceURL: string;
-  restaurants: Restaurant[];
+  restaurants : Restaurant[];
   isLoading = true;
   cities : any ;
+  filterRestaurant : Restaurant[] ;
+  CityId : number ;
 
   constructor(private restaurantService: RestaurantService, private cityService: CityService, private modalService: NgbModal) {
     this.resourceURL = environment.RESOURCES_URL;
@@ -24,7 +26,9 @@ export class RestaurantComponent implements OnInit {
 
   ngOnInit() {
     this.getCity();
-    this.getRestaurants();
+    this.getAllRestaurants();
+    this.getFilterRestaurants();
+
   }
 
   getCity() {
@@ -39,16 +43,20 @@ export class RestaurantComponent implements OnInit {
     );
   }
 
-  getRestaurants() {
+  getAllRestaurants() {
     this.restaurantService.getAll().subscribe(
       res => {
         this.restaurants = res;
         for (let i = 0; i < this.restaurants.length; i++) {
           this.cityService.getCity(this.restaurants[i].CityId).subscribe(data => {
             this.restaurants[i].City = data;
+            console.log (this.restaurants[i].City.Id);
+            if (i === this.restaurants.length - 1) {
+              this.isLoading = false;
+            }
           }); 
           } 
-        this.isLoading = false;
+          
       },
       err => {
         console.log(err);
@@ -57,12 +65,36 @@ export class RestaurantComponent implements OnInit {
     );
   }
 
+  getFilterRestaurants() {
+    this.restaurantService.getAll().subscribe(
+      res => {
+        this.filterRestaurant = res;
+        for (let i = 0; i < this.filterRestaurant.length; i++) {
+          this.cityService.getCity(this.filterRestaurant[i].CityId).subscribe(data => {
+            this.filterRestaurant[i].City = data;
+            console.log (this.filterRestaurant[i].City.Id);
+            if (i === this.filterRestaurant.length - 1) {
+              this.isLoading = false;
+            }
+          }); 
+          } 
+          
+      },
+      err => {
+        console.log(err);
+      },
+      () => {}
+    );
+  }
+
+
+
   open(content, Id: number) {
     this.modalService.open(content).result.then(result => {
       if (result === 'Yes') {
         this.restaurantService.deleteRestaurant(Id).subscribe(
           res => {
-            this.getRestaurants();
+            this.getFilterRestaurants();
           },
           err => {
             console.log(err);
@@ -71,4 +103,21 @@ export class RestaurantComponent implements OnInit {
       }
     });
   }
+
+  selectRestaurant () {
+    
+this.filterRestaurant= [];
+for (let i = 0; i < this.restaurants.length; i++) {
+  if ( this.restaurants[i].CityId == this.CityId)
+  { 
+    this.filterRestaurant.push(this.restaurants[i])
+  }
+}
+console.log(this.filterRestaurant);
+// this.restaurants = [];
+// for (let i = 0; i < this.filterRestaurant.length; i++) {
+//   this.restaurants.push(this.filterRestaurant[i]);
+// }
+// console.log(this.restaurants);
+}
 }
