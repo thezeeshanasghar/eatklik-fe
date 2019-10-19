@@ -15,7 +15,8 @@
               <tr>
                 <th>#</th>
                 <th>Name</th>
-                <th>Image</th>
+                <th>Logo</th>
+                <th>Cover</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
@@ -27,6 +28,7 @@
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ city.Name }}</td>
                 <td><img class="small-image" [src]="resourceURL + city.ImagePath" alt="no image" /></td>
+                <td><img class="small-image" [src]="resourceURL + city.CoverImagePath" alt="no image" /></td>
                 <td>
                   <a routerLink="edit/{{city.Id}}"> <i class="fa fa-pencil"></i> </a>&nbsp;
                   <i (click)="open(content, city.Id)" class="fa fa-trash" style="cursor: pointer"></i>

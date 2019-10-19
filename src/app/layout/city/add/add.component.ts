@@ -51,4 +51,23 @@ export class AddComponent implements OnInit {
     });
   }
 
+  public uploadCover = files => {
+    if (files.length === 0) {
+      return;
+    }
+    const fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this.http.post(environment.BASE_URL + 'upload', formData, { reportProgress: true, observe: 'events' }).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.uploadProgress = Math.round((100 * event.loaded) / event.total);
+      } else if (event.type === HttpEventType.Response) {
+        this.city.CoverImagePath = event.body['dbPath'];
+      }
+    });
+  }
+
+
+
 }
