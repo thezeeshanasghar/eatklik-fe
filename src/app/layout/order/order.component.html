@@ -23,9 +23,7 @@
               </tr>
             </thead>
             <tbody *ngIf="!isLoading">
-               <tr *ngFor="let order of orders; let i = index" [ngClass]="{
-                'd-none': order.Status == 'Pending'
-              }">   
+               <tr *ngFor="let order of orders; let i = index">   
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ order.Subtotal }}</td>
                 <td>{{ order.Fee }}</td>
@@ -45,12 +43,12 @@
     </div>
   </div>
 
-  <!-- pending orders row -->
+  <!-- New orders row -->
   <div class="row">
     <div class="col col-xl-12 col-lg-12">
       <div class="card mb-3">
         <div class="card-header">
-          List of Pending Orders 
+          List of New Orders 
         </div>
         <div class="card-body table">
           <table class="table table-hover table-striped">
@@ -80,14 +78,16 @@
                 <td>{{ order.GrandTotal }}</td>
                 <td>{{ order.Created }}</td>
                 <!-- <td>{{ order.Status }}</td> -->
-                <td>  <select Status (change) = "editOrder()" >
-                  <option> Pending  </option>
-                  <option> Done  </option>
+                <td>  <select style = "background-color: inherit">
+                  <option [value]="New"> New </option>
+                  <option [value] = "Active"> Active </option>
+                  <option [value] = "Completed"> Completed </option>
+                  <option [value] = "Cancelled"> Cancelled </option>
                 </select></td>
                 <td>{{ order.CustomerId }}</td>
                 <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
                 <td> 
-                  <select rider >
+                  <select rider style = "background-color: inherit">
                     <option selected hidden>Rider</option>
                     <option *ngFor="let rider of riders" value={{rider.Id}}>
                       {{rider.Name}}

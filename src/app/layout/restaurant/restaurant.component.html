@@ -2,12 +2,13 @@
   <app-page-header [heading]="'Restaurants'" [icon]="'fa-table'"></app-page-header>
   <div class="row">
     <div class="col col-xl-12 col-lg-12">
-     
-      <select [(ngModel)]="CityId" (change) = "selectRestaurant ()"> 
+     <div class=" breadcrumb">
+       <label > Select by City</label>
+      <select  style = "background-color: inherit" [(ngModel)]="CityId" (change) = "selectRestaurant ()"> 
         <option selected hidden> Select by City </option>
         <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
       </select>
-  {{CityId}}
+     </div>
       <div class="card mb-3">
         <div class="card-header">
           List of all restaurants
