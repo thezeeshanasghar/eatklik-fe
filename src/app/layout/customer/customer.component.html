@@ -2,6 +2,13 @@
   <app-page-header [heading]="'Customers'" [icon]="'fa-table'"></app-page-header>
   <div class="row">
     <div class="col col-xl-12 col-lg-12">
+        <div class=" breadcrumb">
+            <label > Select by City</label>
+           <select  style = "background-color: inherit" [(ngModel)]="CityId" (change) = "SelectByCity ()"> 
+             <option selected hidden> Select by City </option>
+             <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
+           </select>
+          </div>
       <div class="card mb-3">
         <div class="card-header">
           List of all Customers
@@ -25,7 +32,7 @@
               </tr>
             </thead>
             <tbody *ngIf="!isLoading">
-              <tr *ngFor="let customer of customers; let i = index" [ngClass]="{
+              <tr *ngFor="let customer of filterCustomer; let i = index" [ngClass]="{
                 'table-success': customer.Status === 0,
                 'table-danger': customer.Status === 1
               }">
