@@ -11,10 +11,12 @@ import { Order } from 'src/app/_model/Order';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
-  orders: any;
+  orders : Order[];
+  NewOrders : Order[];
   isLoading = true;
   riders : any ;
   model = new Order();
+
   constructor(private orderService: OrderService, private riderService: RiderService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -29,35 +31,55 @@ export class OrderComponent implements OnInit {
         this.orders = res;
         this.isLoading = false;
         console.log(res);
+     
+        // making filters of orders
+        this.NewOrders = [];
+        for (let i = 0; i < this.orders.length; i++ )
+        {
+          if (this.orders[i].Status == 'Pending')
+          {
+          this.NewOrders.push(this.orders[i]);
+          }
+        }
+        console.log(this.NewOrders);
+        
       },
       err => {
         console.log(err);
       }
-    );
-  }
-  getOrderByid() {
-    this.orderService.getOrderById(this.orders.Id).subscribe(
-      res => {
-        this.model = res;
-console.log(this.model);
+    );  
 
-      },
-      err => {
-        console.log(err);
-      }
-    );
   }
+//   getOrderByid() {
+//     this.orderService.getOrderById(this.orders.Id).subscribe(
+//       res => {
+//         this.model = res;
+// console.log(this.model);
+
+//       },
+//       err => {
+//         console.log(err);
+//       }
+//     );
+//   }
+
  
-  editCustomer() {
-    this.orderService.editOrder(this.orders.Id, this.model).subscribe(
-      // res => {
-      //   this.router.navigate(['/customer']);
-      // },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+
+
+ 
+
+
+
+  // editOrder() {
+  //   this.orderService.editOrder(this.orders.Id, this.model).subscribe(
+  //     // res => {
+  //     //   this.router.navigate(['/customer']);
+  //     // },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
   getAllRider() {
     this.riderService.getAll().subscribe(

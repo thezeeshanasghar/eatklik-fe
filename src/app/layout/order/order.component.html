@@ -67,10 +67,7 @@
               </tr>
             </thead>
             <tbody *ngIf="!isLoading">
-               <tr *ngFor="let order of orders; let i = index" [ngClass]="{
-                'table-danger': order.Status == 'Pending',
-                'd-none': order.Status !== 'Pending'
-              }">   
+               <tr *ngFor="let order of NewOrders; let i = index" >   
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ order.Subtotal }}</td>
                 <td>{{ order.Fee }}</td>
