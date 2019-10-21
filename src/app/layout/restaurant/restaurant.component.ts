@@ -27,8 +27,6 @@ export class RestaurantComponent implements OnInit {
   ngOnInit() {
     this.getCity();
     this.getAllRestaurants();
-    this.getFilterRestaurants();
-
   }
 
   getCity() {
@@ -56,6 +54,12 @@ export class RestaurantComponent implements OnInit {
             }
           }); 
           } 
+
+          // making a copy to filer Restaurant
+          this.filterRestaurant= [];
+         for (let j = 0; j < this.restaurants.length; j++) {
+             this.filterRestaurant.push(this.restaurants[j])
+        }
           
       },
       err => {
@@ -64,37 +68,13 @@ export class RestaurantComponent implements OnInit {
       () => {}
     );
   }
-
-  getFilterRestaurants() {
-    this.restaurantService.getAll().subscribe(
-      res => {
-        this.filterRestaurant = res;
-        for (let i = 0; i < this.filterRestaurant.length; i++) {
-          this.cityService.getCity(this.filterRestaurant[i].CityId).subscribe(data => {
-            this.filterRestaurant[i].City = data;
-            console.log (this.filterRestaurant[i].City.Id);
-            if (i === this.filterRestaurant.length - 1) {
-              this.isLoading = false;
-            }
-          }); 
-          } 
-          
-      },
-      err => {
-        console.log(err);
-      },
-      () => {}
-    );
-  }
-
-
 
   open(content, Id: number) {
     this.modalService.open(content).result.then(result => {
       if (result === 'Yes') {
         this.restaurantService.deleteRestaurant(Id).subscribe(
           res => {
-            this.getFilterRestaurants();
+            this.getAllRestaurants();
           },
           err => {
             console.log(err);
@@ -114,10 +94,5 @@ for (let i = 0; i < this.restaurants.length; i++) {
   }
 }
 console.log(this.filterRestaurant);
-// this.restaurants = [];
-// for (let i = 0; i < this.filterRestaurant.length; i++) {
-//   this.restaurants.push(this.filterRestaurant[i]);
-// }
-// console.log(this.restaurants);
 }
 }
