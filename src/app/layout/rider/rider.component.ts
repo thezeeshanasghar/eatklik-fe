@@ -16,6 +16,9 @@ export class RiderComponent implements OnInit {
 
   riders: Rider[];
   isLoading = true;
+  filterRider : Rider [];
+  cities : any ;
+  CityId : number;
 
   Status: Status;
 
@@ -26,6 +29,7 @@ export class RiderComponent implements OnInit {
 
   ngOnInit() {
     this.getRiders();
+    this.getCity();
   }
 
   getRiders() {
@@ -41,6 +45,11 @@ export class RiderComponent implements OnInit {
             }
           });
         }
+         // making a copy to filter Riders
+         this.filterRider= [];
+         for (let j = 0; j < this.riders.length; j++) {
+             this.filterRider.push(this.riders[j])
+        }
       },
       err => {
         console.log(err);
@@ -49,6 +58,17 @@ export class RiderComponent implements OnInit {
     );
   }
 
+  getCity() {
+    this.cityService.getAll().subscribe(
+      cities => {
+        this.cities = cities;
+        console.log(this.cities);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 
   open(content, Id: string) {
     this.modalService.open(content).result.then(result => {
@@ -64,4 +84,16 @@ export class RiderComponent implements OnInit {
       }
     });
   }
+
+  SelectByCity () {
+    
+    this.filterRider= [];
+    for (let i = 0; i < this.riders.length; i++) {
+      if ( this.riders[i].CityId == this.CityId)
+      { 
+        this.filterRider.push(this.riders[i])
+      }
+    }
+    console.log(this.filterRider);
+    }
 }
