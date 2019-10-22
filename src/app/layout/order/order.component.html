@@ -4,9 +4,14 @@
     <div class="col col-xl-12 col-lg-12">
       <div class="card mb-3">
         <div class="card-header">
-          List of all Orders
+          List of Orders 
         </div>
         <div class="card-body table">
+            <ngb-tabset>
+                <ngb-tab title="All">
+                    <ng-template ngbTabContent>
+
+
           <table class="table table-hover table-striped">
             <thead>
               <tr>
@@ -38,64 +43,61 @@
             </tbody>
 
           </table>
+          </ng-template>
+                </ngb-tab>
+    
+                <ngb-tab title="New"> 
+                  <ng-template ngbTabContent>
+                      <table class="table table-hover table-striped">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Sub Total</th>
+                              <th>Fee</th>
+                              <th>GST</th>
+                              <th>Grand Total</th>
+                              <th>Created</th>
+                              <th>Status</th>
+                              <th>Customer Id</th>
+                              <th>Order Items</th>
+                              <th>Rider</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="!isLoading">
+                             <tr *ngFor="let order of NewOrders; let i = index" >   
+                              <th scope="row">{{ i + 1 }}</th>
+                              <td>{{ order.Subtotal }}</td>
+                              <td>{{ order.Fee }}</td>
+                              <td>{{ order.GST }}</td>
+                              <td>{{ order.GrandTotal }}</td>
+                              <td>{{ order.Created }}</td>
+                              <!-- <td>{{ order.Status }}</td> -->
+                              <td>  <select style = "background-color: inherit">
+                                <option [value]="New"> New </option>
+                                <option [value] = "Active"> Active </option>
+                                <option [value] = "Completed"> Completed </option>
+                                <option [value] = "Cancelled"> Cancelled </option>
+                              </select></td>
+                              <td>{{ order.CustomerId }}</td>
+                              <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
+                              <td> 
+                                <select rider style = "background-color: inherit">
+                                  <option selected hidden>Rider</option>
+                                  <option *ngFor="let rider of riders" value={{rider.Id}}>
+                                    {{rider.Name}}
+                                  </option>
+                                </select>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+
+
         </div>
       </div>
     </div>
   </div>
 
-  <!-- New orders row -->
-  <div class="row">
-    <div class="col col-xl-12 col-lg-12">
-      <div class="card mb-3">
-        <div class="card-header">
-          List of New Orders 
-        </div>
-        <div class="card-body table">
-          <table class="table table-hover table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Sub Total</th>
-                <th>Fee</th>
-                <th>GST</th>
-                <th>Grand Total</th>
-                <th>Created</th>
-                <th>Status</th>
-                <th>Customer Id</th>
-                <th>Order Items</th>
-                <th>Rider</th>
-              </tr>
-            </thead>
-            <tbody *ngIf="!isLoading">
-               <tr *ngFor="let order of NewOrders; let i = index" >   
-                <th scope="row">{{ i + 1 }}</th>
-                <td>{{ order.Subtotal }}</td>
-                <td>{{ order.Fee }}</td>
-                <td>{{ order.GST }}</td>
-                <td>{{ order.GrandTotal }}</td>
-                <td>{{ order.Created }}</td>
-                <!-- <td>{{ order.Status }}</td> -->
-                <td>  <select style = "background-color: inherit">
-                  <option [value]="New"> New </option>
-                  <option [value] = "Active"> Active </option>
-                  <option [value] = "Completed"> Completed </option>
-                  <option [value] = "Cancelled"> Cancelled </option>
-                </select></td>
-                <td>{{ order.CustomerId }}</td>
-                <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
-                <td> 
-                  <select rider style = "background-color: inherit">
-                    <option selected hidden>Rider</option>
-                    <option *ngFor="let rider of riders" value={{rider.Id}}>
-                      {{rider.Name}}
-                    </option>
-                  </select>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
