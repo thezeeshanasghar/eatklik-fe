@@ -8,7 +8,10 @@ export class Order {
   public Created: string;
   public CustomerId: number;
   public OrderItems: any;
-  public Status: string;
+  public OrderStatus: number;
+  public RiderId: number;
+  public CityId: number;
+  public RestaurantId: number;
 
   constructor() {
     this.Created = '';
