@@ -30,7 +30,7 @@
                 <th>Grand Total</th>
                 <th>Created</th>
                 <th>Status</th>
-                <th>Customer Id</th>
+                <th>Customer</th>
                 <th>Order Items</th>
                 <th>Rider</th>
               </tr>
@@ -38,14 +38,14 @@
             <tbody *ngIf="!isLoading">
                <tr *ngFor="let order of CityOrders; let i = index">   
                 <th scope="row">{{ i + 1 }}</th>
-                <td>{{ order.CityId }}</td>
+                <td>{{ order.City.Name }}</td>
                 <td>{{ order.Subtotal }}</td>
                 <td>{{ order.Fee }}</td>
                 <td>{{ order.GST }}</td>
                 <td>{{ order.GrandTotal }}</td>
                 <td>{{ order.Created }}</td>
                 <td>{{ order.OrderStatus }}</td>
-                <td>{{ order.CustomerId }}</td>
+                <td>{{ order.Customer.Name }}</td>
                 <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
                 <td><a >Rider</a>&nbsp;</td>
               </tr>
@@ -54,7 +54,8 @@
           </table>
           </ng-template>
                 </ngb-tab>
-    <!-- new Orders tab -->
+   
+             <!-- new Orders tab -->
                 <ngb-tab title="New"> 
                   <ng-template ngbTabContent>
                       <table class="table table-hover table-striped">
@@ -68,7 +69,7 @@
                               <th>Grand Total</th>
                               <th>Created</th>
                               <th>Status</th>
-                              <th>Customer Id</th>
+                              <th>Customer</th>
                               <th>Order Items</th>
                               <th>Rider</th>
                             </tr>
@@ -76,7 +77,7 @@
                           <tbody *ngIf="!isLoading">
                              <tr *ngFor="let order of NewOrders; let i = index" >   
                               <th scope="row">{{ i + 1 }}</th>
-                              <td>{{ order.CityId }}</td>
+                              <td>{{ order.City.Name }}</td>
                               <td>{{ order.Subtotal }}</td>
                               <td>{{ order.Fee }}</td>
                               <td>{{ order.GST }}</td>
@@ -91,7 +92,7 @@
                                 <option [value] = 3> Cancelled </option>
                               </select> {{OrderStatus}}
                             </td>
-                              <td>{{ order.CustomerId }}</td>
+                              <td>{{ order.Customer.Name }}</td>
                               <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
                               <td> 
                                 <select rider style = "background-color: inherit" [(ngModel)]="RiderId"
@@ -108,6 +109,7 @@
                         </table>
                   </ng-template>
                 </ngb-tab>
+              
                 <!-- Active orders Tab  -->
                 <ngb-tab title="Active"> 
                   <ng-template ngbTabContent>
@@ -122,7 +124,7 @@
                               <th>Grand Total</th>
                               <th>Created</th>
                               <th>Status</th>
-                              <th>Customer Id</th>
+                              <th>Customer</th>
                               <th>Order Items</th>
                               <th>Rider</th>
                             </tr>
@@ -130,7 +132,7 @@
                           <tbody *ngIf="!isLoading">
                              <tr *ngFor="let order of ActiveOrders; let i = index" >   
                               <th scope="row">{{ i + 1 }}</th>
-                              <td>{{ order.CityId }}</td>
+                              <td>{{ order.City.Name }}</td>
                               <td>{{ order.Subtotal }}</td>
                               <td>{{ order.Fee }}</td>
                               <td>{{ order.GST }}</td>
@@ -144,7 +146,7 @@
                                 <option [value] = 3> Cancelled </option>
                               </select> {{OrderStatus}}
                             </td>
-                              <td>{{ order.CustomerId }}</td>
+                              <td>{{ order.Customer.Name }}</td>
                               <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
                               <td> 
                                 {{RiderId}}
@@ -168,7 +170,7 @@
                               <th>Grand Total</th>
                               <th>Created</th>
                               <th>Status</th>
-                              <th>Customer Id</th>
+                              <th>Customer</th>
                               <th>Order Items</th>
                               <th>Rider</th>
                             </tr>
@@ -176,7 +178,7 @@
                           <tbody *ngIf="!isLoading">
                              <tr *ngFor="let order of CompleteOrders; let i = index" >   
                               <th scope="row">{{ i + 1 }}</th>
-                              <td>{{ order.CityId }}</td>
+                              <td>{{ order.City.Name }}</td>
                               <td>{{ order.Subtotal }}</td>
                               <td>{{ order.Fee }}</td>
                               <td>{{ order.GST }}</td>
@@ -184,7 +186,7 @@
                               <td>{{ order.Created }}</td>
                               <!-- <td>{{ order.Status }}</td> -->
                               <td>   Complete   </td>
-                              <td>{{ order.CustomerId }}</td>
+                              <td>{{ order.Customer.Name }}</td>
                               <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
                               <td> 
                                 {{RiderId}}

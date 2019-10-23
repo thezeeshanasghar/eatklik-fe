@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RiderService } from 'src/app/shared/services/rider.service';
 import { Order } from 'src/app/_model/Order';
 import { CityService } from 'src/app/shared/services/city.service';
+import { CustomerService } from 'src/app/shared/services/customer.service';
 
 
 @Component({
@@ -24,13 +25,14 @@ export class OrderComponent implements OnInit {
   CityId : number ;
   OrderStatus: number;
   RiderId : number;
+  city:any;
 
   constructor(private orderService: OrderService, private riderService: RiderService,
-    private cityService: CityService, private modalService: NgbModal) { }
+    private cityService: CityService, private customerService:CustomerService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getAllOrder();
-    this.getCity(); 
+    this.getAllCity(); 
     this.getAllRider();
   }
 
@@ -41,6 +43,20 @@ export class OrderComponent implements OnInit {
         this.orders = res;
         this.isLoading = false;
         console.log(res);
+
+        // Assigning Cities Name
+        for (let i = 0; i < this.orders.length; i++) {
+          this.cityService.getCity(this.orders[i].CityId).subscribe(data => {
+            this.orders[i].City = data;
+          });
+        }
+
+         // Assigning Customer Name
+         for (let i = 0; i < this.orders.length; i++) {
+          this.customerService.getCustomerById(this.orders[i].CustomerId).subscribe(data => {
+            this.orders[i].Customer = data;
+          });
+        }
 
          // making Copy of orders 
          this.CityOrders = [];
@@ -128,11 +144,23 @@ export class OrderComponent implements OnInit {
   }
 
 
-  getCity() {
+  getAllCity() {
     this.cityService.getAll().subscribe(
       cities => {
         this.cities = cities;
         console.log(this.cities);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getCityById(Id) {
+    this.cityService.getCity(Id).subscribe(
+      res => {
+        this.city = res;
+        console.log(this.city);
       },
       err => {
         console.log(err);
@@ -163,6 +191,7 @@ export class OrderComponent implements OnInit {
       }
     }
     console.log(this.CityOrders);
+   
     // making filter of New orders from City
     this.NewOrders = [];
     for (let i = 0; i < this.CityOrders.length; i++ )
