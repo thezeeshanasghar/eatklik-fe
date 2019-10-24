@@ -27,9 +27,9 @@ export class OrderService extends BaseService {
     return this.http.get<Order>(url + id).pipe(catchError(this.handleError));
   }
   
-  editOrderStatus(id: number, data): Observable<any> {
-    const url = `${this.API_Order}${id}/order-status`;
-    return this.http.put(url, data, this.httpOptions).pipe(catchError(this.handleError));
+  editOrderStatus(id: number, status): Observable<any> {
+    const url = `${this.API_Order}${id}/order-status/${status}`;
+    return this.http.put(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 
   editOrderRider(id: number, data): Observable<any> {

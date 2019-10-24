@@ -86,7 +86,6 @@
                               <!-- <td>{{ order.Status }}</td> -->
                               <td>  <select style = "background-color: inherit" [(ngModel)]="OrderStatus"
                                       (change)  = "editOrderStatus(order.Id)" >
-                                <option [value] = 0> New </option>
                                 <option [value] = 1> Active </option>
                                 <option [value] = 2> Completed </option>
                                 <option [value] = 3> Cancelled </option>
@@ -141,7 +140,6 @@
                               <!-- <td>{{ order.Status }}</td> -->
                               <td>  <select style = "background-color: inherit" [(ngModel)]="OrderStatus"
                                       (change)  = "editOrderStatus(order.Id)" >
-                                <option [value] = 1> Active </option>
                                 <option [value] = 2> Completed </option>
                                 <option [value] = 3> Cancelled </option>
                               </select> {{OrderStatus}}

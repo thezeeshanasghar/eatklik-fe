@@ -136,7 +136,7 @@ export class OrderComponent implements OnInit {
   }
   
   editOrderStatus(Id) {
-    this.orderService.editOrderStatus(Id, {"OrderStatus": this.OrderStatus}).subscribe(
+      this.orderService.editOrderStatus(Id, this.OrderStatus).subscribe(
       err => {
         console.log(err);
       }
@@ -156,17 +156,17 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  getCityById(Id) {
-    this.cityService.getCity(Id).subscribe(
-      res => {
-        this.city = res;
-        console.log(this.city);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  // getCityById(Id) {
+  //   this.cityService.getCity(Id).subscribe(
+  //     res => {
+  //       this.city = res;
+  //       console.log(this.city);
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
 
   getAllRider() {
     this.riderService.getAll().subscribe(
