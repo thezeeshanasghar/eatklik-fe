@@ -7,6 +7,7 @@ import { CityService } from 'src/app/shared/services/city.service';
 import { CustomerService } from 'src/app/shared/services/customer.service';
 
 
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -23,7 +24,8 @@ export class OrderComponent implements OnInit {
   model = new Order();
   cities : any ;
   CityId : number ;
-  OrderStatus: number;
+  OrderStatus: any[]=[];
+  OrderRider: any[]=[];
   RiderId : number;
   city:any;
 
@@ -86,6 +88,12 @@ export class OrderComponent implements OnInit {
            this.ActiveOrders.push(this.orders[i]);
            }
          }
+          // Assigning Rider Name to Active Orders
+          for (let i = 0; i < this.ActiveOrders.length; i++) {
+            this.riderService.getRider(this.ActiveOrders[i].RiderId).subscribe(data => {
+              this.ActiveOrders[i].Rider = data;
+            });
+          }
          console.log(this.ActiveOrders);
 
          // making filter of Complete orders
@@ -97,13 +105,24 @@ export class OrderComponent implements OnInit {
            this.CompleteOrders.push(this.orders[i]);
            }
          }
-         console.log(this.CompleteOrders);
 
+         // Assigning Rider Name to Complete Orders
+         for (let i = 0; i < this.CompleteOrders.length; i++) {
+          this.riderService.getRider(this.CompleteOrders[i].RiderId).subscribe(data => {
+            this.CompleteOrders[i].Rider = data;
+          });
+        }
+         
+        console.log(this.CompleteOrders);
+        if (this.CityId!= null)
+          {
+            this.SelectByCity();
+          }
          
 
         
       },
-      err => {
+      err => { 
         console.log(err);
       }
     );  
@@ -127,20 +146,29 @@ export class OrderComponent implements OnInit {
 
  
 
-  editOrderRider(Id) {
-    this.orderService.editOrderRider(Id, {"RiderId": this.RiderId}).subscribe(
+  editOrderRider(Id , rider) {
+    this.orderService.editOrderRider(Id, rider).subscribe(
+      res => {
+        this.OrderRider=[];
+      },
       err => {
         console.log(err);
       }
     );
   }
   
-  editOrderStatus(Id) {
-      this.orderService.editOrderStatus(Id, this.OrderStatus).subscribe(
+  editOrderStatus(Id , status) {
+      this.orderService.editOrderStatus(Id, status).subscribe(
+        res => {
+          this.OrderStatus=[];
+          this.getAllOrder();
+         // this.SelectByCity();
+        },
       err => {
         console.log(err);
       }
     );
+    //this.getAllOrder();
   }
 
 
@@ -155,18 +183,6 @@ export class OrderComponent implements OnInit {
       }
     );
   }
-
-  // getCityById(Id) {
-  //   this.cityService.getCity(Id).subscribe(
-  //     res => {
-  //       this.city = res;
-  //       console.log(this.city);
-  //     },
-  //     err => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
 
   getAllRider() {
     this.riderService.getAll().subscribe(

@@ -16,6 +16,7 @@
                 <th>GST</th>
                 <th>Grand Total</th>
                 <th>Created</th>
+                <th>City</th>
                 <th>Status</th>
                 <th>Order Items</th>
               </tr>
@@ -29,7 +30,8 @@
                 <td>{{ order.GST }}</td>
                 <td>{{ order.GrandTotal }}</td>
                 <td>{{ order.Created }}</td>
-                <td>{{ order.Status }}</td>
+                <td>{{ order.City.Name }}</td>
+                <td>{{ order.OrderStatus }}</td>
                 <td><a routerLink="{{order.Id}}" placement="bottom">
                   view items
                 </a>&nbsp;</td>

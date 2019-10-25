@@ -3,6 +3,7 @@ import { CustomerService } from 'src/app/shared/services/customer.service';
 import { Order } from 'src/app/_model/order';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CityService } from 'src/app/shared/services/city.service';
 
 @Component({
   selector: 'app-customer-order',
@@ -14,7 +15,7 @@ export class CustomerOrderComponent implements OnInit {
   isLoading = true;
 
   constructor(
-    private customerService: CustomerService, private modalService: NgbModal,
+    private customerService: CustomerService, private cityService: CityService, private modalService: NgbModal,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -25,8 +26,11 @@ export class CustomerOrderComponent implements OnInit {
       res => {
         this.orders = res;
         this.isLoading = false;
-        // let asbc= this.customerOrders[0].OrderItems;
-        //         console.log(asbc);
+        for (let i = 0; i < this.orders.length; i++) {
+          this.cityService.getCity(this.orders[i].CityId).subscribe(data => {
+            this.orders[i].City = data;
+          });
+        }
         
         console.log(this.orders);
       },

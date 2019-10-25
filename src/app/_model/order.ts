@@ -1,6 +1,7 @@
 
 import { City } from './city';
 import { Customer } from 'src/app/_model/customer';
+import { Rider } from './rider';
 export class Order {
   public Id: number;
   public Subtotal: number;
@@ -15,6 +16,7 @@ export class Order {
   public CityId: number;
   public RestaurantId: number;
   public City: City;
+  public Rider : Rider;
   public Customer: Customer;
 
   constructor() {

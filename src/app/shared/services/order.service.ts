@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Order } from 'src/app/_model/order';
+import { Rider } from 'src/app/_model/rider';
 
 
 @Injectable({
@@ -32,9 +33,9 @@ export class OrderService extends BaseService {
     return this.http.put(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 
-  editOrderRider(id: number, data): Observable<any> {
-    const url = `${this.API_Order}${id}/order-rider`;
-    return this.http.put(url, data, this.httpOptions).pipe(catchError(this.handleError));
+  editOrderRider(id: number, rider): Observable<any> {
+    const url = `${this.API_Order}${id}/order-rider/${rider}`;
+    return this.http.put(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 
   }
