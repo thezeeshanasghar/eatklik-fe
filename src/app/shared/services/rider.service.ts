@@ -22,6 +22,14 @@ export class RiderService extends BaseService {
       catchError(this.handleError)
     );
   }
+
+  getRidersByCity(Id): Observable<Rider[]> {
+    const url = `${this.API_Rider}/city/${Id}`;
+    return this.http.get<Rider[]>(url, this.httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   getRider(id: number): Observable<Rider> {
     const url = `${this.API_Rider}/`;
     return this.http.get<Rider>(url + id).pipe(catchError(this.handleError));

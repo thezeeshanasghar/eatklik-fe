@@ -15,10 +15,10 @@ import { CustomerService } from 'src/app/shared/services/customer.service';
 })
 export class OrderComponent implements OnInit {
   orders : Order[];
-  NewOrders : Order[];
-  ActiveOrders : Order [];
-  CompleteOrders : Order[];
-  CityOrders : Order[];
+  NewOrders : any[]=[];
+  ActiveOrders : any[]=[];
+  CompleteOrders : Order[]=[];
+  CancelOrders : Order[]=[];
   isLoading = true;
   riders : any ;
   model = new Order();
@@ -33,119 +33,138 @@ export class OrderComponent implements OnInit {
     private cityService: CityService, private customerService:CustomerService, private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.getAllOrder();
+  //  this.getAllOrder();
     this.getAllCity(); 
-    this.getAllRider();
   }
 
   getAllOrder() {
     this.orderService.getAllOrder().subscribe(
-      res => {
-        //this.orders = res['ResponseData'];
+      res => { 
         this.orders = res;
         this.isLoading = false;
-        console.log(res);
+        console.log(this.orders);
 
-        // Assigning Cities Name
+        // Assigning Cities, Rider and Customer Name
         for (let i = 0; i < this.orders.length; i++) {
+          
+           {
           this.cityService.getCity(this.orders[i].CityId).subscribe(data => {
             this.orders[i].City = data;
           });
-        }
-
-         // Assigning Customer Name
-         for (let i = 0; i < this.orders.length; i++) {
+           }
+           {
           this.customerService.getCustomerById(this.orders[i].CustomerId).subscribe(data => {
             this.orders[i].Customer = data;
           });
+           }
+           if (this.orders[i].RiderId != null)
+            {
+            this.riderService.getRider(this.orders[i].RiderId).subscribe(data => {
+              this.orders[i].Rider = data;
+            });
+            }
         }
 
-         // making Copy of orders 
-         this.CityOrders = [];
-         for (let i = 0; i < this.orders.length; i++ )
-         { 
-           this.CityOrders.push(this.orders[i]); 
-         }
-         console.log(this.CityOrders);
-     
-        // making filter of New orders
-        this.NewOrders = [];
+        //Filtering Orders
         for (let i = 0; i < this.orders.length; i++ )
         {
           if (this.orders[i].OrderStatus == 0)
           {
           this.NewOrders.push(this.orders[i]);
           }
-        }
-        console.log(this.NewOrders);
-
-         // making filter of Active orders
-         this.ActiveOrders = [];
-         for (let i = 0; i < this.orders.length; i++ )
-         {
-           if (this.orders[i].OrderStatus == 1)
+          else if (this.orders[i].OrderStatus == 1)
            {
            this.ActiveOrders.push(this.orders[i]);
            }
-         }
-          // Assigning Rider Name to Active Orders
-          for (let i = 0; i < this.ActiveOrders.length; i++) {
-            this.riderService.getRider(this.ActiveOrders[i].RiderId).subscribe(data => {
-              this.ActiveOrders[i].Rider = data;
-            });
-          }
-         console.log(this.ActiveOrders);
-
-         // making filter of Complete orders
-         this.CompleteOrders = [];
-         for (let i = 0; i < this.orders.length; i++ )
-         {
-           if (this.orders[i].OrderStatus == 2)
+           else if (this.orders[i].OrderStatus == 2)
            {
            this.CompleteOrders.push(this.orders[i]);
            }
-         }
-
-         // Assigning Rider Name to Complete Orders
-         for (let i = 0; i < this.CompleteOrders.length; i++) {
-          this.riderService.getRider(this.CompleteOrders[i].RiderId).subscribe(data => {
-            this.CompleteOrders[i].Rider = data;
-          });
+           else if (this.orders[i].OrderStatus == 3)
+           {
+           this.CancelOrders.push(this.orders[i]);
+           }
         }
-         
+        console.log(this.NewOrders);
+        console.log(this.ActiveOrders);
         console.log(this.CompleteOrders);
-        if (this.CityId!= null)
-          {
-            this.SelectByCity();
-          }
-         
-
+        console.log(this.CancelOrders);
         
       },
-      err => { 
+      err => {
         console.log(err);
       }
-    );  
+    );
 
   }
   
-  // getOrderById(id) {
-  //   this.orderService.getOrderById(id).subscribe(
-  //     res => {
-  //       this.model = res;
-  //       this.model.OrderStatus = this.OrderStatus;
-  //       this.model.RiderId = this.RiderId;
-  //       console.log(this.model);
-  //       this.editOrder(id);
-  //     },
-  //     err => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
 
+  SelectByCity(Id) {
+    this.orders=[];
+    this.NewOrders=[];
+    this.ActiveOrders=[];
+    this.CompleteOrders=[];
+    this.CancelOrders=[];
+    this.getRidersByCity();
+    this.orderService.getOrderByCity(Id).subscribe(
+      res => { 
+        this.orders = res;
+        this.isLoading = false;
+        console.log(this.orders);
+
+        // Assigning Cities, Rider and Customer Name
+        for (let i = 0; i < this.orders.length; i++) {
+          
+           {
+          this.cityService.getCity(this.orders[i].CityId).subscribe(data => {
+            this.orders[i].City = data;
+          });
+           }
+           {
+          this.customerService.getCustomerById(this.orders[i].CustomerId).subscribe(data => {
+            this.orders[i].Customer = data;
+          });
+           }
+           if (this.orders[i].RiderId != null)
+            {
+            this.riderService.getRider(this.orders[i].RiderId).subscribe(data => {
+              this.orders[i].Rider = data;
+            });
+            }
+        }
+
+        //Filtering Orders
+        for (let i = 0; i < this.orders.length; i++ )
+        {
+          if (this.orders[i].OrderStatus == 0)
+          {
+          this.NewOrders.push(this.orders[i]);
+          }
+          else if (this.orders[i].OrderStatus == 1)
+           {
+           this.ActiveOrders.push(this.orders[i]);
+           }
+           else if (this.orders[i].OrderStatus == 2)
+           {
+           this.CompleteOrders.push(this.orders[i]);
+           }
+           else if (this.orders[i].OrderStatus == 3)
+           {
+           this.CancelOrders.push(this.orders[i]);
+           }
+        }
+        console.log(this.NewOrders);
+        console.log(this.ActiveOrders);
+        console.log(this.CompleteOrders);
+        console.log(this.CancelOrders);
+        
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
  
-
   editOrderRider(Id , rider) {
     this.orderService.editOrderRider(Id, rider).subscribe(
       res => {
@@ -161,7 +180,7 @@ export class OrderComponent implements OnInit {
       this.orderService.editOrderStatus(Id, status).subscribe(
         res => {
           this.OrderStatus=[];
-          this.getAllOrder();
+          this.SelectByCity(this.CityId);
          // this.SelectByCity();
         },
       err => {
@@ -184,8 +203,8 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  getAllRider() {
-    this.riderService.getAll().subscribe(
+  getRidersByCity() {
+    this.riderService.getRidersByCity(this.CityId).subscribe(
       res => {
         this.riders = res;
         this.isLoading = false;
@@ -197,47 +216,5 @@ export class OrderComponent implements OnInit {
     );
   }
  
-  SelectByCity () {
-    
-    this.CityOrders= [];
-    for (let i = 0; i < this.orders.length; i++) {
-      if ( this.orders[i].CityId == this.CityId)
-      { 
-        this.CityOrders.push(this.orders[i])
-      }
-    }
-    console.log(this.CityOrders);
-   
-    // making filter of New orders from City
-    this.NewOrders = [];
-    for (let i = 0; i < this.CityOrders.length; i++ )
-    {
-      if (this.CityOrders[i].OrderStatus == 0)
-      {
-      this.NewOrders.push(this.CityOrders[i]);
-      }
-    }
-
-     // making filter of Active orders from City
-     this.ActiveOrders = [];
-     for (let i = 0; i < this.CityOrders.length; i++ )
-     {
-       if (this.CityOrders[i].OrderStatus == 1)
-       {
-       this.ActiveOrders.push(this.CityOrders[i]);
-       }
-     }
-      // making filter of Complete orders from City
-      this.CompleteOrders = [];
-      for (let i = 0; i < this.CityOrders.length; i++ )
-      {
-        if (this.CityOrders[i].OrderStatus == 2)
-        {
-        this.CompleteOrders.push(this.CityOrders[i]);
-        }
-      }
-
-    }
-
-
+  
 }

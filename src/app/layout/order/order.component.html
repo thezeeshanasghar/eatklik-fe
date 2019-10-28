@@ -4,7 +4,7 @@
     <div class="col col-xl-12 col-lg-12">
         <div class=" breadcrumb">
             <label > Select by City</label>
-           <select  style = "background-color: inherit; margin-left: 8px" [(ngModel)]="CityId" (change) = "SelectByCity ()"> 
+           <select  style = "background-color: inherit; margin-left: 8px" [(ngModel)]="CityId" (change) = "SelectByCity(CityId)"> 
              <option selected hidden> Select by City </option>
              <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
            </select>
@@ -35,7 +35,7 @@
               </tr>
             </thead>
             <tbody *ngIf="!isLoading">
-               <tr *ngFor="let order of CityOrders; let i = index">   
+               <tr *ngFor="let order of orders; let i = index">   
                 <th scope="row">{{ i + 1 }}</th>
                 <td *ngIf="order.City">{{ order.City.Name }}</td>
                 <td>{{ order.Subtotal }}</td>
