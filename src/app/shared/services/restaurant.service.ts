@@ -26,6 +26,10 @@ export class RestaurantService extends BaseService {
     const url = `${this.API}`;
     return this.http.get<Restaurant[]>(url, this.httpOptions).pipe(catchError(this.handleError));
   }
+  getByCity(Id): Observable<Restaurant[]> {
+    const url = `${this.API}city/${Id}`;
+    return this.http.get<Restaurant[]>(url, this.httpOptions).pipe(catchError(this.handleError));
+  }
 
   getRestaurantById(id: number): Observable<Restaurant> {
     const url = `${this.API}`;

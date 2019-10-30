@@ -16,7 +16,6 @@ export class RiderComponent implements OnInit {
 
   riders: Rider[];
   isLoading = true;
-  filterRider : Rider [];
   cities : any ;
   CityId : number;
 
@@ -28,11 +27,10 @@ export class RiderComponent implements OnInit {
     private modalService: NgbModal) {}
 
   ngOnInit() {
-    this.getRiders();
     this.getCity();
   }
 
-  getRiders() {
+  getAllRiders() {
     this.riderService.getAll().subscribe(
       res => {
         this.riders = res;
@@ -45,10 +43,26 @@ export class RiderComponent implements OnInit {
             }
           });
         }
-         // making a copy to filter Riders
-         this.filterRider= [];
-         for (let j = 0; j < this.riders.length; j++) {
-             this.filterRider.push(this.riders[j])
+      },
+      err => {
+        console.log(err);
+      },
+      () => {}
+    );
+  }
+
+  getRidersByCity(Id) {
+    this.riderService.getRidersByCity(Id).subscribe(
+      res => {
+        this.riders = res;
+        for (let i = 0; i < this.riders.length; i++) {
+          const rider = this.riders[i];
+          this.cityService.getCity(rider.CityId).subscribe(data => {
+            rider.City = data;
+            if (i === (this.riders.length - 1)) {
+              this.isLoading = false;
+            }
+          });
         }
       },
       err => {
@@ -75,7 +89,7 @@ export class RiderComponent implements OnInit {
       if (result === 'Yes') {
         this.riderService.delete(Id).subscribe(
           res => {
-            this.getRiders();
+            this.getRidersByCity(this.CityId);
           },
           err => {
             console.log(err);
@@ -84,16 +98,4 @@ export class RiderComponent implements OnInit {
       }
     });
   }
-
-  SelectByCity () {
-    
-    this.filterRider= [];
-    for (let i = 0; i < this.riders.length; i++) {
-      if ( this.riders[i].CityId == this.CityId)
-      { 
-        this.filterRider.push(this.riders[i])
-      }
-    }
-    console.log(this.filterRider);
-    }
 }

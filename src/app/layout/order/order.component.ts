@@ -181,7 +181,6 @@ export class OrderComponent implements OnInit {
         res => {
           this.OrderStatus=[];
           this.SelectByCity(this.CityId);
-         // this.SelectByCity();
         },
       err => {
         console.log(err);

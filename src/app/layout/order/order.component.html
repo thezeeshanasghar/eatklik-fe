@@ -56,6 +56,9 @@
              <!-- new Orders tab -->
                 <ngb-tab title="New"> 
                   <ng-template ngbTabContent>
+                      <div class="alert alert-success">
+                          {{Alert}}
+                        </div>
                       <table class="table table-hover table-striped text-center">
                           <thead>
                             <tr>
@@ -186,9 +189,44 @@
                         </table>
                   </ng-template>
                 </ngb-tab>
+
+                <!-- Cancel Orders Tab -->
+                <ngb-tab title="Cancel"> 
+                  <ng-template ngbTabContent>
+                      <table class="table table-hover table-striped text-center">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>City</th>
+                              <th>Sub Total</th>
+                              <th>Fee</th>
+                              <th>GST</th>
+                              <th>Grand Total</th>
+                              <th>Created</th>
+                              <th>Customer</th>
+                              <th>Order Items</th>
+                              <th>Rider</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="!isLoading">
+                             <tr *ngFor="let order of CancelOrders; let i = index" >   
+                              <th scope="row">{{ i + 1 }}</th>
+                              <td *ngIf="order.City">{{ order.City.Name }}</td>
+                              <td>{{ order.Subtotal }}</td>
+                              <td>{{ order.Fee }}</td>
+                              <td>{{ order.GST }}</td>
+                              <td>{{ order.GrandTotal }}</td>
+                              <td>{{ order.Created }}</td>
+                              <!-- <td>{{ order.Status }}</td> -->
+                              <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
+                              <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
+                              <td> {{order.Rider.Name}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </ng-template>
+                </ngb-tab>
             </ngb-tabset>
-
-
         </div>
       </div>
     </div>

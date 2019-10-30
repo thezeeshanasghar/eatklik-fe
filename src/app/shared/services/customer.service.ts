@@ -24,6 +24,11 @@ export class CustomerService extends BaseService {
     return this.http.get<Customer[]>(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 
+  getCustomerByCity(Id): Observable<Customer[]> {
+    const url = `${this.API_Customer}city/${Id}`;
+    return this.http.get<Customer[]>(url, this.httpOptions).pipe(catchError(this.handleError));
+  }
+
   getCustomerById(id: number): Observable<Customer> {
     const url = `${this.API_Customer}`;
     return this.http.get<Customer>(url + id).pipe(catchError(this.handleError));

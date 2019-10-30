@@ -14,12 +14,10 @@ export class CustomerComponent implements OnInit {
   customers: any;
   isLoading = true;
   cities : any ;
-  filterCustomer : Customer[] ;
   CityId : number ;
   constructor(private customerService: CustomerService, private modalService: NgbModal, private cityService: CityService) {}
 
   ngOnInit() {
-    this.getAllCustomer();
     this.getCity();
   }
 
@@ -35,13 +33,6 @@ export class CustomerComponent implements OnInit {
             }
           });
         }
-
-         // making a copy to filter Customers
-         this.filterCustomer= [];
-         for (let j = 0; j < this.customers.length; j++) {
-             this.filterCustomer.push(this.customers[j])
-        }
-      
       },
       err => {
         console.log(err);
@@ -49,6 +40,43 @@ export class CustomerComponent implements OnInit {
     );
   }
 
+  getCustomerByCity(Id) {
+    this.customerService.getCustomerByCity(Id).subscribe(
+      res => {
+        this.customers = res;
+        for (let i = 0; i < this.customers.length; i++) {
+          this.cityService.getCity(this.customers[i].CityId).subscribe(data => {
+            this.customers[i].City = data;
+            if (i === this.customers.length - 1) {
+              this.isLoading = false;
+            }
+          });
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getCustomerById(Id) {
+    this.customerService.getCustomerById(Id).subscribe(
+      res => {
+        this.customers = res;
+        for (let i = 0; i < this.customers.length; i++) {
+          this.cityService.getCity(this.customers[i].CityId).subscribe(data => {
+            this.customers[i].City = data;
+            if (i === this.customers.length - 1) {
+              this.isLoading = false;
+            }
+          });
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
   getCity() {
     this.cityService.getAll().subscribe(
       cities => {
@@ -66,7 +94,7 @@ export class CustomerComponent implements OnInit {
       if (result === 'Yes') {
         this.customerService.deleteCustomer(Id).subscribe(
           res => {
-            this.getAllCustomer();
+            this.getCustomerByCity(this.CityId);
           },
           err => {
             console.log(err);
@@ -75,16 +103,4 @@ export class CustomerComponent implements OnInit {
       }
     });
   }
-
-  SelectByCity () {
-    
-    this.filterCustomer= [];
-    for (let i = 0; i < this.customers.length; i++) {
-      if ( this.customers[i].CityId == this.CityId)
-      { 
-        this.filterCustomer.push(this.customers[i])
-      }
-    }
-    console.log(this.filterCustomer);
-    }
 }
