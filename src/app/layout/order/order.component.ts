@@ -28,6 +28,7 @@ export class OrderComponent implements OnInit {
   OrderRider: any[]=[];
   RiderId : number;
   city:any;
+  Status:any=['New' , 'Active' , 'Complete' , 'Cancel'];
 
   constructor(private orderService: OrderService, private riderService: RiderService,
     private cityService: CityService, private customerService:CustomerService, private modalService: NgbModal) { }

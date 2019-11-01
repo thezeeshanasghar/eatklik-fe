@@ -9,7 +9,8 @@
              <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
            </select>
           </div>
-      <div class="card mb-3">
+          <div [ngClass]="{'d-none': CityId != null}" class="text-center alert alert-info">Please Select City First</div>
+      <div [ngClass]="{'d-none': CityId == null}" class="card mb-3">
         <div class="card-header">
           List of all Customers
           <div class="pull-right">

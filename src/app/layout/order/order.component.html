@@ -9,7 +9,8 @@
              <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
            </select>
           </div>
-      <div class="card mb-3">
+          <div [ngClass]="{'d-none': CityId != null}" class="text-center alert alert-info">Please Select City First</div>
+      <div [ngClass]="{'d-none': CityId == null}" class="card mb-3">
         <div class="card-header">
           List of Orders 
         </div>
@@ -43,7 +44,7 @@
                 <td>{{ order.GST }}</td>
                 <td>{{ order.GrandTotal }}</td>
                 <td>{{ order.Created }}</td>
-                <td>{{ order.OrderStatus }}</td>
+                <td>{{ Status[order.OrderStatus] }}</td>
                 <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
                 <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
               </tr>
