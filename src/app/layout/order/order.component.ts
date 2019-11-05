@@ -17,6 +17,7 @@ export class OrderComponent implements OnInit {
   orders : Order[];
   NewOrders : any[]=[];
   ActiveOrders : any[]=[];
+  DispatchOrders : any[] = [];
   CompleteOrders : Order[]=[];
   CancelOrders : Order[]=[];
   isLoading = true;
@@ -28,26 +29,26 @@ export class OrderComponent implements OnInit {
   OrderRider: any[]=[];
   RiderId : number;
   city:any;
-  Status:any=['New' , 'Active' , 'Complete' , 'Cancel'];
+  Status:any=['New' , 'Active' , 'Dispatch', 'Complete' , 'Cancel'];
 
   constructor(private orderService: OrderService, private riderService: RiderService,
     private cityService: CityService, private customerService:CustomerService, private modalService: NgbModal) { }
 
   ngOnInit() {
   //  this.getAllOrder();
-    this.getAllCity(); 
+    this.getAllCity();
   }
 
   getAllOrder() {
     this.orderService.getAllOrder().subscribe(
-      res => { 
+      res => {
         this.orders = res;
         this.isLoading = false;
         console.log(this.orders);
 
         // Assigning Cities, Rider and Customer Name
         for (let i = 0; i < this.orders.length; i++) {
-          
+
            {
           this.cityService.getCity(this.orders[i].CityId).subscribe(data => {
             this.orders[i].City = data;
@@ -79,18 +80,23 @@ export class OrderComponent implements OnInit {
            }
            else if (this.orders[i].OrderStatus == 2)
            {
-           this.CompleteOrders.push(this.orders[i]);
+           this.DispatchOrders.push(this.orders[i]);
            }
            else if (this.orders[i].OrderStatus == 3)
+           {
+           this.CompleteOrders.push(this.orders[i]);
+           }
+           else  (this.orders[i].OrderStatus == 4)
            {
            this.CancelOrders.push(this.orders[i]);
            }
         }
         console.log(this.NewOrders);
         console.log(this.ActiveOrders);
+        console.log(this.DispatchOrders);
         console.log(this.CompleteOrders);
         console.log(this.CancelOrders);
-        
+
       },
       err => {
         console.log(err);
@@ -98,7 +104,7 @@ export class OrderComponent implements OnInit {
     );
 
   }
-  
+
 
   SelectByCity(Id) {
     this.orders=[];
@@ -108,14 +114,14 @@ export class OrderComponent implements OnInit {
     this.CancelOrders=[];
     this.getRidersByCity();
     this.orderService.getOrderByCity(Id).subscribe(
-      res => { 
+      res => {
         this.orders = res;
         this.isLoading = false;
         console.log(this.orders);
 
         // Assigning Cities, Rider and Customer Name
         for (let i = 0; i < this.orders.length; i++) {
-          
+
            {
           this.cityService.getCity(this.orders[i].CityId).subscribe(data => {
             this.orders[i].City = data;
@@ -134,7 +140,7 @@ export class OrderComponent implements OnInit {
             }
         }
 
-        //Filtering Orders
+        // Filtering Orders
         for (let i = 0; i < this.orders.length; i++ )
         {
           if (this.orders[i].OrderStatus == 0)
@@ -147,9 +153,13 @@ export class OrderComponent implements OnInit {
            }
            else if (this.orders[i].OrderStatus == 2)
            {
-           this.CompleteOrders.push(this.orders[i]);
+           this.DispatchOrders.push(this.orders[i]);
            }
            else if (this.orders[i].OrderStatus == 3)
+           {
+           this.CompleteOrders.push(this.orders[i]);
+           }
+           else if (this.orders[i].OrderStatus == 4)
            {
            this.CancelOrders.push(this.orders[i]);
            }
@@ -158,25 +168,25 @@ export class OrderComponent implements OnInit {
         console.log(this.ActiveOrders);
         console.log(this.CompleteOrders);
         console.log(this.CancelOrders);
-        
+
       },
       err => {
         console.log(err);
       }
     );
   }
- 
+
   editOrderRider(Id , rider) {
     this.orderService.editOrderRider(Id, rider).subscribe(
       res => {
-        this.OrderRider=[];
+        this.OrderRider = [];
       },
       err => {
         console.log(err);
       }
     );
   }
-  
+
   editOrderStatus(Id , status) {
       this.orderService.editOrderStatus(Id, status).subscribe(
         res => {
@@ -215,6 +225,6 @@ export class OrderComponent implements OnInit {
       }
     );
   }
- 
-  
+
+
 }

@@ -1,0 +1,76 @@
+<div [@routerTransition]>
+  <app-page-header [heading]="'Payments'" [icon]="'fa-table'"></app-page-header>
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+            <div class=" breadcrumb">
+                    <label > Select by City</label>
+                   <select  style = "background-color: inherit; margin-left: 8px" [(ngModel)]="CityId" (change) = "getOrdersByCity(CityId)">
+                     <option selected hidden> Select by City </option>
+                     <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
+                   </select>
+                  </div>
+      <div class="card mb-3">
+        <div class="card-header">
+          List of all Payments
+        </div>
+        <div class="card-body table-responsive">
+            <ngb-tabset>
+                <ngb-tab title="Pending">
+                    <ng-template ngbTabContent>
+          <table class="table text-center">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Rider</th>
+                <th>Ammount</th>
+                <!-- <th>Status</th> -->
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="!isLoading">
+                <tr
+                *ngFor="let order of DispatchOrders; let i = index"
+              >
+                <th scope="row">{{ i + 1 }}</th>
+                <td *ngIf="order.Rider">{{ order.Rider.Name }}</td>
+                <td>{{ order.GrandTotal }}</td>
+                <!-- <td><select style = "background-color: inherit" [(ngModel)]="PaymentStatus[i]"
+                  (change)  = "editPaymentStatus(order.Id , PaymentStatus[i])" >
+            <option [value] = 1> Received </option>
+          </select></td> -->
+            </tbody>
+          </table>
+        </ng-template>
+      </ngb-tab>
+
+      // Received payments Tab
+      <ngb-tab title="Received">
+          <ng-template ngbTabContent>
+<table class="table text-center">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Rider</th>
+      <th>Ammount</th>
+      <!-- <th>Status</th> -->
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="!isLoading">
+      <tr
+      *ngFor="let order of CompleteOrders; let i = index"
+    >
+      <th scope="row">{{ i + 1 }}</th>
+      <td *ngIf="order.Rider">{{ order.Rider.Name }}</td>
+      <td>{{ order.GrandTotal }}</td>
+      <!-- <td>Received</td> -->
+  </tbody>
+</table>
+</ng-template>
+</ngb-tab>
+</ngb-tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

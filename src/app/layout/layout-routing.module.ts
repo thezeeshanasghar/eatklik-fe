@@ -24,7 +24,8 @@ const routes: Routes = [
       { path: 'restaurant', loadChildren: () => import('./restaurant/restaurant.module').then(m => m.RestaurantModule) },
       { path: 'customer', loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule) },
       { path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
-      { path: 'coupon', loadChildren: () => import('./coupon/coupon.module').then(m => m.CouponModule) }
+      { path: 'coupon', loadChildren: () => import('./coupon/coupon.module').then(m => m.CouponModule) },
+      { path: 'payment', loadChildren: () => import('./payment/payment.module').then(m => m.PaymentModule) },
     ]
   }
 ];
