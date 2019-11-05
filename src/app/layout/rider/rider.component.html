@@ -27,6 +27,8 @@
                 <th>City</th>
                 <th>CNIC</th>
                 <th>Address</th>
+                <th>Orders</th>
+                <th>Rating</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
@@ -44,6 +46,20 @@
                 <td>{{ rider.City.Name }}</td>
                 <td>{{ rider.CNIC }}</td>
                 <td>{{ rider.Address }}</td>
+                <td>13</td>
+                <td>
+                    
+                  <div class="rating">
+    
+                    <input type="radio" name="star" id="star1"><label for="star1"></label>
+                    <input type="radio" name="star" id="star2" checked><label for="star2"></label>
+                    <input type="radio" name="star" id="star3"><label for="star3"></label>
+                    <input type="radio" name="star" id="star4"><label for="star4"></label>
+                    <input type="radio" name="star" id="star5"><label for="star5"></label>
+
+                  </div>
+
+                </td>
                 <td>
                   <a routerLink="edit/{{rider.Id}}"> <i class="fa fa-pencil"></i> </a>&nbsp;
                   <i (click)="open(content, rider.Id)" class="fa fa-trash" style="cursor: pointer"></i>
