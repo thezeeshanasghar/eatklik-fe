@@ -4,7 +4,7 @@
     <div class="col col-xl-12 col-lg-12">
      <div class=" breadcrumb">
        <label > Select by City</label>
-      <select  style = "background-color: inherit; margin-left: 8px" [(ngModel)]="CityId" (change) = "getRestaurantsByCity(CityId)"> 
+      <select  style = "background-color: inherit; margin-left: 8px" [(ngModel)]="CityId" (change) = "getRestaurantsByCity(CityId)">
         <option selected hidden> Select by City </option>
         <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
       </select>
@@ -26,6 +26,7 @@
                 <th>City</th>
                 <th>MinOrder</th>
                 <th>MaxOrder</th>
+                <th>DelCharges</th>
                 <th>Logo</th>
                 <th>Actions</th>
                 <th>&nbsp;</th>
@@ -38,6 +39,7 @@
                 <td>{{ restaurant.City.Name }}</td>
                 <td>{{ restaurant.MinOrderPrice }}</td>
                 <td>{{ restaurant.MaxOrderPrice }}</td>
+                <td>200</td>
                 <td>
                   <a [href]="resourceURL + restaurant.LogoImagePath" target="_blank">
                     <img class="small-image" [src]="resourceURL + restaurant.LogoImagePath" />
@@ -71,7 +73,7 @@
             </tbody>
           </table>
         </div>
-       </div> 
+       </div>
     </div>
   </div>
 </div>

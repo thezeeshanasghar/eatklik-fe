@@ -10,6 +10,7 @@ export class Restaurant {
   public Name: string;
   public MinOrderPrice: number;
   public MaxOrderPrice: number;
+  public DelCharges: number;
   public Description: string;
   public CityId: number;
   public City: City;
