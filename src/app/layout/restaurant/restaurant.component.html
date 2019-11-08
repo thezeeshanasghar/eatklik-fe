@@ -29,6 +29,8 @@
                 <th>DelCharges</th>
                 <th>Logo</th>
                 <th>Actions</th>
+                <th>Status</th>
+
                 <th>&nbsp;</th>
               </tr>
             </thead>
@@ -39,7 +41,7 @@
                 <td>{{ restaurant.City.Name }}</td>
                 <td>{{ restaurant.MinOrderPrice }}</td>
                 <td>{{ restaurant.MaxOrderPrice }}</td>
-                <td>200</td>
+                <td>{{restaurant.DelCharges}}</td>
                 <td>
                   <a [href]="resourceURL + restaurant.LogoImagePath" target="_blank">
                     <img class="small-image" [src]="resourceURL + restaurant.LogoImagePath" />
@@ -65,9 +67,14 @@
                   </a>&nbsp;
                 </td>
                 <td>
+                    <select [ngClass]="{'btn-danger': restaurant.Status == 1}" class="btn btn-success btn-sm"  [(ngModel)]= "restaurant.Status" (change) = "editRestaurantStatus(restaurant.Id , restaurant.Status)">
+                        <option  [value]="0"> Open</option>
+                        <option  [value]="1">Close</option>
+                      </select>
+                </td>
+                <td>
                   <a routerLink="edit/{{restaurant.Id}}"><i class="fa fa-pencil"></i></a>&nbsp;
                   <i (click)="open(content, restaurant.Id)" class="fa fa-trash" style="cursor: pointer"></i>
-
                 </td>
               </tr>
             </tbody>

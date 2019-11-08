@@ -51,8 +51,8 @@ export class RestaurantComponent implements OnInit {
             if (i === this.restaurants.length - 1) {
               this.isLoading = false;
             }
-          }); 
-          } 
+          });
+          }
       },
       err => {
         console.log(err);
@@ -72,8 +72,8 @@ export class RestaurantComponent implements OnInit {
             if (i === this.restaurants.length - 1) {
               this.isLoading = false;
             }
-          }); 
-          } 
+          });
+          }
       },
       err => {
         console.log(err);
@@ -81,6 +81,19 @@ export class RestaurantComponent implements OnInit {
       () => {}
     );
   }
+  editRestaurantStatus(Id , status) {
+
+
+    this.restaurantService.editRestaurantStatus(Id, status).subscribe(
+      res => {
+
+       // this.getRestaurantsByCity(this.CityId);
+      },
+    err => {
+      console.log(err);
+    }
+  );
+}
 
   open(content, Id: number) {
     this.modalService.open(content).result.then(result => {

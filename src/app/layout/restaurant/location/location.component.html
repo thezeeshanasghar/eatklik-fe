@@ -17,6 +17,7 @@
                   <th>Address</th>
                   <th>Latitude</th>
                   <th>Longitude</th>
+                  <th>Radius</th>
                   <th>&nbsp;</th>
                 </tr>
               </thead>
@@ -26,7 +27,8 @@
                   <td>{{ restaurantLocation.Address }}</td>
                   <td>{{ restaurantLocation.Latitude }}</td>
                   <td>{{ restaurantLocation.Longitude }}</td>
-  
+                  <td>{{ restaurantLocation.DelRadius }}</td>
+
                   <td>
                     <a [routerLink]="['edit', restaurantLocation.Id]"> <i class="fa fa-pencil-square-o fa-lg"></i></a>&nbsp;
                     <i class="fa fa-trash-o fa-lg" style="cursor: pointer" (click)="open(content, restaurantLocation.Id)"></i>
@@ -39,7 +41,7 @@
       </div>
     </div>
   </div>
-  
+
   <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title">Alert</h4>

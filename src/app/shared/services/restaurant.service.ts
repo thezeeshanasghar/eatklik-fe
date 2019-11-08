@@ -66,6 +66,10 @@ export class RestaurantService extends BaseService {
     const url = `${this.API}${id}`;
     return this.http.put(url, data , this.httpOptions).pipe(catchError(this.handleError));
   }
+  editRestaurantStatus(id: number , status ): Observable<any> {
+    const url = `${this.API}${id}/status/${status}`;
+    return this.http.put(url, this.httpOptions).pipe(catchError(this.handleError));
+  }
 
 
   deleteRestaurant(Id: number): Observable<any> {

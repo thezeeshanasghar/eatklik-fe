@@ -5,6 +5,7 @@ export class RestaurantLocation {
   public Address: string;
   public Latitude: number;
   public Longitude: number;
+  public DelRadius: number;
   public CityId: number;
   public City: City;
   public RestaurantId: number;

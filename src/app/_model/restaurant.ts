@@ -4,6 +4,7 @@ import { RestaurantTiming } from './restaurant_timing';
 import { RestaurantCuisine } from './restaurant_cuisine';
 import { Review } from './review';
 import { City } from './city';
+import { Status } from './status';
 
 export class Restaurant {
   public Id: number;
@@ -12,6 +13,7 @@ export class Restaurant {
   public MaxOrderPrice: number;
   public DelCharges: number;
   public Description: string;
+  public Status: Status;
   public CityId: number;
   public City: City;
   public LogoImagePath: string;
