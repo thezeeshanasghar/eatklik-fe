@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/shared/services/order.service';
-import { Order } from 'src/app/_model/Order';
+import { Order } from 'src/app/_model/order';
 import { CityService } from 'src/app/shared/services/city.service';
 import { RiderService } from 'src/app/shared/services/rider.service';
 

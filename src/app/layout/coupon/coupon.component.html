@@ -15,8 +15,11 @@
               <tr>
                 <th>#</th>
                 <th>Code</th>
+                <th>MinAmount</th>
+                <th>MaxAmount</th>
                 <th>Discount</th>
                 <th>PctDiscount</th>
+                <th>City</th>
                 <th>ValidTill</th>
                 <th>&nbsp;</th>
               </tr>
@@ -28,8 +31,11 @@
               }">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ coupon.Code }}</td>
+                <td>{{ coupon.MinAmount }}</td>
+                <td>{{ coupon.MaxAmount }}</td>
                 <td>{{ coupon.Discount }}</td>
                 <td>{{ coupon.PctDiscount }}</td>
+                <td *ngIf="coupon.City">{{coupon.City.Name}}</td>
                 <td>{{ coupon.ValidTill }}</td>
                 <td>
                   <i (click)="open(content, coupon.Id)" class="fa fa-trash" style="cursor: pointer"></i>

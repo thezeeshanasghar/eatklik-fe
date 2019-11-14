@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Coupon } from 'src/app/_model/coupon';
 import { CouponService } from 'src/app/shared/services/coupon.service';
+import { CityService } from 'src/app/shared/services/city.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { routerTransition } from 'src/app/router.animations';
 
@@ -16,7 +17,7 @@ export class CouponComponent implements OnInit {
   isLoading = true;
 
   constructor(
-    private couponService: CouponService,
+    private couponService: CouponService, private cityService: CityService,
     private modalService: NgbModal) {
   }
 
@@ -28,7 +29,15 @@ export class CouponComponent implements OnInit {
     this.couponService.getAll().subscribe(
       res => {
         this.coupons = res;
-        this.isLoading = false;
+        for (let i = 0; i < this.coupons.length; i++) {
+            this.cityService.getCity(this.coupons[i].CityId).subscribe(data => {
+              this.coupons[i].City = data;
+              if (i === this.coupons.length - 1) {
+                this.isLoading = false;
+              }
+            });
+          }
+       // this.isLoading = false;
       },
       err => {
         console.log(err);

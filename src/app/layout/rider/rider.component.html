@@ -4,7 +4,7 @@
     <div class="col col-xl-12 col-lg-12">
         <div class=" breadcrumb">
             <label > Select by City</label>
-           <select  style = "background-color: inherit; margin-left: 8px" [(ngModel)]="CityId" (change) = "getRidersByCity (CityId)"> 
+           <select  style = "background-color: inherit; margin-left: 8px" [(ngModel)]="CityId" (change) = "getRidersByCity (CityId)">
              <option selected hidden> Select by City </option>
              <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
            </select>
@@ -47,19 +47,7 @@
                 <td>{{ rider.CNIC }}</td>
                 <td>{{ rider.Address }}</td>
                 <td>13</td>
-                <td>
-                    
-                  <div class="rating">
-    
-                    <input type="radio" name="star" id="star1"><label for="star1"></label>
-                    <input type="radio" name="star" id="star2" checked><label for="star2"></label>
-                    <input type="radio" name="star" id="star3"><label for="star3"></label>
-                    <input type="radio" name="star" id="star4"><label for="star4"></label>
-                    <input type="radio" name="star" id="star5"><label for="star5"></label>
-
-                  </div>
-
-                </td>
+                <td>{{rider.Rating}}</td>
                 <td>
                   <a routerLink="edit/{{rider.Id}}"> <i class="fa fa-pencil"></i> </a>&nbsp;
                   <i (click)="open(content, rider.Id)" class="fa fa-trash" style="cursor: pointer"></i>

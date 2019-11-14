@@ -1,6 +1,3 @@
-<p>
-  add works!
-</p>
 <app-page-header [heading]="'Coupon Codes'" [heading1]="'Add'" [icon]="'fa-table'"></app-page-header>
 <div class="row">
   <div class="col col-xl-8 col-lg-8">
@@ -21,6 +18,30 @@
             <div class="invalid-feedback" *ngIf="Code.invalid">
               <p *ngIf="Code.errors.required"> Code is required </p>
               <p *ngIf="Code.errors.minlength"> Code should be at least 3 chracters </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="MaxAmount">MaxAmount</label>
+            <input type="number" class="form-control" #MaxAmount="ngModel" required id="MaxAmount" name="MaxAmount"
+              [(ngModel)]="coupon.MaxAmount" [ngClass]="{
+                'is-invalid': MaxAmount.invalid && (MaxAmount.dirty || MaxAmount.touched),
+                'is-valid': MaxAmount.valid && (MaxAmount.dirty || MaxAmount.touched)
+              }">
+            <div class="invalid-feedback" *ngIf="MaxAmount.invalid">
+              <p *ngIf="MaxAmount.errors.required"> MaxAmount is required </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-control-label" for="MinAmount">MinAmount</label>
+            <input type="number" class="form-control" #MinAmount="ngModel" required id="MinAmount" name="MinAmount"
+              [(ngModel)]="coupon.MinAmount" [ngClass]="{
+                'is-invalid': MinAmount.invalid && (MinAmount.dirty || MinAmount.touched),
+                'is-valid': MinAmount.valid && (MinAmount.dirty || MinAmount.touched)
+              }">
+            <div class="invalid-feedback" *ngIf="MinAmount.invalid">
+              <p *ngIf="MinAmount.errors.required"> MinAmount is required </p>
             </div>
           </div>
 
@@ -48,6 +69,7 @@
             </div>
           </div>
 
+
           <div class="form-group">
             <label class="form-control-label" for="ValidTill">Valid Till</label>
             <div class="input-group datepicker-input">
@@ -58,6 +80,14 @@
                 <span class="fa fa-calendar"></span>
               </button>
             </div>
+          </div>
+
+          <div class="form-group">
+            <label>City</label>
+            <select class="form-control" [(ngModel)]="coupon.CityId" #coupon.city.Name="ngModel"
+              [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
+            </select>
           </div>
 
           <div class="form-group">

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Customer } from 'src/app/_model/customer';
-import { Order } from 'src/app/_model/Order';
+import { Order } from 'src/app/_model/order';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ import { Order } from 'src/app/_model/Order';
 export class CustomerService extends BaseService {
   private readonly API_Customer = `${environment.BASE_URL}Customer/`;
   private readonly API_Order = `${environment.BASE_URL}Order/`;
-  
+
 
   constructor(protected http: HttpClient) {
     super(http);

@@ -11,6 +11,7 @@ export class Rider {
     public City: City;
     public CNIC: number;
     public Address: string;
+    public Rating : number ;
 
 
     constructor() {
