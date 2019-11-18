@@ -6,7 +6,6 @@ export class Coupon {
     public Code: string;
     public MinAmount: number ;
     public MaxAmount: number;
-    public Discount: number;
     public PctDiscount: number;
     public ValidTill: any;
     public CityId: number;

@@ -46,18 +46,6 @@
           </div>
 
           <div class="form-group">
-            <label class="form-control-label" for="Discount">Discount</label>
-            <input type="number" class="form-control" #Discount="ngModel" required id="Discount" name="Discount"
-              [(ngModel)]="coupon.Discount" [ngClass]="{
-                'is-invalid': Discount.invalid && (Discount.dirty || Discount.touched),
-                'is-valid': Discount.valid && (Discount.dirty || Discount.touched)
-              }">
-            <div class="invalid-feedback" *ngIf="Discount.invalid">
-              <p *ngIf="Discount.errors.required"> Discount is required </p>
-            </div>
-          </div>
-
-          <div class="form-group">
             <label class="form-control-label" for="PctDiscount">Percentage Discount</label>
             <input type="number" class="form-control" #PctDiscount="ngModel" required id="PctDiscount"
               name="PctDiscount" [(ngModel)]="coupon.PctDiscount" [ngClass]="{

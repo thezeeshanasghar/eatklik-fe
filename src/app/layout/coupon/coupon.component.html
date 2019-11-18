@@ -17,7 +17,6 @@
                 <th>Code</th>
                 <th>MinAmount</th>
                 <th>MaxAmount</th>
-                <th>Discount</th>
                 <th>PctDiscount</th>
                 <th>City</th>
                 <th>ValidTill</th>
@@ -33,7 +32,6 @@
                 <td>{{ coupon.Code }}</td>
                 <td>{{ coupon.MinAmount }}</td>
                 <td>{{ coupon.MaxAmount }}</td>
-                <td>{{ coupon.Discount }}</td>
                 <td>{{ coupon.PctDiscount }}</td>
                 <td *ngIf="coupon.City">{{coupon.City.Name}}</td>
                 <td>{{ coupon.ValidTill }}</td>
