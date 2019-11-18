@@ -46,7 +46,9 @@
                 <td>{{ rider.City.Name }}</td>
                 <td>{{ rider.CNIC }}</td>
                 <td>{{ rider.Address }}</td>
-                <td>13</td>
+                <td><a routerLink="{{rider.Id}}/orders" placement="bottom" ngbTooltip="View Orders">
+                    <i class="fa fa-shopping-cart fa-lg"></i>
+                  </a>&nbsp;</td>
                 <td>{{rider.Rating}}</td>
                 <td>
                   <a routerLink="edit/{{rider.Id}}"> <i class="fa fa-pencil"></i> </a>&nbsp;

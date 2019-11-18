@@ -5,12 +5,14 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Rider } from 'src/app/_model/rider';
+import { Order } from 'src/app/_model/order';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RiderService extends BaseService {
   private readonly API_Rider = `${environment.BASE_URL}rider`;
+  private readonly API_Order = `${environment.BASE_URL}order/`;
 
   constructor(protected http: HttpClient) {
     super(http);
@@ -34,6 +36,11 @@ export class RiderService extends BaseService {
     const url = `${this.API_Rider}/`;
     return this.http.get<Rider>(url + id).pipe(catchError(this.handleError));
   }
+
+  getOrders(Id: number): Observable<Order[]> {
+    const url = `${this.API_Order}rider/${Id}`;
+    return this.http.get<Order[]>(url, this.httpOptions).pipe(catchError(this.handleError));
+}
 
   add (rider: Rider): Observable <Rider> {
     const url = `${this.API_Rider}`;

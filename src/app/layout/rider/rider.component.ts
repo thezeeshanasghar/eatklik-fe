@@ -6,6 +6,7 @@ import { routerTransition } from 'src/app/router.animations';
 import { Status } from 'src/app/_model/status';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: 'app-rider',
   templateUrl: './rider.component.html',
