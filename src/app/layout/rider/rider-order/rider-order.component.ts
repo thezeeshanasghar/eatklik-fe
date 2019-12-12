@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RiderService } from 'src/app/shared/services/rider.service';
-import { Order } from 'src/app/_model/Order';
+import { Order } from 'src/app/_model/order';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CityService } from 'src/app/shared/services/city.service';
