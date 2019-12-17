@@ -30,6 +30,7 @@ export class OrderComponent implements OnInit {
   RiderId : number;
   city:any;
   Status:any=['New' , 'Active' , 'Dispatch', 'Complete' , 'Cancel'];
+  Method:any=['Cash' , 'Credit Card' , 'EasyPaisa', 'MobiCash'];
 
   constructor(private orderService: OrderService, private riderService: RiderService,
     private cityService: CityService, private customerService:CustomerService, private modalService: NgbModal) { }

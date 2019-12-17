@@ -38,11 +38,17 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label class="form-control-label" for= "size">Size</label>
-                    <select class="form-control"  [(ngModel)]="menuItem.Size" name="size" required >
+                    <!-- <select class="form-control"  [(ngModel)]="menuItem.Size" name="size" required >
                         <option [value]="0">Nothing</option>
                         <option [value]="1">Half</option>
                         <option [value]="2">Full</option>
-                    </select>
+                    </select> -->
+                    <input type="text" class="form-control" #size="ngModel" required minlength="1" id="size" name="size"
+              [(ngModel)]="menuItem.Size" [ngClass]="{
+                'is-invalid': size.invalid && (size.dirty || size.touched),
+                'is-valid': size.valid && (size.dirty || size.touched)
+              }">
+
                 </div>
             </div>
           </div>

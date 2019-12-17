@@ -25,9 +25,10 @@
               <tr *ngFor="let menuItem of menuItems; let i = index">
                 <td>{{ i + 1 }}</td>
                 <td>{{ menuItem.Name }}</td>
-                <td>{{ getMenuSize(menuItem.Size)}}</td>
+                <!-- <td>{{ getMenuSize(menuItem.Size)}}</td> -->
+                <td>{{menuItem.Size}}</td>
                 <td> {{menuItem.Price}} </td>
-                <td>  
+                <td>
                   <a [href]="resourceURL + menuItem.ImagePath" target="_blank">
                     <img class="small-image" style = "width:100px; height:50px;" [src]="resourceURL + menuItem.ImagePath" />
                   </a>

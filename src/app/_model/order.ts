@@ -9,6 +9,9 @@ export class Order {
   public GST: number;
   public GrandTotal: number;
   public Created: string;
+  public Address: string;
+  public PayMethod: number;
+  public Instruction: string;
   public CustomerId: number;
   public OrderItems: any;
   public OrderStatus: number;

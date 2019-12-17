@@ -29,6 +29,7 @@
                 <th>Fee</th>
                 <th>GST</th>
                 <th>Grand Total</th>
+                <th>PayMethod</th>
                 <th>Created</th>
                 <th>Status</th>
                 <th>Customer</th>
@@ -43,6 +44,7 @@
                 <td>{{ order.Fee }}</td>
                 <td>{{ order.GST }}</td>
                 <td>{{ order.GrandTotal }}</td>
+                <td>{{ Method[order.PayMethod] }}</td>
                 <td>{{ order.Created }}</td>
                 <td>{{ Status[order.OrderStatus] }}</td>
                 <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>

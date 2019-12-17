@@ -5,7 +5,7 @@ export class MenuItem {
   public Id: number;
   public Name: string;
   public ImagePath: string;
-  public Size: ItemSize;
+  public Size: string;
   public Price: number;
   public Status: Status;
 
@@ -14,14 +14,14 @@ export class MenuItem {
 
   constructor() {
     this.Name = this.ImagePath = '';
-    this.Size = ItemSize.Nothing;
+    this.Size = this.Size = '';
     this.Price = 0;
     this.Status = Status.Enable;
   }
 }
 
-export enum ItemSize {
-  Nothing,
-  Half,
-  Full
-}
+// export enum ItemSize {
+//   Nothing,
+//   Half,
+//   Full
+// }
