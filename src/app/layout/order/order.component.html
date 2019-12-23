@@ -75,7 +75,7 @@
                               <th>Status</th>
                               <th>Customer</th>
                               <th>Order Items</th>
-                              <th>Rider</th>
+                              <!-- <th>Rider</th> -->
                             </tr>
                           </thead>
                           <tbody *ngIf="!isLoading">
@@ -87,14 +87,13 @@
                               <td>{{ order.GST }}</td>
                               <td>{{ order.GrandTotal }}</td>
                               <td>{{ order.Created }}</td>
-                              <!-- <td>{{ order.Status }}</td> -->
-                              <td>  <select id="selectStatus" style = "background-color: inherit" [(ngModel)]="OrderStatus[i]"
+                              <!-- <td>  <select id="selectStatus" style = "background-color: inherit" [(ngModel)]="OrderStatus[i]"
                                 #selectStatus = "ngModel" (change)  = "editOrderStatus(order.Id , OrderStatus[i] )" >
                                 <option selected hidden> select status </option>
                                 <option [value] = "1"> Active </option>
                                 <option [value] = "4"> Cancelled </option>
                               </select>
-                            </td>
+                            </td> -->
                               <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
                               <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
                               <td>
@@ -125,6 +124,7 @@
                               <th>GST</th>
                               <th>Grand Total</th>
                               <th>Created</th>
+                              <th>Rider</th>
                               <th>Status</th>
                               <th>Customer</th>
                               <th>Order Items</th>
@@ -139,6 +139,15 @@
                               <td>{{ order.GST }}</td>
                               <td>{{ order.GrandTotal }}</td>
                               <td>{{ order.Created }}</td>
+                              <td>
+                                  <select rider style = "background-color: inherit" [(ngModel)]="OrderRider[i]"
+                                (change)  = "editOrderRider(order.Id , OrderRider[i])"  >
+                                  <option selected hidden>Rider</option>
+                          <option *ngFor="let rider of riders" [value]="rider.Id">
+                            {{rider.Name}}
+                          </option>
+                        </select>
+                            </td>
                               <!-- <td>{{ order.Status }}</td> -->
                               <td>  <select style = "background-color: inherit" [(ngModel)]="OrderStatus[i]"
                                       (change)  = "editOrderStatus(order.Id , OrderStatus[i])" >
