@@ -111,6 +111,7 @@ export class OrderComponent implements OnInit {
     this.orders=[];
     this.NewOrders=[];
     this.ActiveOrders=[];
+    this.DispatchOrders=[];
     this.CompleteOrders=[];
     this.CancelOrders=[];
     this.getRidersByCity();
