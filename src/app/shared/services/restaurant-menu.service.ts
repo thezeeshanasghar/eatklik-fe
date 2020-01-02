@@ -20,6 +20,10 @@ export class MenuService extends BaseService {
         const url = `${this.URL_Rest_Menu}${Id}/menuitem`;
         return this.http.get<MenuItem[]>(url , this.httpOptions).pipe(catchError(this.handleError));
       }
+      getMenuExtraItems(Id: number): Observable<MenuItem[]> {
+        const url = `${this.URL_Rest_Menu}${Id}/menuextraitem`;
+        return this.http.get<MenuItem[]>(url , this.httpOptions).pipe(catchError(this.handleError));
+      }
     addMenuList(data: Menu): Observable<any> {
         console.log(data);
         console.log(this.URL_Rest_Menu);

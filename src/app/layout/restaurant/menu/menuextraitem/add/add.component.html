@@ -1,0 +1,78 @@
+<app-page-header [heading]="'Restaurants'"[heading1]="'Menu Item'" [icon]="'fa-table'"></app-page-header>
+<div class="row">
+  <div class="col col-xl-8 col-lg-8">
+    <div class="card mb-3">
+      <div class="card-header">
+        Add a new menu Extra Item
+      </div>
+      <div class="card-body">
+        <form role="form" #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+          <div class="form-group">
+            <label class="form-control-label" for="name">Name</label>
+            <input type="text" class="form-control" #name="ngModel" required minlength="3" id="name" name="name"
+              [(ngModel)]="menuextraItem.Name" [ngClass]="{
+                'is-invalid': name.invalid && (name.dirty || name.touched),
+                'is-valid': name.valid && (name.dirty || name.touched)
+              }">
+            <div class="invalid-feedback" *ngIf="name.invalid">
+              <p *ngIf="name.errors.required"> Item name is required </p>
+              <p *ngIf="name.errors.minlength"> Item name should be at least 3 chracters </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="price">Price</label>
+                <input type="number" class="form-control" id="price" name="price" required
+                  #price="ngModel" [(ngModel)]="menuextraItem.Price"
+                  [ngClass]="{
+                    'is-invalid': price.invalid && (price.dirty || price.touched),
+                    'is-valid': price.valid && (price.dirty || price.touched)
+                  }">
+                  <div class="invalid-feedback" *ngIf="price.invalid">
+                    <p *ngIf="price.errors.required"> Item  price is required </p>
+                  </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="form-control-label" for= "size">Size</label>
+                    <!-- <select class="form-control"  [(ngModel)]="menuItem.Size" name="size" required >
+                        <option [value]="0">Nothing</option>
+                        <option [value]="1">Half</option>
+                        <option [value]="2">Full</option>
+                    </select> -->
+                    <input type="text" class="form-control" #size="ngModel" required minlength="1" id="size" name="size"
+              [(ngModel)]="menuextraItem.Size" [ngClass]="{
+                'is-invalid': size.invalid && (size.dirty || size.touched),
+                'is-valid': size.valid && (size.dirty || size.touched)
+              }">
+
+                </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-8">
+              <label class="form-control-label" for="logo">Image</label>
+              <input type="file" id="logo" name="logo" #logo placeholder="Choose file" (change)="uploadLogo(logo.files)"
+                style="display:none;" accept=".jpg, .jpeg, .png, .gif">
+              <button type="button" class="btn btn-success form-control" (click)="logo.click()">Upload Image</button>
+              <ngb-progressbar class="top-15" *ngIf="uploadProgress > 0 && uploadProgress < 99" type="success"
+                [value]="uploadProgress">{{uploadProgress}}</ngb-progressbar>
+              <img class="thumbnail top-15" *ngIf="menuextraItem.ImagePath" [src]="resourceURL + menuextraItem.ImagePath" alt="logoimage">
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <button type="submit" [disabled]="myform.invalid"
+              class="btn btn-primary form-control-label">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

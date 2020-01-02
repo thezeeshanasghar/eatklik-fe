@@ -1,10 +1,10 @@
 <div [@routerTransition]>
-  <app-page-header [heading]="'Restaurants'" [heading1]="'Menu'" [icon]="'fa-table'"></app-page-header>
+  <app-page-header [heading]="'Restaurants'" [heading1] = "'Menu Extra Items'" [icon]="'fa-table'"></app-page-header>
   <div class="row">
     <div class="col col-xl-12 col-lg-12">
       <div class="card mb-3">
         <div class="card-header">
-          List of all menus
+          List of all menu Extra Items
           <div class="pull-right">
             <a routerLink="add"> <i class="fa fa-plus"></i> Add </a>
           </div>
@@ -15,34 +15,27 @@
               <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Size</th>
+                <th>Price</th>
                 <th>Image Path</th>
-                <th>Menu Items</th>
-                <th>Menu Extra Items</th>
-                <th>&nbsp;</th>
+                <th>Actions</th>
               </tr>
             </thead>
-            <tbody *ngIf="!isLoading" >
-              <tr *ngFor="let menu of menus; let i = index">
+            <tbody *ngIf="!isLoading">
+              <tr *ngFor="let menuItem of menuextraItems; let i = index">
                 <td>{{ i + 1 }}</td>
-                <td>{{ menu.Name }}</td>
+                <td>{{ menuItem.Name }}</td>
+                <!-- <td>{{ getMenuSize(menuItem.Size)}}</td> -->
+                <td>{{menuItem.Size}}</td>
+                <td> {{menuItem.Price}} </td>
                 <td>
-                  <a [href]="resourceURL + menu.ImagePath" target="_blank">
-                    <img class="small-image" style="width:100px; height:50px;" [src]="resourceURL + menu.ImagePath" />
+                  <a [href]="resourceURL + menuItem.ImagePath" target="_blank">
+                    <img class="small-image" style = "width:100px; height:50px;" [src]="resourceURL + menuItem.ImagePath" />
                   </a>
                 </td>
                 <td>
-                  <a routerLink="{{menu.Id}}/menuitem" placement="bottom" ngbTooltip="Restaurant Menu">
-                    <i class="fa fa-book fa-2x"></i>
-                  </a>
-                </td>
-                <td>
-                    <a routerLink="{{menu.Id}}/menuextraitem" placement="bottom" ngbTooltip="Restaurant Menu">
-                      <i class="fa fa-book fa-2x"></i>
-                    </a>
-                  </td>
-                <td>
-                  <a [routerLink]="[ 'edit', menu.Id ]"><i class="fa fa-pencil-square-o fa-lg"></i></a> &nbsp;
-                  <i class="fa fa-trash-o fa-lg" style="cursor: pointer" (click)="open(content, menu.Id)"></i>
+                  <a [routerLink]="[ 'edit', menuItem.Id ]"><i class="fa fa-pencil-square-o fa-lg"></i></a> &nbsp;
+                  <i class="fa fa-trash-o fa-lg" style="cursor: pointer" (click)="open(content, menuItem.Id)"></i>
                 </td>
               </tr>
             </tbody>
