@@ -30,6 +30,7 @@
                 <th>Logo</th>
                 <th>Actions</th>
                 <th>Status</th>
+                <th>Sponsor</th>
 
                 <th>&nbsp;</th>
               </tr>
@@ -67,9 +68,15 @@
                   </a>&nbsp;
                 </td>
                 <td>
-                    <select [ngClass]="{'btn-danger': restaurant.Status == 1}" class="btn btn-success btn-sm"  [(ngModel)]= "restaurant.Status" (change) = "editRestaurantStatus(restaurant.Id , restaurant.Status)">
+                    <select [ngClass]="{'btn-danger': restaurant.Status == 1}" class="btn btn-success btn-sm"  [(ngModel)]= "restaurant.Status" (change) = "editRestaurantSponsor(restaurant.Id , restaurant.Status)">
                         <option  [value]="0"> Open</option>
                         <option  [value]="1">Close</option>
+                      </select>
+                </td>
+                <td>
+                    <select [ngClass]="{'btn-primary': restaurant.IsSponsor == 0}" class="btn btn-success btn-sm"  [(ngModel)]= "restaurant.IsSponsor" (change) = "editRestaurantSponsor(restaurant.Id , restaurant.IsSponsor)">
+                        <option  [value]="true"> Sponsored</option>
+                        <option  [value]="false">Non Sponsored</option>
                       </select>
                 </td>
                 <td>

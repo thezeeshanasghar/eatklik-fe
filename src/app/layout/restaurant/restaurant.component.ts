@@ -94,6 +94,19 @@ export class RestaurantComponent implements OnInit {
     }
   );
 }
+editRestaurantSponsor(Id , sponsor) {
+
+
+    this.restaurantService.editRestaurantSponsor(Id, sponsor).subscribe(
+      res => {
+
+       // this.getRestaurantsByCity(this.CityId);
+      },
+    err => {
+      console.log(err);
+    }
+  );
+}
 
   open(content, Id: number) {
     this.modalService.open(content).result.then(result => {

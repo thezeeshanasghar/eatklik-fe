@@ -14,6 +14,7 @@ export class Restaurant {
   public DelCharges: number;
   public Description: string;
   public Status: Status;
+  public IsSponsor: boolean;
   public CityId: number;
   public City: City;
   public LogoImagePath: string;
