@@ -15,7 +15,6 @@
                 <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)"
                   style="display:none;">
                 <button type="button" class="btn btn-success uploadButton" (click)="file.click()">Image Upload</button>
-
               </div>
               <div>
                 <span class="upload" *ngIf="progress > 0">
@@ -23,6 +22,20 @@
                 </span>
                 <span class="upload" *ngIf="message">
                   {{message}}
+                </span>
+              </div>
+              <div>
+                <input type="file" #cover placeholder="Choose file" (change)="uploadCover(cover.files)"
+                  style="display:none;">
+                <button type="button" class="btn btn-success uploadButton" (click)="cover.click()">Cover Upload</button>
+
+              </div>
+              <div>
+                <span class="upload" *ngIf="uploadProgress > 0">
+                  {{uploadProgress}}%
+                </span>
+                <span class="upload" *ngIf="message1">
+                  {{message1}}
                 </span>
               </div>
 
