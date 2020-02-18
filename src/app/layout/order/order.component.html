@@ -1,102 +1,102 @@
 <div>
-  <app-page-header [heading]="'Orders'" [icon]="'fa-table'"></app-page-header>
-  <div class="row">
-    <div class="col col-xl-12 col-lg-12">
-        <div class=" breadcrumb">
-            <label > Select by City</label>
-           <select  style = "background-color: inherit; margin-left: 8px" [(ngModel)]="CityId" (change) = "SelectByCity(CityId)">
-             <option selected hidden> Select by City </option>
-             <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
-           </select>
-          </div>
-          <div [ngClass]="{'d-none': CityId != null}" class="text-center alert alert-info">Please Select City First</div>
-      <div [ngClass]="{'d-none': CityId == null}" class="card mb-3">
-        <div class="card-header">
-          List of Orders
-        </div>
-        <div class="card-body table">
-            <ngb-tabset>
-                <ngb-tab title="All">
-                    <ng-template ngbTabContent>
+    <app-page-header [heading]="'Orders'" [icon]="'fa-table'"></app-page-header>
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <div class=" breadcrumb">
+                <label> Select by City</label>
+                <select style="background-color: inherit; margin-left: 8px" [(ngModel)]="CityId"
+                    (change)="SelectByCity(CityId)">
+                    <option selected hidden> Select by City </option>
+                    <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
+                </select>
+            </div>
+            <div [ngClass]="{'d-none': CityId != null}" class="text-center alert alert-info">Please Select City First
+            </div>
+            <div [ngClass]="{'d-none': CityId == null}" class="card mb-3">
+                <div class="card-header">
+                    List of Orders
+                </div>
+                <div class="card-body table">
+                    <ngb-tabset>
+                        <ngb-tab title="All">
+                            <ng-template ngbTabContent>
 
 
-          <table class="table table-hover table-striped text-center">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>City</th>
-                <th>Sub Total</th>
-                <th>Fee</th>
-                <th>GST</th>
-                <th>Grand Total</th>
-                <th>PayMethod</th>
-                <th>Created</th>
-                <th>Status</th>
-                <th>Customer</th>
-                <th>Order Items</th>
-              </tr>
-            </thead>
-            <tbody *ngIf="!isLoading">
-               <tr *ngFor="let order of orders; let i = index">
-                <th scope="row">{{ i + 1 }}</th>
-                <td *ngIf="order.City">{{ order.City.Name }}</td>
-                <td>{{ order.Subtotal }}</td>
-                <td>{{ order.Fee }}</td>
-                <td>{{ order.GST }}</td>
-                <td>{{ order.GrandTotal }}</td>
-                <td>{{ Method[order.PayMethod] }}</td>
-                <td>{{ order.Created }}</td>
-                <td>{{ Status[order.OrderStatus] }}</td>
-                <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
-                <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
-              </tr>
-            </tbody>
+                                <table class="table table-hover table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>City</th>
+                                            <th>Sub Total</th>
+                                            <th>Fee</th>
+                                            <th>GST</th>
+                                            <th>Grand Total</th>
+                                            <th>PayMethod</th>
+                                            <th>Created</th>
+                                            <th>Status</th>
+                                            <th>Customer</th>
+                                            <th>Order Items</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="!isLoading">
+                                        <tr *ngFor="let order of orders; let i = index">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td *ngIf="order.City">{{ order.City.Name }}</td>
+                                            <td>{{ order.Subtotal }}</td>
+                                            <td>{{ order.Fee }}</td>
+                                            <td>{{ order.GST }}</td>
+                                            <td>{{ order.GrandTotal }}</td>
+                                            <td>{{ Method[order.PayMethod] }}</td>
+                                            <td>{{ order.Created }}</td>
+                                            <td>{{ Status[order.OrderStatus] }}</td>
+                                            <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
+                                            <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
 
-          </table>
-          </ng-template>
-                </ngb-tab>
+                                </table>
+                            </ng-template>
+                        </ngb-tab>
 
-             <!-- new Orders tab -->
-                <ngb-tab title="New">
-                  <ng-template ngbTabContent>
-                      <div class="alert alert-success">
-                          {{Alert}}
-                        </div>
-                      <table class="table table-hover table-striped text-center">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>City</th>
-                              <th>Sub Total</th>
-                              <th>Fee</th>
-                              <th>GST</th>
-                              <th>Grand Total</th>
-                              <th>Created</th>
-                              <th>Status</th>
-                              <th>Customer</th>
-                              <th>Order Items</th>
-                              <!-- <th>Rider</th> -->
-                            </tr>
-                          </thead>
-                          <tbody *ngIf="!isLoading">
-                             <tr *ngFor="let order of NewOrders; let i = index" >
-                              <th scope="row">{{ i + 1 }}</th>
-                              <td *ngIf="order.City">{{ order.City.Name }}</td>
-                              <td>{{ order.Subtotal }}</td>
-                              <td>{{ order.Fee }}</td>
-                              <td>{{ order.GST }}</td>
-                              <td>{{ order.GrandTotal }}</td>
-                              <td>{{ order.Created }}</td>
-                              <td>  <select id="selectStatus" style = "background-color: inherit" [(ngModel)]="OrderStatus[i]"
-                                #selectStatus = "ngModel" (change)  = "editOrderStatus(order.Id , OrderStatus[i] )" >
-                                <option selected hidden> select status </option>
-                                <option [value] = "1"> Active </option>
-                                <option [value] = "4"> Cancelled </option>
-                              </select>
-                            </td>
-                              <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
-                              <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
-                              <!-- <td>
+                        <!-- new Orders tab -->
+                        <ngb-tab title="New">
+                            <ng-template ngbTabContent>
+                                <table class="table table-hover table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>City</th>
+                                            <th>Sub Total</th>
+                                            <th>Fee</th>
+                                            <th>GST</th>
+                                            <th>Grand Total</th>
+                                            <th>Created</th>
+                                            <th>Status</th>
+                                            <th>Customer</th>
+                                            <th>Order Items</th>
+                                            <!-- <th>Rider</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="!isLoading">
+                                        <tr *ngFor="let order of NewOrders; let i = index">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td *ngIf="order.City">{{ order.City.Name }}</td>
+                                            <td>{{ order.Subtotal }}</td>
+                                            <td>{{ order.Fee }}</td>
+                                            <td>{{ order.GST }}</td>
+                                            <td>{{ order.GrandTotal }}</td>
+                                            <td>{{ order.Created }}</td>
+                                            <td> <select id="selectStatus" style="background-color: inherit"
+                                                    [(ngModel)]="OrderStatus[i]" #selectStatus="ngModel"
+                                                    (change)="editOrderStatus(order.Id , OrderStatus[i] )">
+                                                    <option selected hidden> select status </option>
+                                                    <option [value]="1"> Active </option>
+                                                    <option [value]="4"> Cancelled </option>
+                                                </select>
+                                            </td>
+                                            <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
+                                            <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
+                                            <!-- <td>
                                 <select rider style = "background-color: inherit" [(ngModel)]="OrderRider[i]"
                                         (change)  = "editOrderRider(order.Id , OrderRider[i])"  >
                                   <option selected hidden>Rider</option>
@@ -105,183 +105,324 @@
                                   </option>
                                 </select>
                               </td> -->
-                            </tr>
-                          </tbody>
-                        </table>
-                  </ng-template>
-                </ngb-tab>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ng-template>
+                        </ngb-tab>
 
-                <!-- Active orders Tab  -->
-                <ngb-tab title="Active">
-                  <ng-template ngbTabContent>
-                      <table class="table table-hover table-striped text-center">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>City</th>
-                              <th>Sub Total</th>
-                              <th>Fee</th>
-                              <th>GST</th>
-                              <th>Grand Total</th>
-                              <th>Created</th>
-                              <th>Rider</th>
-                              <th>Status</th>
-                              <th>Customer</th>
-                              <th>Order Items</th>
-                            </tr>
-                          </thead>
-                          <tbody *ngIf="!isLoading">
-                             <tr *ngFor="let order of ActiveOrders; let i = index" >
-                              <th scope="row">{{ i + 1 }}</th>
-                              <td *ngIf="order.City">{{ order.City.Name }}</td>
-                              <td>{{ order.Subtotal }}</td>
-                              <td>{{ order.Fee }}</td>
-                              <td>{{ order.GST }}</td>
-                              <td>{{ order.GrandTotal }}</td>
-                              <td>{{ order.Created }}</td>
-                              <td>
-                                  <select rider style = "background-color: inherit" [(ngModel)]="OrderRider[i]"
-                                (change)  = "editOrderRider(order.Id , OrderRider[i])"  >
-                                  <option selected hidden>Rider</option>
-                          <option *ngFor="let rider of riders" [value]="rider.Id">
-                            {{rider.Name}}
-                          </option>
-                        </select>
-                            </td>
-                              <!-- <td>{{ order.Status }}</td> -->
-                              <td>  <select style = "background-color: inherit" [(ngModel)]="OrderStatus[i]"
-                                      (change)  = "editOrderStatus(order.Id , OrderStatus[i])" >
-                                <option [value] = 2> Dispatch </option>
-                                <option [value] = 4> Cancelled </option>
-                              </select>
-                            </td>
-                              <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
-                              <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                  </ng-template>
-                </ngb-tab>
+                        <!-- Active orders Tab  -->
+                        <ngb-tab title="Active">
+                            <ng-template ngbTabContent>
+                                <table class="table table-hover table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>City</th>
+                                            <th>Sub Total</th>
+                                            <th>Fee</th>
+                                            <th>GST</th>
+                                            <th>Grand Total</th>
+                                            <th>Created</th>
+                                            <th>Rider</th>
+                                            <th>Status</th>
+                                            <th>Customer</th>
+                                            <th>Order Items</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="!isLoading">
+                                        <tr *ngFor="let order of ActiveOrders; let i = index">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td *ngIf="order.City">{{ order.City.Name }}</td>
+                                            <td>{{ order.Subtotal }}</td>
+                                            <td>{{ order.Fee }}</td>
+                                            <td>{{ order.GST }}</td>
+                                            <td>{{ order.GrandTotal }}</td>
+                                            <td>{{ order.Created }}</td>
+                                            <td>
+                                                <select rider style="background-color: inherit"
+                                                    [(ngModel)]="OrderRider[i]"
+                                                    (change)="editOrderRider(order.Id , OrderRider[i])">
+                                                    <option selected hidden>Rider</option>
+                                                    <option *ngFor="let rider of riders" [value]="rider.Id">
+                                                        {{rider.Name}}
+                                                    </option>
+                                                </select>
+                                            </td>
+                                            <!-- <td>{{ order.Status }}</td> -->
+                                            <td> <select style="background-color: inherit" [(ngModel)]="OrderStatus[i]"
+                                                    (change)="editOrderStatus(order.Id , OrderStatus[i])">
+                                                    <option [value]=5> Assign </option>
+                                                    <option [value]=4> Cancelled </option>
+                                                </select>
+                                            </td>
+                                            <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
+                                            <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ng-template>
+                        </ngb-tab>
 
-                 <!-- Dispatched orders Tab  -->
-                 <ngb-tab title="Dispatched">
-                    <ng-template ngbTabContent>
-                        <table class="table table-hover table-striped text-center">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>City</th>
-                                <th>Sub Total</th>
-                                <th>Fee</th>
-                                <th>GST</th>
-                                <th>Grand Total</th>
-                                <th>Created</th>
-                                <th>Status</th>
-                                <th>Customer</th>
-                                <th>Order Items</th>
-                                <th>Rider</th>
-                              </tr>
-                            </thead>
-                            <tbody *ngIf="!isLoading">
-                               <tr *ngFor="let order of DispatchOrders; let i = index" >
-                                <th scope="row">{{ i + 1 }}</th>
-                                <td *ngIf="order.City">{{ order.City.Name }}</td>
-                                <td>{{ order.Subtotal }}</td>
-                                <td>{{ order.Fee }}</td>
-                                <td>{{ order.GST }}</td>
-                                <td>{{ order.GrandTotal }}</td>
-                                <td>{{ order.Created }}</td>
-                                <!-- <td>{{ order.Status }}</td> -->
-                                <td>  <select style = "background-color: inherit" [(ngModel)]="OrderStatus[i]"
-                                        (change)  = "editOrderStatus(order.Id , OrderStatus[i])" >
-                                  <option [value] = 3> Completed </option>
-                                  <option [value] = 4> Cancelled </option>
-                                </select>
-                              </td>
-                                <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
-                                <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
-                                <td *ngIf="order.Rider"> {{order.Rider.Name}}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                    </ng-template>
-                  </ngb-tab>
-                 <!-- Complete orders Tab  -->
-                 <ngb-tab title="Complete">
-                  <ng-template ngbTabContent>
-                      <table class="table table-hover table-striped text-center">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>City</th>
-                              <th>Sub Total</th>
-                              <th>Fee</th>
-                              <th>GST</th>
-                              <th>Grand Total</th>
-                              <th>Created</th>
-                              <th>Customer</th>
-                              <th>Order Items</th>
-                              <th>Rider</th>
-                            </tr>
-                          </thead>
-                          <tbody *ngIf="!isLoading">
-                             <tr *ngFor="let order of CompleteOrders; let i = index" >
-                              <th scope="row">{{ i + 1 }}</th>
-                              <td *ngIf="order.City">{{ order.City.Name }}</td>
-                              <td>{{ order.Subtotal }}</td>
-                              <td>{{ order.Fee }}</td>
-                              <td>{{ order.GST }}</td>
-                              <td>{{ order.GrandTotal }}</td>
-                              <td>{{ order.Created }}</td>
-                              <!-- <td>{{ order.Status }}</td> -->
-                              <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
-                              <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
-                              <td *ngIf="order.Rider"> {{order.Rider.Name}}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                  </ng-template>
-                </ngb-tab>
+                        <!-- Assigned Orders -->
+                        <ngb-tab title="Assigned">
+                            <ng-template ngbTabContent>
+                                <table class="table table-hover table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>City</th>
+                                            <th>Sub Total</th>
+                                            <th>Fee</th>
+                                            <th>GST</th>
+                                            <th>Grand Total</th>
+                                            <th>Created</th>
+                                            <th>Rider</th>
+                                            <th>Status</th>
+                                            <th>Customer</th>
+                                            <th>Order Items</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="!isLoading">
+                                        <tr *ngFor="let order of AssignOrders; let i = index">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td *ngIf="order.City">{{ order.City.Name }}</td>
+                                            <td>{{ order.Subtotal }}</td>
+                                            <td>{{ order.Fee }}</td>
+                                            <td>{{ order.GST }}</td>
+                                            <td>{{ order.GrandTotal }}</td>
+                                            <td>{{ order.Created }}</td>
+                                            <td *ngIf="order.Rider"> {{order.Rider.Name}}</td>
+                                            <!-- <td>{{ order.Status }}</td> -->
+                                            <td>
+                                                Assigned
+                                            </td>
+                                            <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
+                                            <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ng-template>
+                        </ngb-tab>
 
-                <!-- Cancel Orders Tab -->
-                <ngb-tab title="Cancel">
-                  <ng-template ngbTabContent>
-                      <table class="table table-hover table-striped text-center">
-                          <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>City</th>
-                              <th>Sub Total</th>
-                              <th>Fee</th>
-                              <th>GST</th>
-                              <th>Grand Total</th>
-                              <th>Created</th>
-                              <th>Customer</th>
-                              <th>Order Items</th>
-                              <th>Rider</th>
-                            </tr>
-                          </thead>
-                          <tbody *ngIf="!isLoading">
-                             <tr *ngFor="let order of CancelOrders; let i = index" >
-                              <th scope="row">{{ i + 1 }}</th>
-                              <td *ngIf="order.City">{{ order.City.Name }}</td>
-                              <td>{{ order.Subtotal }}</td>
-                              <td>{{ order.Fee }}</td>
-                              <td>{{ order.GST }}</td>
-                              <td>{{ order.GrandTotal }}</td>
-                              <td>{{ order.Created }}</td>
-                              <!-- <td>{{ order.Status }}</td> -->
-                              <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
-                              <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
-                              <td *ngIf="order.Rider"> {{order.Rider.Name}}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                  </ng-template>
-                </ngb-tab>
-            </ngb-tabset>
+                        <!-- Accepted Orders -->
+                        <ngb-tab title="Accepted">
+                            <ng-template ngbTabContent>
+                                <table class="table table-hover table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>City</th>
+                                            <th>Sub Total</th>
+                                            <th>Fee</th>
+                                            <th>GST</th>
+                                            <th>Grand Total</th>
+                                            <th>Created</th>
+                                            <th>Rider</th>
+                                            <th>Status</th>
+                                            <th>Customer</th>
+                                            <th>Order Items</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="!isLoading">
+                                        <tr *ngFor="let order of AcceptedOrders; let i = index">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td *ngIf="order.City">{{ order.City.Name }}</td>
+                                            <td>{{ order.Subtotal }}</td>
+                                            <td>{{ order.Fee }}</td>
+                                            <td>{{ order.GST }}</td>
+                                            <td>{{ order.GrandTotal }}</td>
+                                            <td>{{ order.Created }}</td>
+                                            <td *ngIf="order.Rider"> {{order.Rider.Name}}</td>
+                                            <!-- <td>{{ order.Status }}</td> -->
+                                            <td>
+                                                    <select style="background-color: inherit" [(ngModel)]="OrderStatus[i]"
+                                                    (change)="editOrderStatus(order.Id , OrderStatus[i])">
+                                                    <option [value]=2> Dispatch  </option>
+                                                    <option [value]=4> Cancelled </option>
+                                                </select>
+                                            </td>
+                                            <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
+                                            <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ng-template>
+                        </ngb-tab>
+
+                        <!-- Rider Rejected Orders -->
+                        <ngb-tab title="Rejected">
+                            <ng-template ngbTabContent>
+                                <table class="table table-hover table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>City</th>
+                                            <th>Sub Total</th>
+                                            <th>Fee</th>
+                                            <th>GST</th>
+                                            <th>Grand Total</th>
+                                            <th>Created</th>
+                                            <th>Rider</th>
+                                            <th>Re-Assign</th>
+                                            <th>Status</th>
+                                            <th>Customer</th>
+                                            <th>Order Items</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="!isLoading">
+                                        <tr *ngFor="let order of RejectedOrders; let i = index">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td *ngIf="order.City">{{ order.City.Name }}</td>
+                                            <td>{{ order.Subtotal }}</td>
+                                            <td>{{ order.Fee }}</td>
+                                            <td>{{ order.GST }}</td>
+                                            <td>{{ order.GrandTotal }}</td>
+                                            <td>{{ order.Created }}</td>
+                                            <td *ngIf="order.Rider"> {{order.Rider.Name}}</td>
+                                             <td>
+                                                    <select rider style="background-color: inherit"
+                                                    [(ngModel)]="OrderRider[i]"
+                                                    (change)="editOrderRider(order.Id , OrderRider[i])">
+                                                    <option selected hidden>Rider</option>
+                                                    <option *ngFor="let rider of riders" [value]="rider.Id">
+                                                        {{rider.Name}}
+                                                    </option>
+                                                </select>
+                                             </td>
+                                            <td>
+                                                    <select style="background-color: inherit" [(ngModel)]="OrderStatus[i]"
+                                                    (change)="editOrderStatus(order.Id , OrderStatus[i])">
+                                                    <option [value]=5> Assign </option>
+                                                    <option [value]=4> Cancelled </option>
+                                                </select>
+                                            </td>
+                                            <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
+                                            <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ng-template>
+                        </ngb-tab>
+
+                        <!-- Dispatched orders Tab  -->
+                        <ngb-tab title="Dispatched">
+                            <ng-template ngbTabContent>
+                                <table class="table table-hover table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>City</th>
+                                            <th>Sub Total</th>
+                                            <th>Fee</th>
+                                            <th>GST</th>
+                                            <th>Grand Total</th>
+                                            <th>Created</th>
+                                            <th>Status</th>
+                                            <th>Customer</th>
+                                            <th>Order Items</th>
+                                            <th>Rider</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="!isLoading">
+                                        <tr *ngFor="let order of DispatchOrders; let i = index">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td *ngIf="order.City">{{ order.City.Name }}</td>
+                                            <td>{{ order.Subtotal }}</td>
+                                            <td>{{ order.Fee }}</td>
+                                            <td>{{ order.GST }}</td>
+                                            <td>{{ order.GrandTotal }}</td>
+                                            <td>{{ order.Created }}</td>
+                                            <!-- <td>{{ order.Status }}</td> -->
+                                            <td> <select style="background-color: inherit" [(ngModel)]="OrderStatus[i]"
+                                                    (change)="editOrderStatus(order.Id , OrderStatus[i])">
+                                                    <option [value]=3> Completed </option>
+                                                    <option [value]=4> Cancelled </option>
+                                                </select>
+                                            </td>
+                                            <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
+                                            <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
+                                            <td *ngIf="order.Rider"> {{order.Rider.Name}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ng-template>
+                        </ngb-tab>
+                        <!-- Complete orders Tab  -->
+                        <ngb-tab title="Complete">
+                            <ng-template ngbTabContent>
+                                <table class="table table-hover table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>City</th>
+                                            <th>Sub Total</th>
+                                            <th>Fee</th>
+                                            <th>GST</th>
+                                            <th>Grand Total</th>
+                                            <th>Created</th>
+                                            <th>Customer</th>
+                                            <th>Order Items</th>
+                                            <th>Rider</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="!isLoading">
+                                        <tr *ngFor="let order of CompleteOrders; let i = index">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td *ngIf="order.City">{{ order.City.Name }}</td>
+                                            <td>{{ order.Subtotal }}</td>
+                                            <td>{{ order.Fee }}</td>
+                                            <td>{{ order.GST }}</td>
+                                            <td>{{ order.GrandTotal }}</td>
+                                            <td>{{ order.Created }}</td>
+                                            <!-- <td>{{ order.Status }}</td> -->
+                                            <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
+                                            <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
+                                            <td *ngIf="order.Rider"> {{order.Rider.Name}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ng-template>
+                        </ngb-tab>
+
+                        <!-- Cancel Orders Tab -->
+                        <ngb-tab title="Cancel">
+                            <ng-template ngbTabContent>
+                                <table class="table table-hover table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>City</th>
+                                            <th>Sub Total</th>
+                                            <th>Fee</th>
+                                            <th>GST</th>
+                                            <th>Grand Total</th>
+                                            <th>Created</th>
+                                            <th>Customer</th>
+                                            <th>Order Items</th>
+                                            <th>Rider</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="!isLoading">
+                                        <tr *ngFor="let order of CancelOrders; let i = index">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td *ngIf="order.City">{{ order.City.Name }}</td>
+                                            <td>{{ order.Subtotal }}</td>
+                                            <td>{{ order.Fee }}</td>
+                                            <td>{{ order.GST }}</td>
+                                            <td>{{ order.GrandTotal }}</td>
+                                            <td>{{ order.Created }}</td>
+                                            <!-- <td>{{ order.Status }}</td> -->
+                                            <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
+                                            <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>
+                                            <td *ngIf="order.Rider"> {{order.Rider.Name}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-

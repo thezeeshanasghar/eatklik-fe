@@ -20,6 +20,9 @@ export class OrderComponent implements OnInit {
   DispatchOrders : any[] = [];
   CompleteOrders : Order[]=[];
   CancelOrders : Order[]=[];
+  AssignOrders : any[]=[];
+  AcceptedOrders : any[]=[];
+  RejectedOrders : any[]=[];
   isLoading = true;
   riders : any ;
   model = new Order();
@@ -29,7 +32,7 @@ export class OrderComponent implements OnInit {
   OrderRider: any[]=[];
   RiderId : number;
   city:any;
-  Status:any=['New' , 'Active' , 'Dispatch', 'Complete' , 'Cancel'];
+  Status:any=['New' , 'Active' , 'Dispatch', 'Complete' , 'Cancel' , 'Assign' , 'Accepted', 'Rejected'];
   Method:any=['Cash' , 'Credit Card' , 'EasyPaisa', 'MobiCash'];
 
   constructor(private orderService: OrderService, private riderService: RiderService,
@@ -114,6 +117,9 @@ export class OrderComponent implements OnInit {
     this.DispatchOrders=[];
     this.CompleteOrders=[];
     this.CancelOrders=[];
+    this.AssignOrders=[];
+    this.AcceptedOrders=[];
+    this.RejectedOrders=[];
     this.getRidersByCity();
     this.orderService.getOrderByCity(Id).subscribe(
       res => {
@@ -164,6 +170,18 @@ export class OrderComponent implements OnInit {
            else if (this.orders[i].OrderStatus == 4)
            {
            this.CancelOrders.push(this.orders[i]);
+           }
+           else if (this.orders[i].OrderStatus == 5)
+           {
+           this.AssignOrders.push(this.orders[i]);
+           }
+           else if (this.orders[i].OrderStatus == 6)
+           {
+           this.AcceptedOrders.push(this.orders[i]);
+           }
+           else if (this.orders[i].OrderStatus == 7)
+           {
+           this.RejectedOrders.push(this.orders[i]);
            }
         }
         console.log(this.NewOrders);
