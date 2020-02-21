@@ -7,7 +7,7 @@
           Customer Orders
         </div>
         <div class="card-body table">
-          
+
             <!-- <div *ngFor="let order of orders;"> -->
              <div>
           <table  class="table table-hover table-striped">
@@ -18,11 +18,11 @@
                 <th>Size</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th>Total</th> 
+                <th>Total</th>
               </tr>
             </thead>
-            <tbody *ngIf="!isLoading">   
-              <tr *ngFor=" let oi of orders.OrderItems; let i = index">  
+            <tbody *ngIf="!isLoading">
+              <!-- <tr *ngFor=" let oi of orders.OrderItems; let i = index">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ oi.Name }}</td>
                 <td>{{ oi.Size }}</td>
@@ -30,7 +30,7 @@
                 <td>{{ oi.Quantity }}</td>
                 <td>{{ oi.Total }}</td>
 
-            </tr>
+            </tr> -->
             </tbody>
 
           </table>

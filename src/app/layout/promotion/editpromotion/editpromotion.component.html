@@ -5,11 +5,11 @@
       <div class="card ">
           <div class="card-header">Update Promotion </div>
       <div class="card-body" *ngIf= "!isLoading">
-          <p *ngIf="success">
+          <!-- <p *ngIf="success">
               <ngb-alert class="alert-dismissible fade show" type="success" (close)="closeAlert(alert)"> Promotion has been updated Successfully!
                 <a class="bootstrap-link"  [routerLink]="[ '/promotion' ]">Click Here</a> to view promotion list
               </ngb-alert>
-          </p>
+          </p> -->
         <form (ngSubmit)="UpdatePromotion()" #EditPromotionForm="ngForm">
           <div class="form-group">
             <label class="form-control-label" for="name"> Name</label>
@@ -17,7 +17,7 @@
             [ngClass]="{
               'is-invalid': name.invalid && (name.dirty || name.touched),
               'is-valid' : name.valid && ( name.dirty || name.touched)
-            }"> 
+            }">
             <div class="invalid-feedback" *ngIf ="name.invalid">
                 <p *ngIf="name.errors.required"> Promotion name is required </p>
                 <p *ngIf="name.errors.minlength">Promotion name should be at least 2 characters</p>
