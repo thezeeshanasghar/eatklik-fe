@@ -5,6 +5,8 @@ import { RiderService } from 'src/app/shared/services/rider.service';
 import { Order } from 'src/app/_model/order';
 import { CityService } from 'src/app/shared/services/city.service';
 import { CustomerService } from 'src/app/shared/services/customer.service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -36,11 +38,13 @@ export class OrderComponent implements OnInit {
   Method:any=['Cash' , 'Credit Card' , 'EasyPaisa', 'MobiCash'];
 
   constructor(private orderService: OrderService, private riderService: RiderService,
-    private cityService: CityService, private customerService:CustomerService, private modalService: NgbModal) { }
+    private cityService: CityService, private customerService:CustomerService,
+    private modalService: NgbModal, private spinner: NgxSpinnerService, private toastr: ToastrService) { }
 
   ngOnInit() {
   //  this.getAllOrder();
     this.getAllCity();
+
   }
 
   getAllOrder() {
@@ -111,6 +115,7 @@ export class OrderComponent implements OnInit {
 
 
   SelectByCity(Id) {
+    this.spinner.show();
     this.orders=[];
     this.NewOrders=[];
     this.ActiveOrders=[];
@@ -188,10 +193,12 @@ export class OrderComponent implements OnInit {
         console.log(this.ActiveOrders);
         console.log(this.CompleteOrders);
         console.log(this.CancelOrders);
+       this.spinner.hide();
 
       },
       err => {
         console.log(err);
+        this.spinner.hide();
       }
     );
   }
@@ -208,6 +215,7 @@ export class OrderComponent implements OnInit {
   }
 
   editOrderStatus(Id , status) {
+    this.toastr.success('Status Changed');
       this.orderService.editOrderStatus(Id, status).subscribe(
         res => {
           this.OrderStatus=[];

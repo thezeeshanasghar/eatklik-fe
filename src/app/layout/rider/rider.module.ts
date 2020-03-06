@@ -9,9 +9,10 @@ import { EditComponent } from './edit/edit.component';
 import { Rider } from 'src/app/_model/rider';
 import { Order } from 'src/app/_model/order';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
-  imports: [CommonModule, RiderRoutingModule, PageHeaderModule, FormsModule, NgbModule],
+  imports: [CommonModule, RiderRoutingModule, PageHeaderModule, FormsModule, NgbModule,NgxSpinnerModule],
   declarations: [RiderComponent, AddComponent, EditComponent ]
 })
 export class RiderModule {}

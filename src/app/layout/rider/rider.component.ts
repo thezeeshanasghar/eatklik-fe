@@ -5,6 +5,7 @@ import { CityService } from 'src/app/shared/services/city.service';
 import { routerTransition } from 'src/app/router.animations';
 import { Status } from 'src/app/_model/status';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -25,6 +26,7 @@ export class RiderComponent implements OnInit {
   constructor(
     private riderService: RiderService,
     private cityService: CityService,
+    private spinner: NgxSpinnerService,
     private modalService: NgbModal) {}
 
   ngOnInit() {
@@ -53,6 +55,7 @@ export class RiderComponent implements OnInit {
   }
 
   getRidersByCity(Id) {
+    this.spinner.show();
     this.riderService.getRidersByCity(Id).subscribe(
       res => {
         this.riders = res;
@@ -71,6 +74,7 @@ export class RiderComponent implements OnInit {
       },
       () => {}
     );
+    this.spinner.hide();
   }
 
   getCity() {

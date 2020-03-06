@@ -8,6 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpErrorMsgsService} from './shared/services/http-error-msgs.service';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -19,9 +22,11 @@ CommonModule,
         BrowserAnimationsModule,
         HttpClientModule,
         LanguageTranslationModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxSpinnerModule,
+    ToastrModule.forRoot()
   ],
-  providers: [AuthGuard, HttpErrorMsgsService],
+  providers: [AuthGuard, HttpErrorMsgsService, ToastrModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
