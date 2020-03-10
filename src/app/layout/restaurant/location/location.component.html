@@ -27,8 +27,7 @@
                   <td>{{ restaurantLocation.Address }}</td>
                   <td>{{ restaurantLocation.Latitude }}</td>
                   <td>{{ restaurantLocation.Longitude }}</td>
-                  <td>10 km</td>
-
+                  <td>{{restaurantLocation.DelRadius}}</td>
                   <td>
                     <a [routerLink]="['edit', restaurantLocation.Id]"> <i class="fa fa-pencil-square-o fa-lg"></i></a>&nbsp;
                     <i class="fa fa-trash-o fa-lg" style="cursor: pointer" (click)="open(content, restaurantLocation.Id)"></i>
