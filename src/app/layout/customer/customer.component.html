@@ -4,7 +4,7 @@
     <div class="col col-xl-12 col-lg-12">
         <div class=" breadcrumb">
             <label > Select by City</label>
-           <select  style = "background-color: inherit; margin-left: 8px" [(ngModel)]="CityId" (change) = "getCustomerByCity(CityId)"> 
+           <select  style = "background-color: inherit; margin-left: 8px" [(ngModel)]="CityId" (change) = "getCustomerByCity(CityId)">
              <option selected hidden> Select by City </option>
              <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
            </select>
@@ -75,3 +75,11 @@
     <button type="button" class="btn btn-secondary" (click)="c('No')">No</button>
   </div>
 </ng-template>
+<ngx-spinner
+bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+type="ball-scale-multiple"
+>
+<p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

@@ -8,9 +8,10 @@ import { AddComponent } from './add/add.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditComponent } from './/edit/edit.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [CustomerComponent, AddComponent, EditComponent],
-  imports: [CommonModule, CustomerRoutingModule, PageHeaderModule, FormsModule, NgbModule]
+  imports: [CommonModule, CustomerRoutingModule, PageHeaderModule, FormsModule, NgbModule,NgxSpinnerModule]
 })
 export class CustomerModule {}

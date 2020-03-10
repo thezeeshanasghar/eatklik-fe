@@ -3,6 +3,7 @@ import { CustomerService } from 'src/app/shared/services/customer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CityService } from 'src/app/shared/services/city.service';
 import { Customer } from 'src/app/_model/customer';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -15,7 +16,7 @@ export class CustomerComponent implements OnInit {
   isLoading = true;
   cities : any ;
   CityId : number ;
-  constructor(private customerService: CustomerService, private modalService: NgbModal, private cityService: CityService) {}
+  constructor(private customerService: CustomerService, private modalService: NgbModal, private cityService: CityService, private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
     this.getCity();
@@ -41,6 +42,7 @@ export class CustomerComponent implements OnInit {
   }
 
   getCustomerByCity(Id) {
+    this.spinner.show();
     this.customerService.getCustomerByCity(Id).subscribe(
       res => {
         this.customers = res;
@@ -57,6 +59,7 @@ export class CustomerComponent implements OnInit {
         console.log(err);
       }
     );
+    this.spinner.hide();
   }
 
   getCustomerById(Id) {
