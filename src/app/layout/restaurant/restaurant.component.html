@@ -63,9 +63,9 @@
                   <a routerLink="{{restaurant.Id}}/menu" placement="bottom" ngbTooltip="Restaurant Menu">
                     <i class="fa fa-list fa-lg"></i>
                   </a>
-                  <a routerLink="{{restaurant.Id}}/extraitem" placement="bottom" ngbTooltip="Extra Items Details">
+                  <!-- <a routerLink="{{restaurant.Id}}/extraitem" placement="bottom" ngbTooltip="Extra Items Details">
                     <i class="fa fa-shopping-cart fa-lg"></i>
-                  </a>&nbsp;
+                  </a>&nbsp; -->
                 </td>
                 <td>
                     <select [ngClass]="{'btn-danger': restaurant.Status == 1}" class="btn btn-success btn-sm"  [(ngModel)]= "restaurant.Status" (change) = "editRestaurantSponsor(restaurant.Id , restaurant.Status)">

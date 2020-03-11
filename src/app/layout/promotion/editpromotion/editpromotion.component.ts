@@ -6,7 +6,7 @@ import { CityService } from '../../../shared/services/city.service';
 import { City } from 'src/app/_model/city';
 import { Promotion } from 'src/app/_model/promotion';
 import { PromotionService } from '../../../shared/services/promotion.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-editpromotion',
   templateUrl: './editpromotion.component.html',
@@ -20,7 +20,8 @@ export class EditpromotionComponent implements OnInit {
   isLoading = true;
   cities: City[];
   success = false;
-  constructor(private activatedRoute: ActivatedRoute, private promotionService: PromotionService, private cityService: CityService) { }
+  constructor(private activatedRoute: ActivatedRoute, private promotionService: PromotionService, private cityService: CityService,
+    private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(promo => {this.promoId =  promo.id; });
@@ -38,7 +39,7 @@ export class EditpromotionComponent implements OnInit {
       );
   }
   UpdatePromotion() {
-    this.promotionService.UpdatePromotion(this.promotion).subscribe(promo => {promo = promo, this.success = true; },
+    this.promotionService.UpdatePromotion(this.promotion).subscribe(promo => {promo = promo, this.success = true; this.router.navigate(['/promotion']); },
         err => {
           console.log(err);
         }
