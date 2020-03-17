@@ -36,8 +36,8 @@
             <!-- *ngIf="!isLoading" -->
             <tbody >
               <tr *ngFor="let customer of customers; let i = index" [ngClass]="{
-                'table-success': customer.Status === 0,
-                'table-danger': customer.Status === 1
+                'table-success': customer.Status === 1,
+                'table-danger': customer.Status === 0
               }">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ customer.Name }}</td>
