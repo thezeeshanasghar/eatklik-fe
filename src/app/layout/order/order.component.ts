@@ -232,7 +232,7 @@ export class OrderComponent implements OnInit {
   getAllCity() {
     this.cityService.getAll().subscribe(
       cities => {
-        this.cities = cities;
+        this.cities = cities.filter(x=>x.Status==0);
         console.log(this.cities);
       },
       err => {

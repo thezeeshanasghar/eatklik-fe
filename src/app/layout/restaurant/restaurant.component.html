@@ -48,7 +48,10 @@
                     <img class="small-image" [src]="resourceURL + restaurant.LogoImagePath" />
                   </a>
                 </td>
-                <td>
+                <td [ngClass]="{
+                  'disabled':restaurant.Status == 0 || restaurant.Status == false
+                }" >
+                 
                   <a routerLink="{{restaurant.Id}}/location" placement="bottom" ngbTooltip="Manage Restaurant Location">
                     <i class="fa fa-map-marker fa-lg"></i>
                   </a>&nbsp;
@@ -87,7 +90,7 @@
                       <div class="tg-list-item">
                         <input class="tgl tgl-light" id="Sponsored-{{i}}"  type="checkbox" [(ngModel)]= "restaurant.IsSponsor"  (change) = "editRestaurantSponsor(restaurant.Id , restaurant.IsSponsor)" />
                         <label class="tgl-btn" for="Sponsored-{{i}}"></label>
-                      </div>*
+                      </div>
                       
                 </td>
                 <td>
