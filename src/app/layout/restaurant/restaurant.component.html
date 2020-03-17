@@ -87,7 +87,8 @@
                       <div class="tg-list-item">
                         <input class="tgl tgl-light" id="Sponsored-{{i}}"  type="checkbox" [(ngModel)]= "restaurant.IsSponsor"  (change) = "editRestaurantSponsor(restaurant.Id , restaurant.IsSponsor)" />
                         <label class="tgl-btn" for="Sponsored-{{i}}"></label>
-                      </div>
+                      </div>*
+                      
                 </td>
                 <td>
                   <a routerLink="edit/{{restaurant.Id}}"><i class="fa fa-pencil"></i></a>&nbsp;
