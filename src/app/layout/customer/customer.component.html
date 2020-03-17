@@ -2,15 +2,16 @@
   <app-page-header [heading]="'Customers'" [icon]="'fa-table'"></app-page-header>
   <div class="row">
     <div class="col col-xl-12 col-lg-12">
-        <div class=" breadcrumb">
+        <!-- <div class=" breadcrumb">
             <label > Select by City</label>
            <select  style = "background-color: inherit; margin-left: 8px" [(ngModel)]="CityId" (change) = "getCustomerByCity(CityId)">
              <option selected hidden> Select by City </option>
              <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
            </select>
-          </div>
-          <div [ngClass]="{'d-none': CityId != null}" class="text-center alert alert-info">Please Select City First</div>
-      <div [ngClass]="{'d-none': CityId == null}" class="card mb-3">
+          </div> -->
+          <!-- <div [ngClass]="{'d-none': CityId != null}" class="text-center alert alert-info">Please Select City First</div> -->
+          <!-- [ngClass]="{'d-none': CityId == null}" -->
+          <div class="card mb-3">
         <div class="card-header">
           List of all Customers
           <div class="pull-right">
@@ -26,13 +27,14 @@
                 <th>Email</th>
                 <th>Image</th>
                 <th>Address</th>
-                <th>City Name</th>
+                <!-- <th>City Name</th> -->
                 <th>Mobile Number</th>
                 <th>Orders</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
-            <tbody *ngIf="!isLoading">
+            <!-- *ngIf="!isLoading" -->
+            <tbody >
               <tr *ngFor="let customer of customers; let i = index" [ngClass]="{
                 'table-success': customer.Status === 0,
                 'table-danger': customer.Status === 1
@@ -42,7 +44,7 @@
                 <td>{{ customer.Email }}</td>
                 <td><img class="small-image" [src]="customer.ImagePath" /></td>
                 <td>{{customer.Address }}</td>
-                <td *ngIf="customer.City">{{customer.City.Name}}</td>
+                <!-- <td *ngIf="customer.City">{{customer.City.Name}}</td> -->
                 <td>{{customer.MobileNumber}}</td>
                 <td><a routerLink="{{customer.Id}}/orders" placement="bottom" ngbTooltip="View Customer Orders">
                   <i class="fa fa-shopping-cart fa-lg"></i>

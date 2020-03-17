@@ -28,14 +28,14 @@
             [(ngModel)]="model.Status" />Disable<br />
         </div>&nbsp;
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label>City</label>
           <select class="form-control" [(ngModel)]="model.CityId" #promotion.city.Name="ngModel"
             [ngModelOptions]="{standalone: true}">
             <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
           </select>
 
-        </div>
+        </div> -->
        
         <div class="form-group">
           <input type="tel" class="form-control" placeholder="Mobile Number" [(ngModel)]="model.MobileNumber"
