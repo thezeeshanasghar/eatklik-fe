@@ -20,15 +20,22 @@
               <p *ngIf="name.errors.minlength"> city name should be at least 3 chracters </p>
             </div>
           </div>
+          <div class="form-group">
+          <label class="form-control-label" for="name">Status</label>
+          <div class="tg-list-item">
 
-          <div class="btn-group btn-group-toggle mb-3" ngbRadioGroup name="radioBasic" [(ngModel)]="city.Status">
-            <label ngbButtonLabel class="btn-primary">
-              <input ngbButton type="radio" [value]="0"> Enable
-            </label>
-            <label ngbButtonLabel class="btn-primary">
-              <input ngbButton type="radio" value="1"> Disable
-            </label>
+            <input class="tgl tgl-light" id="check"  type="checkbox" checked  [(ngModel)]="city.Status"/>
+            <label class="tgl-btn" for="check"></label>
           </div>
+          </div>
+          <!-- <div class="btn-group btn-group-toggle mb-3" ngbRadioGroup name="radioBasic" [(ngModel)]="city.Status">
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" [value]="1"> Enable
+            </label>
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="0"> Disable
+            </label>
+          </div> -->
 
           <div class="row">
             <div class="form-group col-md-6">

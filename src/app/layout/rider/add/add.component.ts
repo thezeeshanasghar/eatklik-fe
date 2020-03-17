@@ -26,7 +26,7 @@ export class AddComponent implements OnInit {
   getCities() {
     this.cityService.getAll().subscribe(
       cities => {
-        this.cities = cities.filter(x=>x.Status==0);
+        this.cities = cities.filter(x=>x.Status==1);
       },
       err => {
         console.log(err);

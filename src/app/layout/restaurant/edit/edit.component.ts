@@ -34,7 +34,7 @@ export class EditComponent implements OnInit {
   getCity() {
     this.cityService.getAll().subscribe(
       cities => {
-        this.cities = cities.filter(x=>x.Status==0);
+        this.cities = cities.filter(x=>x.Status==1);
         console.log(this.cities);
       },
       err => {
