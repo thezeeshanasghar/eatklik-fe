@@ -26,12 +26,13 @@ export class RestaurantComponent implements OnInit {
 
   ngOnInit() {
     this.getCity();
+    
   }
 
   getCity() {
     this.cityService.getAll().subscribe(
       cities => {
-        this.cities = cities;
+        this.cities = cities.filter(x=>x.Status==1);
         console.log(this.cities);
       },
       err => {
@@ -64,6 +65,7 @@ export class RestaurantComponent implements OnInit {
   getRestaurantsByCity(Id) {
     this.restaurantService.getByCity(Id).subscribe(
       res => {
+        console.log(res);
         this.restaurants = res;
         for (let i = 0; i < this.restaurants.length; i++) {
           this.cityService.getCity(this.restaurants[i].CityId).subscribe(data => {
@@ -82,12 +84,12 @@ export class RestaurantComponent implements OnInit {
     );
   }
   editRestaurantStatus(Id , status) {
-
-
+console.log(Id,status)
+status=status==true?1:0;
     this.restaurantService.editRestaurantStatus(Id, status).subscribe(
       res => {
 
-       // this.getRestaurantsByCity(this.CityId);
+      //  this.getRestaurantsByCity(this.CityId);
       },
     err => {
       console.log(err);

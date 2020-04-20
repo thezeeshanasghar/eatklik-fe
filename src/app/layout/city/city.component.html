@@ -22,8 +22,8 @@
             </thead>
             <tbody *ngIf="!isLoading">
               <tr *ngFor="let city of cities; let i = index" [ngClass]="{
-                'table-success': city.Status === 0,
-                'table-danger': city.Status === 1
+                'table-success': city.Status === 1,
+                'table-danger': city.Status === 0
               }">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ city.Name }}</td>

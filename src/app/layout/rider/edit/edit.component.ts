@@ -26,7 +26,7 @@ export class EditComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(rider => { this.riderid = rider.id; });
-    this.cityService.getAll().subscribe(cities => { this.cities = cities; });
+    this.cityService.getAll().subscribe(cities => { this.cities = cities.filter(x=>x.Status==1); });
     this.getRiderByid();
   }
 

@@ -40,11 +40,19 @@
               </div>
 
             </div>
-            <img id="Img" [src]="model.ImagePath" alt="abb"><br>
-            <input name="options" type="radio" [value]=0 [checked]="model.Status==0"
+            <img id="Img" [src]="model.ImagePath" alt="Image"><br>
+            <!-- <input name="options" type="radio" [value]=0 [checked]="model.Status==0"
               [(ngModel)]="model.Status" />Enable<br />
             <input name="options" type="radio" [value]=1 [checked]="model.Status==1"
-              [(ngModel)]="model.Status" />Disable<br />
+              [(ngModel)]="model.Status" />Disable<br /> -->
+         
+                <label class="form-control-label" for="check">Status</label>
+                <div class="tg-list-item">
+      
+                  <input class="tgl tgl-light" id="check" name="Status"  type="checkbox" checked  [(ngModel)]="model.Status" [checked]="model.Status==1"/>
+                  <label class="tgl-btn" for="check" ></label>
+                </div>
+               
 
             <div class="row" style="margin-bottom:15px;">
               <button type="button" class="btn btn-dark Button" (click)="editCity()"

@@ -48,27 +48,27 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label class="form-control-label" for="DelRadius">Radius</label>
-                  <input type="text" class="form-control" id="DelRadius" name="DelRadius" required #DelRadius="ngModel"
-                    [(ngModel)]="restaurantLocation.DelRadius" [ngClass]="{
-                      'is-invalid': DelRadius.invalid && (DelRadius.dirty || DelRadius.touched),
-                      'is-valid': DelRadius.valid && (DelRadius.dirty || DelRadius.touched)
-                    }">
-                  <div class="invalid-feedback" *ngIf="DelRadius.invalid">
-                    <p *ngIf="DelRadius.errors.required"> Radius is required </p>
-                  </div>
-                </div>
-               </div>
-            </div>
-            <div class="form-group">
+           
+            <!-- <div class="form-group">
                 <label class="form-control-label" for="Address">Radius</label>
                 <input type="text" class="form-control" >
-                </div>
+                </div> -->
           </div>
-
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="DelRadius">Radius</label>
+                <input type="text" class="form-control" id="DelRadius" name="DelRadius" required #DelRadius="ngModel"
+                  [(ngModel)]="restaurantLocation.DelRadius" [ngClass]="{
+                    'is-invalid': DelRadius.invalid && (DelRadius.dirty || DelRadius.touched),
+                    'is-valid': DelRadius.valid && (DelRadius.dirty || DelRadius.touched)
+                  }">
+                <div class="invalid-feedback" *ngIf="DelRadius.invalid">
+                  <p *ngIf="DelRadius.errors.required"> Radius is required </p>
+                </div>
+              </div>
+             </div>
+          </div>
           <!-- <div class="form-group">
             <label>City</label>
             <select class="form-control" [(ngModel)]="restaurantLocation.CityId" name="City">

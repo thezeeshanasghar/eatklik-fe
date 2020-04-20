@@ -5,11 +5,11 @@
 export const environment = {
   production: false,
 
-  //  BASE_URL: 'http://localhost:5000/api/',
-  //  RESOURCES_URL: 'http://localhost:5000/',
+   BASE_URL: 'http://localhost:5000/api/',
+   RESOURCES_URL: 'http://localhost:5000/',
 
-   BASE_URL: 'http://15.206.164.188:5002/api/',
-   RESOURCES_URL: 'http://15.206.164.188:5002/',
+  //  BASE_URL: 'http://15.206.164.188:5002/api/',
+  //  RESOURCES_URL: 'http://15.206.164.188:5002/',
 
   APP_NAME: 'Eatklik Admin'
 };

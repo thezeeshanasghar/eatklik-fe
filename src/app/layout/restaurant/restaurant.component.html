@@ -48,7 +48,10 @@
                     <img class="small-image" [src]="resourceURL + restaurant.LogoImagePath" />
                   </a>
                 </td>
-                <td>
+                <td [ngClass]="{
+                  'disabled':restaurant.Status == 0 || restaurant.Status == false
+                }" >
+                 
                   <a routerLink="{{restaurant.Id}}/location" placement="bottom" ngbTooltip="Manage Restaurant Location">
                     <i class="fa fa-map-marker fa-lg"></i>
                   </a>&nbsp;
@@ -68,16 +71,27 @@
                   </a>&nbsp; -->
                 </td>
                 <td>
-                    <select [ngClass]="{'btn-danger': restaurant.Status == 1}" class="btn btn-success btn-sm"  [(ngModel)]= "restaurant.Status" (change) = "editRestaurantSponsor(restaurant.Id , restaurant.Status)">
+            
+                    <!-- <select [ngClass]="{'btn-danger': restaurant.Status == 1}" class="btn btn-success btn-sm"  [(ngModel)]= "restaurant.Status" (change) = "editRestaurantSponsor(restaurant.Id , restaurant.Status)">
                         <option  [value]="0"> Open</option>
                         <option  [value]="1">Close</option>
-                      </select>
+                      </select> -->
+                      <div class="tg-list-item">
+                        <input class="tgl tgl-light" id="{{i}}"  type="checkbox"  [(ngModel)]= "restaurant.Status"  (change) = "editRestaurantStatus(restaurant.Id , restaurant.Status)" />
+                        <label class="tgl-btn" for="{{i}}"></label>
+                      </div>
+                   
                 </td>
                 <td>
-                    <select [ngClass]="{'btn-primary': restaurant.IsSponsor == 0}" class="btn btn-success btn-sm"  [(ngModel)]= "restaurant.IsSponsor" (change) = "editRestaurantSponsor(restaurant.Id , restaurant.IsSponsor)">
+                    <!-- <select [ngClass]="{'btn-primary': restaurant.IsSponsor == 0}" class="btn btn-success btn-sm"  [(ngModel)]= "restaurant.IsSponsor" (change) = "editRestaurantSponsor(restaurant.Id , restaurant.IsSponsor)">
                         <option  [value]="true"> Sponsored</option>
                         <option  [value]="false">Non Sponsored</option>
-                      </select>
+                      </select> -->
+                      <div class="tg-list-item">
+                        <input class="tgl tgl-light" id="Sponsored-{{i}}"  type="checkbox" [(ngModel)]= "restaurant.IsSponsor"  (change) = "editRestaurantSponsor(restaurant.Id , restaurant.IsSponsor)" />
+                        <label class="tgl-btn" for="Sponsored-{{i}}"></label>
+                      </div>
+                      
                 </td>
                 <td>
                   <a routerLink="edit/{{restaurant.Id}}"><i class="fa fa-pencil"></i></a>&nbsp;

@@ -20,20 +20,21 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit() {
     this.getCity();
+    this.getAllCustomer();
   }
 
   getAllCustomer() {
     this.customerService.getAllCustomer().subscribe(
       res => {
         this.customers = res;
-        for (let i = 0; i < this.customers.length; i++) {
-          this.cityService.getCity(this.customers[i].CityId).subscribe(data => {
-            this.customers[i].City = data;
-            if (i === this.customers.length - 1) {
-              this.isLoading = false;
-            }
-          });
-        }
+        // for (let i = 0; i < this.customers.length; i++) {
+        //   this.cityService.getCity(this.customers[i].CityId).subscribe(data => {
+        //     this.customers[i].City = data;
+        //     if (i === this.customers.length - 1) {
+        //       this.isLoading = false;
+        //     }
+        //   });
+        // }
       },
       err => {
         console.log(err);
