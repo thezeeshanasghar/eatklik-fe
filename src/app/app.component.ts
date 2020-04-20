@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ek-fe';
+  ngint()
+  {
+    console.log("Hello");
+  }
 }
