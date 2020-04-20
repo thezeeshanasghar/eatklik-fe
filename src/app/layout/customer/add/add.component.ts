@@ -43,7 +43,20 @@ export class AddComponent implements OnInit {
   async addNewCustomer() {
     await this.customerService.addCustomer(this.model).subscribe(
       res => {
-        this.router.navigate(['/customer']);
+        console.log(res);
+      
+
+        //  this.customerService.addCustomer(this.model).subscribe(
+        //   res => {
+        //     console.log(res);
+        //     // this.router.navigate(['/customer']);
+        //   },
+        //   err => {
+        //     console.log(err);
+        //   }
+        // );
+
+
       },
       err => {
         console.log(err);
