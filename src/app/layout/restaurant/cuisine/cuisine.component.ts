@@ -51,10 +51,10 @@ export class CuisineComponent implements OnInit {
     );
   }
 
-  open(content, Id: string) {
+  open(content, resId: string, cuId: string) {
     this.modalService.open(content).result.then(result => {
       if (result === 'Yes') {
-        this.restaurantCuisineService.deleteCuisine(Id).subscribe(
+        this.restaurantCuisineService.deleteCuisine(resId , cuId).subscribe(
           res => {
             this.getCuisine();
           },

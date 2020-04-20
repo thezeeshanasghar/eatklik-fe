@@ -26,8 +26,8 @@ export class RestaurantCuisineService extends BaseService {
     return this.http.post(url, data, this.httpOptions).pipe(catchError(this.handleError));
   }
 
-  deleteCuisine(id: string): Observable<any> {
-    const url = `${this.API_RESTAURANT + 'cuisine/'}${id}`;
+  deleteCuisine(resid: string, cuid: string): Observable<any> {
+    const url = `${this.API_RESTAURANT + 'cuisine/'}${resid}/${cuid}`;
     return this.http.delete(url, this.httpOptions).pipe(catchError(this.handleError));
   }
 }
