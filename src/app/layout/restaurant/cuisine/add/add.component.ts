@@ -5,6 +5,7 @@ import { RestaurantCuisine } from 'src/app/_model/restaurant_cuisine';
 import { ActivatedRoute } from '@angular/router';
 import { RestaurantCuisineService } from 'src/app/shared/services/restaurant-cuisine.service';
 import { routerTransition } from 'src/app/router.animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -19,7 +20,8 @@ export class AddComponent implements OnInit {
   constructor(
     private restaurantCuisineService: RestaurantCuisineService,
     private cuisineService: CuisineService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router:Router
   ) {}
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class AddComponent implements OnInit {
     this.restaurantCuisine.CuisineId = Number(this.restaurantCuisine.CuisineId);
     this.restaurantCuisineService.addNewCuisine(this.restaurantCuisine.RestaurantId, this.restaurantCuisine).subscribe(
       res => {
-        //this.router.navigate(['/restaurant']);
+        this.router.navigate(['/restaurant']);
       },
       err => {
         console.log(err);
