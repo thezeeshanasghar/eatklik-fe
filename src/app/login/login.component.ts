@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
       this.resourceURL = environment.RESOURCES_URL;
     }
     
-  onLoggedin(Email,Password) {
+  onLoggedin() {
     // localStorage.setItem('isLoggedin', 'true');
       console.log("**************************")
       var Email:any = ((document.getElementById("Email") as HTMLInputElement).value);

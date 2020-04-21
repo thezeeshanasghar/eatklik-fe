@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class HeaderComponent implements OnInit {
   public pushRightClass: string;
     APP_NAME: string;
+    user : any;
 
   constructor(private translate: TranslateService, public router: Router) {
     this.APP_NAME = environment.APP_NAME;
@@ -24,6 +25,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.pushRightClass = 'push-right';
+    this.user = JSON.parse(localStorage.getItem('User'));
+    console.log(this.user);
   }
 
   isToggled(): boolean {
@@ -43,6 +46,7 @@ export class HeaderComponent implements OnInit {
 
   onLoggedout() {
     localStorage.removeItem('isLoggedin');
+    localStorage.removeItem('User');
   }
 
   changeLang(language: string) {
