@@ -47,7 +47,7 @@
                                             <td>{{ order.GST }}</td>
                                             <td>{{ order.GrandTotal }}</td>
                                             <td>{{ Method[order.PayMethod] }}</td>
-                                            <td>{{ order.Created }}</td>
+                                            <td>{{ order.Created | date : 'short' }}</td>
                                             <td>{{ Status[order.OrderStatus] }}</td>
                                             <td *ngIf="order.Customer">{{ order.Customer.Name }}</td>
                                             <td><a routerLink="{{order.Id}}">view Items</a>&nbsp;</td>

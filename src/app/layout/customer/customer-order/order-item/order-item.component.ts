@@ -3,6 +3,7 @@ import { CustomerService } from 'src/app/shared/services/customer.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Order } from 'src/app/_model/order';
+import { OrderItem } from 'src/app/_model/order_item';
 @Component({
   selector: 'app-order-item',
   templateUrl: './order-item.component.html',
@@ -10,6 +11,7 @@ import { Order } from 'src/app/_model/order';
 })
 export class OrderItemComponent implements OnInit {
   orders: Order[];
+  orderitems: OrderItem[];
   isLoading = true;
 
   constructor(
@@ -23,9 +25,9 @@ export class OrderItemComponent implements OnInit {
   getCustomerOrders(Id: number) {
     this.customerService.getOrderById(Id).subscribe(
       res => {
-       this.orders = res;
+       this.orders = res as Order[];
         this.isLoading = false;
-        console.log(this.orders);
+       // console.log(this.orders.OrderItems);
       },
       err => {
         console.log(err);

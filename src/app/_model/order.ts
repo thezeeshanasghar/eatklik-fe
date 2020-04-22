@@ -2,6 +2,7 @@
 import { City } from './city';
 import { Customer } from 'src/app/_model/customer';
 import { Rider } from './rider';
+import {OrderItem} from './order_item';
 export class Order {
   public Id: number;
   public Subtotal: number;
@@ -13,7 +14,7 @@ export class Order {
   public PayMethod: number;
   public Instruction: string;
   public CustomerId: number;
-  public OrderItems: any;
+  public OrderItems: OrderItem;
   public OrderStatus: number;
   public RiderId: number;
   public CityId: number;
