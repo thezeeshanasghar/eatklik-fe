@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Customer } from 'src/app/_model/customer';
 import { Order } from 'src/app/_model/order';
+import { OrderItem } from 'src/app/_model/order_item';
 
 @Injectable({
   providedIn: 'root'
@@ -51,8 +52,8 @@ export class CustomerService extends BaseService {
     const url = `${this.API_Customer}${Id}/orders`;
     return this.http.get<Order[]>(url, this.httpOptions).pipe(catchError(this.handleError));
 }
-  getOrderById(Id: number): Observable<Order[]> {
-  const url = `${this.API_Order}${Id}`;
-  return this.http.get<Order[]>(url, this.httpOptions).pipe(catchError(this.handleError));
+  getOrderItemById(Id: number): Observable<OrderItem[]> {
+  const url = `${this.API_Order}orderitem/${Id}`;
+  return this.http.get<OrderItem[]>(url, this.httpOptions).pipe(catchError(this.handleError));
 }
 }

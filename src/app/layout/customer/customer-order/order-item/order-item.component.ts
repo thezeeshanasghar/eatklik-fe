@@ -10,7 +10,6 @@ import { OrderItem } from 'src/app/_model/order_item';
   styleUrls: ['./order-item.component.scss']
 })
 export class OrderItemComponent implements OnInit {
-  orders: Order[];
   orderitems: OrderItem[];
   isLoading = true;
 
@@ -23,9 +22,9 @@ export class OrderItemComponent implements OnInit {
    this.getCustomerOrders(Number(this.activatedRoute.snapshot.paramMap.get('Id')));
   }
   getCustomerOrders(Id: number) {
-    this.customerService.getOrderById(Id).subscribe(
+    this.customerService.getOrderItemById(Id).subscribe(
       res => {
-       this.orders = res as Order[];
+       this.orderitems = res;
         this.isLoading = false;
        // console.log(this.orders.OrderItems);
       },

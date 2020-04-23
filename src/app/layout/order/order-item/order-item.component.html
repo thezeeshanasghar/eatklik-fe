@@ -22,17 +22,16 @@
               </tr>
             </thead>
             <tbody *ngIf="!isLoading">
-              <!-- <tr *ngFor=" let oi of orders.OrderItems; let i = index">
+              <tr *ngFor=" let oi of orderitems; let i = index">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ oi.Name }}</td>
                 <td>{{ oi.Size }}</td>
                 <td>{{ oi.Price }}</td>
                 <td>{{ oi.Quantity }}</td>
-                <td>{{ oi.Total }}</td> -->
+                <td>{{ oi.Total }}</td>
 
-            <!-- </tr> -->
+             </tr>
             </tbody>
-
           </table>
         </div>
       </div>
