@@ -4,7 +4,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CityService } from 'src/app/shared/services/city.service';
 import { Customer } from 'src/app/_model/customer';
 import { NgxSpinnerService } from "ngx-spinner";
-
+import {ToastrService} from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-customer',
@@ -16,11 +17,14 @@ export class CustomerComponent implements OnInit {
   isLoading = true;
   cities : any ;
   CityId : number ;
-  constructor(private customerService: CustomerService, private modalService: NgbModal, private cityService: CityService, private spinner: NgxSpinnerService) {}
+  resourceURL:string;
+  constructor(private customerService: CustomerService, private modalService: NgbModal, private cityService: CityService, private spinner: NgxSpinnerService,private toastr: ToastrService) {}
 
   ngOnInit() {
     this.getCity();
     this.getAllCustomer();
+    this.resourceURL = environment.RESOURCES_URL;
+
   }
 
   getAllCustomer() {
@@ -99,8 +103,12 @@ export class CustomerComponent implements OnInit {
         this.customerService.deleteCustomer(Id).subscribe(
           res => {
             this.getCustomerByCity(this.CityId);
+            this.toastr.success("Customer with Id="+Id+" Deleted Successfully")
+
           },
           err => {
+            this.toastr.error("Something bad happened, please try again later");
+
             console.log(err);
           }
         );

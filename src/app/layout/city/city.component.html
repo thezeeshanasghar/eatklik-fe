@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="card-body table">
-          <table class="table table-hover table-striped text-center">
+          <table  #datatable class="table row-border hover table-sm"   >
             <thead>
               <tr>
                 <th>#</th>
@@ -27,8 +27,8 @@
               }">
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ city.Name }}</td>
-                <td><img class="small-image" [src]="resourceURL + city.ImagePath" alt="no image" /></td>
-                <td><img class="small-image" [src]="resourceURL + city.CoverImagePath" alt="no image" /></td>
+                <td><img class="small-image img-Custom" [src]="   (city.ImagePath?resourceURL+ city.ImagePath : 'assets/images/no-img.png')"  alt="no image" /></td>
+                <td><img class="small-image img-Custom"  [src]="  (city.CoverImagePath? resourceURL+city.CoverImagePath : 'assets/images/no-img.png')" alt="no image" /></td>
                 <td>
                   <a routerLink="edit/{{city.Id}}"> <i class="fa fa-pencil"></i> </a>&nbsp;
                   <i (click)="open(content, city.Id)" class="fa fa-trash" style="cursor: pointer"></i>
@@ -58,3 +58,4 @@
     <button type="button" class="btn btn-secondary" (click)="c('No')">No</button>
   </div>
 </ng-template>
+

@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="card-body table">
-          <table class="table table-hover table-striped text-center">
+          <table class="table table-hover table-striped text-center table-sm">
             <thead>
               <tr>
                 <th>#</th>
@@ -42,7 +42,7 @@
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ customer.Name }}</td>
                 <td>{{ customer.Email }}</td>
-                <td><img class="small-image" [src]="customer.ImagePath" /></td>
+                <td><img class="small-image img-Custom" [src]="customer.ImagePath?customer.ImagePath:'assets/images/no-img.png'" /></td>
                 <td>{{customer.Address }}</td>
                 <!-- <td *ngIf="customer.City">{{customer.City.Name}}</td> -->
                 <td>{{customer.MobileNumber}}</td>

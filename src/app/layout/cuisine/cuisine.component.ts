@@ -4,7 +4,7 @@ import { Cuisine } from 'src/app/_model/cuisine';
 import { CuisineService } from 'src/app/shared/services/cuisine.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
-
+import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: 'app-cuisine',
   templateUrl: './cuisine.component.html',
@@ -17,7 +17,7 @@ export class CuisineComponent implements OnInit {
   resourceURL: String;
 
   constructor(
-    private cuisineService: CuisineService, private modalService: NgbModal) {
+    private cuisineService: CuisineService, private modalService: NgbModal,private toastr: ToastrService) {
       this.resourceURL = environment.RESOURCES_URL;
     }
 
@@ -44,8 +44,13 @@ export class CuisineComponent implements OnInit {
         this.cuisineService.deleteCuisine(Id).subscribe(
           res => {
             this.getCuisines();
+            this.toastr.success("Cuisine with Id="+Id+" Deleted Successfully")
+
+
           },
           err => {
+            this.toastr.error("Something bad happened, please try again later");
+
             console.log(err);
           }
         );

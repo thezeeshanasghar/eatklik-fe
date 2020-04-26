@@ -16,12 +16,17 @@ export class EditComponent implements OnInit {
   public message: string;
   public message1: string;
   public uploadProgress: number;
+  resourceURL: string;
+
   @Output() public onUploadFinished = new EventEmitter();
 
   cities: City;
   model = new City();
   id: any;
-  constructor(private activatedRoute: ActivatedRoute, public router: Router, private cityService: CityService, private http: HttpClient) {}
+  constructor(private activatedRoute: ActivatedRoute, public router: Router, private cityService: CityService, private http: HttpClient) {
+    this.resourceURL = environment.RESOURCES_URL;
+
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(paramsId => {
@@ -81,7 +86,7 @@ export class EditComponent implements OnInit {
     this.cityService.getCity(this.id).subscribe(
       res => {
         this.model = res as City;
-
+console.log(this.model);
       },
       err => {
         console.log(err);

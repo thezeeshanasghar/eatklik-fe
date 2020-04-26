@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EditComponent implements OnInit {
   public progress: number;
   public message: string;
+  public resourceURL :string; 
   @Output() public onUploadFinished = new EventEmitter();
 
   model = new Cuisine();
@@ -27,6 +28,8 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(paramsId => {
       this.id = paramsId.id;
+      this.resourceURL = environment.RESOURCES_URL;
+
     });
     this.getCuisineByid();
   }

@@ -24,6 +24,8 @@
                   {{message}}
                 </span>
               </div>
+              <img id="Img" [src]="resourceURL+model.ImagePath" alt="Image"><br>
+
               <div>
                 <input type="file" #cover placeholder="Choose file" (change)="uploadCover(cover.files)"
                   style="display:none;">
@@ -38,9 +40,9 @@
                   {{message1}}
                 </span>
               </div>
+              <img id="Img" [src]="resourceURL+model.CoverImagePath" alt="Image"><br>
 
             </div>
-            <img id="Img" [src]="model.ImagePath" alt="Image"><br>
             <!-- <input name="options" type="radio" [value]=0 [checked]="model.Status==0"
               [(ngModel)]="model.Status" />Enable<br />
             <input name="options" type="radio" [value]=1 [checked]="model.Status==1"

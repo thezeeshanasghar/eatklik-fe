@@ -22,10 +22,15 @@
           </div>
           <div class="form-group">
           <label class="form-control-label" for="name">Status</label>
-          <div class="tg-list-item">
+          <!-- <div class="tg-list-item">
 
-            <input class="tgl tgl-light" id="check"  type="checkbox" checked  [(ngModel)]="city.Status"/>
+            <input class="tgl tgl-light" id="check"  type="checkbox" checked  [(ngModel)]="city.Status" [checked]="city.Status==1"/>
             <label class="tgl-btn" for="check"></label>
+          </div> -->
+          <div class="tg-list-item">
+      
+            <input class="tgl tgl-light" id="check" name="Status"  type="checkbox" checked  [(ngModel)]="city.Status" [checked]="city.Status==1"/>
+            <label class="tgl-btn" for="check" ></label>
           </div>
           </div>
           <!-- <div class="btn-group btn-group-toggle mb-3" ngbRadioGroup name="radioBasic" [(ngModel)]="city.Status">
@@ -56,7 +61,8 @@
                 <button type="button" class="btn btn-success form-control" (click)="cover.click()">Upload Cover</button>
                 <ngb-progressbar class="top-15" *ngIf="uploadProgress > 0 && uploadProgress < 99" type="success"
                   [value]="uploadProgress">{{uploadProgress}}</ngb-progressbar>
-                <img class="thumbnail top-15" *ngIf="city.CoverImagePath" [src]="resourceURL + city.CoverImagePath" alt="coverimage">
+                <img class="thumbnail top-15" *ngIf="city.CoverImagePath" [src]="resourceURL + city.CoverImagePath" alt="coverimage"
+                >
               </div>
             </div>
 
