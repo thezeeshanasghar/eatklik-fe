@@ -215,7 +215,9 @@ export class OrderComponent implements OnInit {
   }
 
   editOrderStatus(Id , status) {
-    this.toastr.success('Status Changed');
+    
+    this.toastr.success('Status Changed','', {
+      positionClass: 'toast-bottom-right' });
       this.orderService.editOrderStatus(Id, status).subscribe(
         res => {
           this.OrderStatus=[];
