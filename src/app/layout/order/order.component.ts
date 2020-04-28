@@ -121,7 +121,7 @@ export class OrderComponent implements OnInit {
     {
       return false;
     }
-    this.dateValue=null;
+    // this.dateValue=null;
     this.spinner.show();
     this.orders=[];
     this.NewOrders=[];
@@ -135,7 +135,7 @@ export class OrderComponent implements OnInit {
     this.getRidersByCity();
 
     console.log(date);
-    this.dateValue=date._inputValue;
+    this.dateValue=date;
 
      
     this.orderService.getOrderByCity(Id).subscribe(
@@ -241,7 +241,8 @@ export class OrderComponent implements OnInit {
       this.orderService.editOrderStatus(Id, status).subscribe(
         res => {
           this.OrderStatus=[];
-          this.SelectByCity(this.CityId,"");
+          console.log("wffafadsfdsfadsfdsaf",this.dateValue)
+          this.SelectByCity(this.CityId,this.dateValue);
         },
       err => {
         console.log(err);
@@ -266,7 +267,7 @@ export class OrderComponent implements OnInit {
   getRidersByCity() {
     this.riderService.getRidersByCity(this.CityId).subscribe(
       res => {
-        this.riders = res;
+        this.riders = res.filter(x=>x.Status==0);
         this.isLoading = false;
         console.log(res);
       },

@@ -6,7 +6,7 @@
                 <div class="col-xl-3 col-lg-3">
                    <label> Select by City</label>
                 <select style="background-color: inherit; margin-left: 8px" [(ngModel)]="CityId"
-                    (change)="SelectByCity(CityId,d)">
+                    (change)="SelectByCity(CityId,d._inputValue)">
                     <option selected hidden> Select by City </option>
                     <option *ngFor="let city of cities" [value]="city.Id">{{city.Name}}</option>
                 </select> 
@@ -17,7 +17,7 @@
                   
 
                     <input  style="background-color: inherit; margin-left: 8px" placeholder="yyyy-mm-dd"  name="dp" 
-                      ngbDatepicker #d="ngbDatepicker"  [(ngModel)]="Created" (ngModelChange)="SelectByCity(CityId,d)" >
+                      ngbDatepicker #d="ngbDatepicker"  [(ngModel)]="Created" (ngModelChange)="SelectByCity(CityId,d._inputValue)" >
                     <button class="input-group-addon" (click)="d.toggle()" type="button">
                       <!-- <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/> -->
                       <span class="fa fa-calendar"></span>
