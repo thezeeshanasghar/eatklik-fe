@@ -34,6 +34,7 @@ export class OrderComponent implements OnInit {
   OrderRider: any[]=[];
   RiderId : number;
   city:any;
+  dateValue:any;
   Status:any=['New' , 'Active' , 'Dispatch', 'Complete' , 'Cancel' , 'Assign' , 'Accepted', 'Rejected'];
   Method:any=['Cash' , 'Credit Card' , 'EasyPaisa', 'MobiCash'];
 
@@ -114,7 +115,12 @@ export class OrderComponent implements OnInit {
   }
 
 
-  SelectByCity(Id) {
+  SelectByCity(Id,date) {
+    if(Id==null)
+    {
+      return false;
+    }
+    this.dateValue=null;
     this.spinner.show();
     this.orders=[];
     this.NewOrders=[];
@@ -126,9 +132,22 @@ export class OrderComponent implements OnInit {
     this.AcceptedOrders=[];
     this.RejectedOrders=[];
     this.getRidersByCity();
+
+    console.log(date);
+    this.dateValue=date._inputValue;
+
+     
     this.orderService.getOrderByCity(Id).subscribe(
       res => {
-        this.orders = res;
+        debugger;
+        
+        if (isNaN(Date.parse(this.dateValue)) == true || this.dateValue==undefined ) {
+          this.orders = res;
+
+        }else{
+          this.orders = res.filter(x=> x.Created.split("T")[0]==this.dateValue);
+
+        }
         this.isLoading = false;
         console.log(this.orders);
 
@@ -221,7 +240,7 @@ export class OrderComponent implements OnInit {
       this.orderService.editOrderStatus(Id, status).subscribe(
         res => {
           this.OrderStatus=[];
-          this.SelectByCity(this.CityId);
+          this.SelectByCity(this.CityId,"");
         },
       err => {
         console.log(err);
