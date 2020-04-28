@@ -35,6 +35,7 @@ export class OrderComponent implements OnInit {
   RiderId : number;
   city:any;
   dateValue:any;
+  Created:string;
   Status:any=['New' , 'Active' , 'Dispatch', 'Complete' , 'Cancel' , 'Assign' , 'Accepted', 'Rejected'];
   Method:any=['Cash' , 'Credit Card' , 'EasyPaisa', 'MobiCash'];
 
