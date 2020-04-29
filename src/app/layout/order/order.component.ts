@@ -35,7 +35,7 @@ export class OrderComponent implements OnInit {
   RiderId : number;
   city:any;
   dateValue:any;
-  Created:string;
+  Created:any;
   Status:any=['New' , 'Active' , 'Dispatch', 'Complete' , 'Cancel' , 'Assign' , 'Accepted', 'Rejected'];
   Method:any=['Cash' , 'Credit Card' , 'EasyPaisa', 'MobiCash'];
 
@@ -117,6 +117,8 @@ export class OrderComponent implements OnInit {
 
 
   SelectByCity(Id,date) {
+    console.log("sfdsfsdfdsfds",this.Created);
+
     if(Id==null)
     {
       return false;
@@ -135,9 +137,16 @@ export class OrderComponent implements OnInit {
     this.getRidersByCity();
 
     console.log(date);
-    this.dateValue=date;
+    if(date){
+      var month:string;
+      var day:string;
+      month=date.month+"";
+      day=date.day+"";
+      
+      this.dateValue=date.year+'-'+(month.length==1?"0"+month:month)+'-'+(day.length==1?"0"+day:day);
 
-     
+    }
+     console.log("sfsefasddddddddddd",this.dateValue);
     this.orderService.getOrderByCity(Id).subscribe(
       res => {
         debugger;
@@ -241,8 +250,7 @@ export class OrderComponent implements OnInit {
       this.orderService.editOrderStatus(Id, status).subscribe(
         res => {
           this.OrderStatus=[];
-          console.log("wffafadsfdsfadsfdsaf",this.dateValue)
-          this.SelectByCity(this.CityId,this.dateValue);
+          this.SelectByCity(this.CityId,this.Created);
         },
       err => {
         console.log(err);
